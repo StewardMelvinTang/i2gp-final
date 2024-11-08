@@ -5,7 +5,6 @@ using UnityEngine;
 public class KitchenTable : MonoBehaviour
 {
     [Header("Default Settings")]
-    [SerializeField] protected bool infiniteItem = false;
     [SerializeField] protected GameObject foodObject;
 
     protected MeshRenderer tableRenderer;
@@ -18,7 +17,7 @@ public class KitchenTable : MonoBehaviour
         {
             originalMetallic = tableRenderer.material.GetFloat("_Metallic"); // Store original metallic value
         }
-        if(foodObject != null && infiniteItem == false){
+        if(foodObject != null){
             foodObject = Instantiate(foodObject);
             foodObject.transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
         }
@@ -36,12 +35,7 @@ public class KitchenTable : MonoBehaviour
         }
     }
 
-    // Put Items
     public virtual GameObject PutItem(GameObject gameObject){
-        if(infiniteItem){
-            Destroy(gameObject);
-            return null;
-        }
         GameObject ret = foodObject;
         if(foodObject) Destroy(foodObject);
         foodObject = gameObject;
@@ -52,10 +46,8 @@ public class KitchenTable : MonoBehaviour
     
     public virtual GameObject TakeItem(){
         GameObject returnItem = foodObject;
-        if (!infiniteItem) { 
-            Destroy(foodObject);
-            foodObject = null;
-        }
+        Destroy(foodObject);
+        foodObject = null;
         return returnItem;
     }
 }
