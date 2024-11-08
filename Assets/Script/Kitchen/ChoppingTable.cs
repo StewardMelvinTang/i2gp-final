@@ -20,10 +20,6 @@ public class ChoppingTable : KitchenTable
                 return ret;
         }
         else{
-            if(infiniteItem){
-                Destroy(gameObject);
-                return null;
-            }
             GameObject ret = foodObject;
             if(foodObject) Destroy(foodObject);
             foodObject = gameObject;

@@ -5,13 +5,13 @@ using UnityEngine;
 public class KitchenTable : MonoBehaviour
 {
     [Header("Default Settings")]
-    [SerializeField] protected bool infiniteItem = true;
+    [SerializeField] protected bool infiniteItem = false;
     [SerializeField] protected GameObject foodObject;
 
     protected MeshRenderer tableRenderer;
     protected float originalMetallic;
 
-    void Start()
+    protected void Start()
     {
         tableRenderer = GetComponent<MeshRenderer>();
         if (tableRenderer != null)
@@ -50,8 +50,6 @@ public class KitchenTable : MonoBehaviour
         return ret;
     }
     
-    // To Take Item From the Desk or Supplies
-    // TODO: If can put multiple things
     public virtual GameObject TakeItem(){
         GameObject returnItem = foodObject;
         if (!infiniteItem) { 
