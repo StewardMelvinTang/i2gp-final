@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
             if (holdItem)
             {
                 table.PutItem(holdItem);
-                holdItem.transform.SetParent(null); // Detach the item when putting it back
+                holdItem.transform.SetParent(null);
                 holdItem = null;
             }
             else
@@ -58,14 +58,13 @@ public class PlayerController : MonoBehaviour
                 GameObject item = table.TakeItem();
                 if (item != null)
                 {
-                    holdItem = Instantiate(item); // Instantiate a copy of the prefab
-                    holdItem.transform.SetParent(transform); // Set the player as the parent
-                    holdItem.transform.localPosition = new Vector3(0, 1, 0.5f); // Position in front of the player
+                    holdItem = Instantiate(item);
+                    holdItem.transform.SetParent(transform); 
+                    holdItem.transform.localPosition = new Vector3(0, 0.5f, 0.8f);
                 }
             }
         }
     }
-
 
     /*
         #==================================================#

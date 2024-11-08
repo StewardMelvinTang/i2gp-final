@@ -6,7 +6,7 @@ public class KitchenTable : MonoBehaviour
 {
     [SerializeField] private bool infiniteItem = true;
     [SerializeField] private GameObject foodObject;
-    
+
     private MeshRenderer tableRenderer;
     private float originalMetallic;
 
@@ -33,7 +33,12 @@ public class KitchenTable : MonoBehaviour
 
     // Put Items
     public void PutItem(GameObject gameObject){
+        if(infiniteItem){
+            Destroy(gameObject);
+            return;
+        }
         foodObject = gameObject;
+        foodObject.transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
     }
     
     // To Take Item From the Desk or Supplies
@@ -41,6 +46,7 @@ public class KitchenTable : MonoBehaviour
     public GameObject TakeItem(){
         GameObject returnItem = foodObject;
         if (!infiniteItem) { 
+            Destroy(foodObject);
             foodObject = null;
         }
         return returnItem;

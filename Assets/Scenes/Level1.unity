@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e1c9ab6def7844db6904f028bc4c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infiniteItem: 1
+  infiniteItem: 0
   foodObject: {fileID: 0}
 --- !u!64 &1591869257
 MeshCollider:
