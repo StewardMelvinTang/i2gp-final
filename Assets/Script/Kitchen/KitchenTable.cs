@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class KitchenTable : MonoBehaviour
 {
-    [SerializeField] private bool infiniteItem = true;
-    [SerializeField] private GameObject foodObject;
+    [Header("Default Settings")]
+    [SerializeField] protected bool infiniteItem = true;
+    [SerializeField] protected GameObject foodObject;
 
-    private MeshRenderer tableRenderer;
-    private float originalMetallic;
+    protected MeshRenderer tableRenderer;
+    protected float originalMetallic;
 
     void Start()
     {
@@ -16,6 +17,10 @@ public class KitchenTable : MonoBehaviour
         if (tableRenderer != null)
         {
             originalMetallic = tableRenderer.material.GetFloat("_Metallic"); // Store original metallic value
+        }
+        if(foodObject != null && infiniteItem == false){
+            foodObject = Instantiate(foodObject);
+            foodObject.transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
         }
     }
 
@@ -32,18 +37,22 @@ public class KitchenTable : MonoBehaviour
     }
 
     // Put Items
-    public void PutItem(GameObject gameObject){
+    public virtual GameObject PutItem(GameObject gameObject){
         if(infiniteItem){
             Destroy(gameObject);
-            return;
+            return null;
         }
+        GameObject ret = foodObject;
+        if(foodObject) Destroy(foodObject);
         foodObject = gameObject;
         foodObject.transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+
+        return ret;
     }
     
     // To Take Item From the Desk or Supplies
     // TODO: If can put multiple things
-    public GameObject TakeItem(){
+    public virtual GameObject TakeItem(){
         GameObject returnItem = foodObject;
         if (!infiniteItem) { 
             Destroy(foodObject);

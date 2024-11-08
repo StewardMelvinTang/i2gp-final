@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 2.5f;
     [SerializeField] private float raycastRange = 1f;
     [SerializeField] private float holdDistance = 1.0f;
-    
+
     private KitchenTable lastHitTable;
     private GameObject holdItem;
 
@@ -47,21 +48,23 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            GameObject item = null;
             if (holdItem)
             {
-                table.PutItem(holdItem);
+                item = table.PutItem(holdItem);
                 holdItem.transform.SetParent(null);
                 holdItem = null;
             }
             else
             {
-                GameObject item = table.TakeItem();
-                if (item != null)
-                {
-                    holdItem = Instantiate(item);
-                    holdItem.transform.SetParent(transform); 
-                    holdItem.transform.localPosition = new Vector3(0, 0.5f, 0.8f);
-                }
+                item = table.TakeItem();
+            }
+
+            if (item != null)
+            {
+                holdItem = Instantiate(item);
+                holdItem.transform.SetParent(transform); 
+                holdItem.transform.localPosition = new Vector3(0, 0.5f, 0.8f);
             }
         }
     }
