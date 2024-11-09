@@ -1,0 +1,224 @@
+{
+    "foods": [
+        {
+            "name": "Beef Stew",
+            "baseIngredients": ["Beef", "Carrots", "Potatoes", "Onion"],
+            "specialIngredients": ["Golden Honey", "Herbs"]
+        },
+        {
+            "name": "Shrimp Pasta",
+            "baseIngredients": ["Shrimp", "Pasta", "Garlic", "Butter"],
+            "specialIngredients": ["Chili Pepper", "Crystallized Sugar"]
+        },
+        {
+            "name": "Chicken Salad",
+            "baseIngredients": ["Chicken", "Lettuce", "Tomatoes", "Cucumber"],
+            "specialIngredients": ["Almonds", "Golden Honey"]
+        },
+        {
+            "name": "Eggplant Parmesan",
+            "baseIngredients": ["Eggplant", "Cheese", "Tomatoes", "Bread"],
+            "specialIngredients": ["Herbs", "Golden Honey"]
+        },
+        {
+            "name": "Broccoli Cheese Soup",
+            "baseIngredients": ["Broccoli", "Cheese", "Milk", "Butter"],
+            "specialIngredients": ["Nutmeg", "Pepper"]
+        },
+        {
+            "name": "Grilled Fish Tacos",
+            "baseIngredients": ["Fish", "Tortilla", "Lettuce", "Lime"],
+            "specialIngredients": ["Chili Pepper", "Herbs"]
+        },
+        {
+            "name": "Honey-Glazed Pork Chops",
+            "baseIngredients": ["Pork", "Golden Honey", "Salt", "Pepper"],
+            "specialIngredients": ["Ginger", "Garlic"]
+        },
+        {
+            "name": "Bison Burger",
+            "baseIngredients": ["Bison", "Cheese", "Bread", "Lettuce"],
+            "specialIngredients": ["Smoked Salt", "Truffle Oil"]
+        },
+        {
+            "name": "Roasted Duck Breast",
+            "baseIngredients": ["Duck", "Oil", "Salt", "Pepper"],
+            "specialIngredients": ["Golden Honey", "Herbs"]
+        },
+        {
+            "name": "Quinoa Salad",
+            "baseIngredients": ["Quinoa", "Tomatoes", "Cucumber", "Onion"],
+            "specialIngredients": ["Pine Nuts", "Golden Honey"]
+        },
+        {
+            "name": "Pomegranate Glazed Venison",
+            "baseIngredients": ["Venison", "Pomegranate", "Salt", "Oil"],
+            "specialIngredients": ["Herbs", "Crystallized Sugar"]
+        },
+        {
+            "name": "Maple-Glazed Carrots",
+            "baseIngredients": ["Carrots", "Golden Honey", "Butter"],
+            "specialIngredients": ["Nutmeg", "Cinnamon"]
+        },
+        {
+            "name": "Tomato Basil Soup",
+            "baseIngredients": ["Tomatoes", "Garlic", "Onion", "Herbs"],
+            "specialIngredients": ["Golden Honey", "Cream"]
+        },
+        {
+            "name": "Spicy Coconut Shrimp",
+            "baseIngredients": ["Shrimp", "Coconut Milk", "Chili Pepper"],
+            "specialIngredients": ["Golden Honey", "Lime"]
+        },
+        {
+            "name": "Chicken Alfredo Pasta",
+            "baseIngredients": ["Chicken", "Pasta", "Cream", "Cheese"],
+            "specialIngredients": ["Garlic", "Herbs"]
+        },
+        {
+            "name": "Lemon Herb Fish",
+            "baseIngredients": ["Fish", "Lime", "Salt", "Herbs"],
+            "specialIngredients": ["Golden Honey", "Smoked Salt"]
+        },
+        {
+            "name": "Beef Stroganoff",
+            "baseIngredients": ["Beef", "Cream", "Onion", "Pasta"],
+            "specialIngredients": ["Mushrooms", "Golden Honey"]
+        },
+        {
+            "name": "Stuffed Bell Peppers",
+            "baseIngredients": ["Bell Peppers", "Rice", "Cheese", "Tomatoes"],
+            "specialIngredients": ["Golden Honey", "Herbs"]
+        },
+        {
+            "name": "Sweet Potato Fries",
+            "baseIngredients": ["Sweet Potatoes", "Salt", "Oil"],
+            "specialIngredients": ["Smoked Salt", "Golden Honey"]
+        },
+        {
+            "name": "Pumpkin Soup",
+            "baseIngredients": ["Pumpkin", "Cream", "Salt", "Nutmeg"],
+            "specialIngredients": ["Golden Honey", "Cinnamon"]
+        },
+        {
+            "name": "Venison Stew",
+            "baseIngredients": ["Venison", "Potatoes", "Carrots", "Onion"],
+            "specialIngredients": ["Herbs", "Golden Honey"]
+        },
+        {
+            "name": "Barley Risotto",
+            "baseIngredients": ["Barley", "Cream", "Cheese", "Mushrooms"],
+            "specialIngredients": ["Golden Honey", "Herbs"]
+        },
+        {
+            "name": "Garlic Butter Shrimp",
+            "baseIngredients": ["Shrimp", "Butter", "Garlic", "Salt"],
+            "specialIngredients": ["Chili Pepper", "Golden Honey"]
+        },
+        {
+            "name": "Cheese and Walnut Salad",
+            "baseIngredients": ["Cheese", "Lettuce", "Walnuts", "Oil"],
+            "specialIngredients": ["Golden Honey", "Vinegar"]
+        },
+        {
+            "name": "Smoked Salt Lamb Chops",
+            "baseIngredients": ["Lamb", "Oil", "Salt", "Pepper"],
+            "specialIngredients": ["Smoked Salt", "Herbs"]
+        },
+        {
+            "name": "Ratatouille",
+            "baseIngredients": ["Eggplant", "Tomatoes", "Bell Peppers", "Zucchini"],
+            "specialIngredients": ["Herbs", "Garlic"]
+        },
+        {
+            "name": "Roasted Garlic Broccoli",
+            "baseIngredients": ["Broccoli", "Garlic", "Oil", "Salt"],
+            "specialIngredients": ["Smoked Salt", "Golden Honey"]
+        },
+        {
+            "name": "Dark Chocolate Fondue",
+            "baseIngredients": ["Dark Chocolate", "Cream", "Golden Honey"],
+            "specialIngredients": ["Vanilla", "Cinnamon"]
+        },
+        {
+            "name": "Mushroom Soup",
+            "baseIngredients": ["Mushrooms", "Cream", "Onion", "Garlic"],
+            "specialIngredients": ["Herbs", "Golden Honey"]
+        },
+        {
+            "name": "Apple Cinnamon Porridge",
+            "baseIngredients": ["Oats", "Apples", "Cinnamon", "Milk"],
+            "specialIngredients": ["Golden Honey", "Walnuts"]
+        },
+        {
+            "name": "Coconut Rice Pudding",
+            "baseIngredients": ["Rice", "Coconut Milk", "Golden Honey"],
+            "specialIngredients": ["Vanilla", "Cinnamon"]
+        },
+        {
+            "name": "Stuffed Zucchini",
+            "baseIngredients": ["Zucchini", "Cheese", "Tomatoes", "Herbs"],
+            "specialIngredients": ["Golden Honey", "Garlic"]
+        },
+        {
+            "name": "Blueberry Pancakes",
+            "baseIngredients": ["Flour", "Eggs", "Milk", "Berries"],
+            "specialIngredients": ["Golden Honey", "Vanilla"]
+        },
+        {
+            "name": "Peach Cobbler",
+            "baseIngredients": ["Peaches", "Flour", "Sugar", "Butter"],
+            "specialIngredients": ["Golden Honey", "Cinnamon"]
+        },
+        {
+            "name": "Cranberry Walnut Bread",
+            "baseIngredients": ["Flour", "Walnuts", "Cranberries", "Sugar"],
+            "specialIngredients": ["Golden Honey", "Vanilla"]
+        },
+        {
+            "name": "Roasted Artichokes",
+            "baseIngredients": ["Artichokes", "Oil", "Salt"],
+            "specialIngredients": ["Herbs", "Garlic"]
+        },
+        {
+            "name": "Spicy Bison Chili",
+            "baseIngredients": ["Bison", "Beans", "Tomatoes", "Chili Pepper"],
+            "specialIngredients": ["Golden Honey", "Garlic"]
+        },
+        {
+            "name": "Herb Crusted Lamb",
+            "baseIngredients": ["Lamb", "Herbs", "Salt", "Oil"],
+            "specialIngredients": ["Garlic", "Golden Honey"]
+        },
+        {
+            "name": "Fruit Salad",
+            "baseIngredients": ["Berries", "Apples", "Oranges"],
+            "specialIngredients": ["Golden Honey", "Mint"]
+        },
+        {
+            "name": "Dark Chocolate Cake",
+            "baseIngredients": ["Flour", "Dark Chocolate", "Sugar", "Eggs"],
+            "specialIngredients": ["Golden Honey", "Vanilla"]
+        },
+        {
+            "name": "Egg Drop Soup",
+            "baseIngredients": ["Eggs", "Broth", "Ginger", "Salt"],
+            "specialIngredients": ["Scallions", "Pepper"]
+        },
+        {
+            "name": "Mango Smoothie",
+            "baseIngredients": ["Mango", "Yogurt", "Golden Honey"],
+            "specialIngredients": ["Mint", "Chia Seeds"]
+        },
+        {
+            "name": "Avocado Toast",
+            "baseIngredients": ["Bread", "Avocado", "Salt"],
+            "specialIngredients": ["Pepper", "Cherry Tomatoes"]
+        },
+        {
+            "name": "Chocolate Chip Cookies",
+            "baseIngredients": ["Flour", "Dark Chocolate", "Sugar", "Butter"],
+            "specialIngredients": ["Vanilla", "Golden Honey"]
+        }
+    ]
+}
