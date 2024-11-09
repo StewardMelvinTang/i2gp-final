@@ -53,15 +53,16 @@ public class PlayerController : MonoBehaviour
             {
                 holdItem.transform.SetParent(null);
                 item = table.PutItem(holdItem);
-                holdItem = null;
+                holdItem = item;
+                if (item) Debug.Log("Object Interaction returns an output (it failed putting) : " + item.name);
             }
             else
             {
                 item = table.TakeItem();
             }
-
             if (item != null)
             {
+                //Debug.Log("Holding Item : " + item.name);
                 holdItem = item;
                 holdItem.transform.SetParent(transform); 
                 holdItem.transform.localPosition = item.GetComponent<Item>().holdPosition;
