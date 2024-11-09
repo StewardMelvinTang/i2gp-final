@@ -2840,7 +2840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orderPrefab: {fileID: 3783532476834840512, guid: af2a3b94b93ff4d1c835128254cda482, type: 3}
   orderHolder: {fileID: 2008255748}
-  addOrderButton: {fileID: 964745744}
+  orderDetailPrefab: {fileID: 6737362514643909770, guid: 78b2ba89230484c6190d56cbee6eca40, type: 3}
 --- !u!4 &2039928545
 Transform:
   m_ObjectHideFlags: 0

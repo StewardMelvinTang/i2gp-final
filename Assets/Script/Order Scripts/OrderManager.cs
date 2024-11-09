@@ -31,22 +31,20 @@ public class Ingredients
 public class OrderManager : MonoBehaviour
 {
     public GameObject orderPrefab;             // Assign your order UI prefab
-    public Transform orderHolder;              // Assign the content area of the Scroll View
-    public Button addOrderButton;              // For debugging to add random orders
+    public Transform orderHolder;              // Assign the content area of the Scroll View              // For debugging to add random orders
 
     private List<GameObject> activeOrders;     // List to hold active orders
     public List<FoodData> foodList;            // List of foods loaded from JSON
     public IngredientData ingredientData;      // Ingredients loaded from JSON
+    public GameObject orderDetailPrefab; 
+    private GameObject activeOrderDetail = null;    // Current active detailed view
+    private OrderItem lastDeactivatedOrder = null; // Last deactivated order
 
     void Start()
     {
         activeOrders = new List<GameObject>(); // Initialize the active orders list
         LoadFoods();                           // Load food data from JSON
         LoadIngredients();                     // Load ingredients data from JSON
-
-        // Attach listener to addOrderButton for debugging purposes
-        if (addOrderButton != null)
-            addOrderButton.onClick.AddListener(CreateRandomOrder);
     }
 
     void LoadFoods()
@@ -65,14 +63,43 @@ public class OrderManager : MonoBehaviour
         ingredientData = ingredientsData.ingredients;
     }
 
+    public void ShowOrderDetail(OrderItem orderItem)
+    {
+        if (activeOrderDetail != null)
+        {
+            CloseOrderDetail();
+        }
+        activeOrderDetail = Instantiate(orderDetailPrefab, FindObjectOfType<Canvas>().transform);
+        lastDeactivatedOrder = orderItem;
+        orderItem.gameObject.SetActive(false); 
+        Button closeButton = activeOrderDetail.GetComponentInChildren<Button>();
+        if (closeButton != null)
+        {
+            closeButton.onClick.AddListener(CloseOrderDetail);
+        }
+    }
+
+    public void CloseOrderDetail()
+    {
+        if (activeOrderDetail != null)
+        {
+            Destroy(activeOrderDetail);
+            activeOrderDetail = null;
+            if (lastDeactivatedOrder != null)
+            {
+                lastDeactivatedOrder.gameObject.SetActive(true);
+                lastDeactivatedOrder = null;
+            }
+        }
+    }
 
     public void CreateRandomOrder()
     {
-        // Simply instantiate a blank order
         MakeOrder();
     }
     public void MakeOrder()
     {
+        Debug.Log("Asu");
         GameObject newOrder = Instantiate(orderPrefab, orderHolder);
         activeOrders.Add(newOrder);
     }
