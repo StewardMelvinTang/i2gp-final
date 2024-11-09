@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float raycastRange = 1f;
     [SerializeField] private float holdDistance = 1.0f;
 
-    private KitchenTable lastHitTable;
+    private Table lastHitTable;
     private GameObject holdItem;
 
     /*
@@ -40,11 +40,12 @@ public class PlayerController : MonoBehaviour
         if (moveVector != Vector3.zero)
         {
             transform.position += moveVector.normalized * movementSpeed * Time.deltaTime;
-            transform.rotation = Quaternion.LookRotation(moveVector);
+            Quaternion targetRotation = Quaternion.LookRotation(moveVector);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10 * Time.deltaTime);
         }
     }
 
-    private void ObjectInteract(KitchenTable table)
+    private void ObjectInteract(Table table)
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -62,10 +63,9 @@ public class PlayerController : MonoBehaviour
             }
             if (item != null)
             {
-                //Debug.Log("Holding Item : " + item.name);
                 holdItem = item;
                 holdItem.transform.SetParent(transform); 
-                holdItem.transform.localPosition = item.GetComponent<Item>().holdPosition;
+                holdItem.transform.localPosition = item.GetComponent<Item>().getHoldPosition();
             }
         }
     }
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, raycastRange))
         {
-            KitchenTable table = hit.collider.GetComponent<KitchenTable>();
+            Table table = hit.collider.GetComponent<Table>();
 
             if (table != null)
             {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServingTableScript : KitchenTable
+public class ServingTableScript : Table
 {
     private Dictionary<string, HashSet<string>> dishes;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class InfiniteCratesTable : KitchenTable
+public class Crate : Table
 {
     void Start(){
         tableRenderer = GetComponent<MeshRenderer>();

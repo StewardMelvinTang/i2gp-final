@@ -97,13 +97,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 
-  canPlate: 0
-  canPan: 0
+  isTool: 0
+  canPlate: 1
+  canBackpack: 0
+  canPan: 1
+  objAfterPan: {fileID: 919132149155446097, guid: a68041edb15a44d46b96275661918150, type: 3}
+  panTime: 10
   canPot: 0
+  objAfterPot: {fileID: 0}
+  potTime: 0
   canCut: 0
-  isUsable: 0
-  isBackpackable: 0
-  holdPosition: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0, w: 0}
-  dropPosition: {x: 0, y: 0, z: 0}
-  dropRotation: {x: 0, y: 0, z: 0, w: 0}
+  objAfterCut: {fileID: 0}

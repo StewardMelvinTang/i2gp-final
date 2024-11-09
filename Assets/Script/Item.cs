@@ -12,22 +12,24 @@ public class Item : MonoBehaviour {
   
   [Header("Process Settings")]
   public bool canPan;
-  public GameObject afterPan;
+  public GameObject objAfterPan;
+  public float panTime;
   public bool canPot;
-  public GameObject afterPot;
+  public GameObject objAfterPot;
+  public float potTime;
   public bool canCut;
-  public GameObject afterCut;
+  public GameObject objAfterCut;
 
-  [HideInInspector]
-  public Vector3 holdPosition;
+  public Vector3 getHoldPosition() {
+    if (isTool) {
+      return new Vector3(0.75f, 0, 0);
+    } else {
+      return new Vector3(0, 0, 0.75f);
+    }
+  }
 
   void Start() {
-    if (isTool) {
-      holdPosition = new Vector3(0.75f, 0.0f, 0.0f);
-    }
-    else {
-      holdPosition = new Vector3(0.0f, 0.0f, 0.75f);
-    }
+
   }
 
   void Update() {

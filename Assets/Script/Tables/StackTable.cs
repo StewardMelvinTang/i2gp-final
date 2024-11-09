@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class StackerTable : KitchenTable
+public class StackTable : Table
 {
     private StackFood stackFood = null;
     public override GameObject PutItem(GameObject gameObject) {

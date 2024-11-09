@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KitchenTable : MonoBehaviour
+public class Table : MonoBehaviour
 {
     [Header("Default Settings")]
     [SerializeField] protected GameObject foodObject;
