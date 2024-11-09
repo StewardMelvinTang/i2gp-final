@@ -19,7 +19,7 @@ public class KitchenTable : MonoBehaviour
         }
         if(foodObject != null){
             foodObject = Instantiate(foodObject);
-            foodObject.transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+            foodObject.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
         }
     }
 
@@ -37,16 +37,13 @@ public class KitchenTable : MonoBehaviour
 
     public virtual GameObject PutItem(GameObject gameObject){
         GameObject ret = foodObject;
-        if(foodObject) Destroy(foodObject);
         foodObject = gameObject;
-        foodObject.transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
-
+        foodObject.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
         return ret;
     }
     
     public virtual GameObject TakeItem(){
         GameObject returnItem = foodObject;
-        Destroy(foodObject);
         foodObject = null;
         return returnItem;
     }

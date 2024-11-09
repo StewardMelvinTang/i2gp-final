@@ -14,12 +14,12 @@ public class InfiniteCratesTable : KitchenTable
     }
     
     public override GameObject PutItem(GameObject gameObject){
-       Destroy(gameObject);
+        Destroy(gameObject);
         return null;
     }
     
     public override GameObject TakeItem(){
-        GameObject returnItem = foodObject;
+        GameObject returnItem = Instantiate(foodObject);
         return returnItem;
     }
 }

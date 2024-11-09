@@ -14,12 +14,6 @@ public class StoveTable : KitchenTable
     private float timeCounter;
     private bool startCounter;
 
-    void Start(){
-        base.Start();
-        timeCounter = 0.0f;
-        startCounter = false;
-    }
-
     void Update(){
         if(startCounter){
             timeCounter -= Time.deltaTime;
@@ -27,7 +21,7 @@ public class StoveTable : KitchenTable
                 startCounter = false;
                 Destroy(foodObject);
                 foodObject = Instantiate(wellDoneMeat);
-                foodObject.transform.position = new Vector3(transform.position.x, 1.7f, transform.position.z);
+                foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
             }
         }
     }
@@ -40,20 +34,17 @@ public class StoveTable : KitchenTable
             timeCounter = cookingTime;
 
             foodObject = gameObject;
-            foodObject.transform.position = new Vector3(transform.position.x, 1.7f, transform.position.z);
+            foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
             return null;
         }
         /* Can't put anything else */
         else{
-            GameObject ret = gameObject;
-            Destroy(gameObject);
-            return ret;
+            return gameObject;
         }
     }
 
     public override GameObject TakeItem(){
         GameObject returnItem = foodObject;
-        Destroy(foodObject);
         foodObject = null;
         startCounter = false;
         return returnItem;

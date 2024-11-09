@@ -51,8 +51,8 @@ public class PlayerController : MonoBehaviour
             GameObject item = null;
             if (holdItem)
             {
-                item = table.PutItem(holdItem);
                 holdItem.transform.SetParent(null);
+                item = table.PutItem(holdItem);
                 holdItem = null;
             }
             else
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
             if (item != null)
             {
-                holdItem = Instantiate(item);
+                holdItem = item;
                 holdItem.transform.SetParent(transform); 
                 holdItem.transform.localPosition = new Vector3(0, 0.5f, 0.8f);
             }

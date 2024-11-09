@@ -14,16 +14,14 @@ public class ChoppingTable : KitchenTable
             gameObject.CompareTag("knife") && foodObject.CompareTag("carrot")){
                 Destroy(foodObject);
                 foodObject = Instantiate(carrotChopped);
-                foodObject.transform.position = new Vector3(transform.position.x, 1.7f, transform.position.z);
+                foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
                 GameObject ret = gameObject;
-                Destroy(gameObject);
                 return ret;
         }
         else{
             GameObject ret = foodObject;
-            if(foodObject) Destroy(foodObject);
             foodObject = gameObject;
-            foodObject.transform.position = new Vector3(transform.position.x, 1.7f, transform.position.z);
+            foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
 
             return ret;
         }
