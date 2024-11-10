@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: knife
-  isTool: 0
+  isTool: 1
   canPlate: 0
   canBackpack: 0
   canPan: 0

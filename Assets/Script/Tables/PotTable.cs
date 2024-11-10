@@ -9,7 +9,7 @@ public class PotTable : Table {
     private bool startCounter;
 
     void Update(){
-        if(startCounter){
+        if (startCounter) {
             timeCounter -= Time.deltaTime;
             if(timeCounter < 0.0f){
                 startCounter = false;

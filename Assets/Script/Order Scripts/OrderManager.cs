@@ -106,6 +106,7 @@ public class OrderManager : MonoBehaviour
     {
         MakeOrder("null");
     }
+    
     public void MakeOrder(string dishName)
     {
         GameObject newOrder = Instantiate(orderPrefab, orderHolder);
