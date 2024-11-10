@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private Table lastHitTable;
     private GameObject holdItem;
+    private Stack<GameObject> backpack;
 
     /*
         MOVE        : WASD
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         holdItem = null;
+        backpack = new Stack<GameObject>();
     }
 
     void Update()
@@ -79,7 +81,13 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.E) && item && item.isTool) {
-            holdItem.GetComponent<Item>().Use();
+            GameObject droppedObj = holdItem.GetComponent<Item>().Use();
+            if (droppedObj) {
+                GameObject obj = Instantiate(droppedObj);
+                obj.transform.SetParent(gameObject.transform);
+                backpack.Push(droppedObj);
+                obj.transform.localPosition = new Vector3(0, 0, -1 * backpack.Count);
+            }
         }
     }
 

@@ -28,8 +28,9 @@ public class Item : MonoBehaviour {
     }
   }
 
-  public virtual void Use() {
+  public virtual GameObject Use() {
     Debug.Log("Item used but not implemented");
+    return null;
   }
 
   void Start() {

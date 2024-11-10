@@ -7,12 +7,13 @@ public class Animal : MonoBehaviour
     public GameObject dropItem;
     public int health = 1;
 
-    public void TakeDamage(int damage) {
+    public GameObject TakeDamage(int damage) {
         health -= damage;
         if (health <= 0) {
-            Instantiate(dropItem, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            return dropItem;
         }
+        return null;
     }
 
     void Start() {
