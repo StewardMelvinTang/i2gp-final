@@ -5,6 +5,7 @@ public class OrderItem : MonoBehaviour
 {
     private OrderManager orderManager;// Transform for where to place ingredients as text objects
     public Image dishImage;
+    public string foodName;
 
     private void Start()
     {
@@ -14,7 +15,6 @@ public class OrderItem : MonoBehaviour
 
     public void OnOrderClicked()
     {
-        Debug.Log("anjign fsds");
         if (orderManager != null)
         {
             orderManager.ShowOrderDetail(this);
@@ -23,13 +23,13 @@ public class OrderItem : MonoBehaviour
 
     public void SetOrderDetails(string dishName)
     {
+        foodName = dishName;
         // Load the material from Resources based on the dish name
         Material material = Resources.Load<Material>($"Foods_ICONS/{dishName}");
         if (material != null)
         {
             // Assign the loaded material to the dishImage component
             dishImage.material = material;
-            Debug.Log("Material successfully assigned for dish: " + dishName);
         }
         else
         {

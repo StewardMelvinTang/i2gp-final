@@ -19,7 +19,6 @@ public class ServingTableScript : Table
         orderManager = FindObjectOfType<OrderManager>();
         if (orderManager != null)
         {
-            Debug.Log("asu anjing");
             // orderManager.MakeOrder("hamBurger", dishes["hamBurger"]);
             // orderManager.MakeOrder("hamBurgerWithCarrot", dishes["hamBurgerWithCarrot"]);
             orderManager.MakeOrder("hamBurger");

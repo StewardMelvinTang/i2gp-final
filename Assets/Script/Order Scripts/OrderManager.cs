@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine.UI;
+using TMPro;
 
 public class FoodData
 {
@@ -37,9 +38,15 @@ public class OrderManager : MonoBehaviour
     public GameObject orderDetailPrefab; 
     private GameObject activeOrderDetail = null;    // Current active detailed view
     private OrderItem lastDeactivatedOrder = null; // Last deactivated order
+    private DishLoader dishLoader;
 
     void Start()
-    {// Initialize the active orders list                   // Load ingredients data from JSON
+    {
+        dishLoader = FindObjectOfType<DishLoader>(); // Initialize the DishLoader reference
+        if (dishLoader == null)
+        {
+            Debug.LogError("DishLoader not found in the scene.");
+        }
     }
 
     public void ShowOrderDetail(OrderItem orderItem)
@@ -51,6 +58,29 @@ public class OrderManager : MonoBehaviour
         activeOrderDetail = Instantiate(orderDetailPrefab, FindObjectOfType<Canvas>().transform);
         lastDeactivatedOrder = orderItem;
         orderItem.gameObject.SetActive(false); 
+
+        TextMeshProUGUI ingredientListText = activeOrderDetail.transform.Find("IngredientListText").GetComponent<TextMeshProUGUI>();
+        Image detailImage = activeOrderDetail.transform.Find("DishImage").GetComponent<Image>();
+
+        if (ingredientListText != null && dishLoader != null)
+        {
+            if (dishLoader.dishes.TryGetValue(orderItem.foodName, out var ingredients))
+            {
+                string formattedIngredients = "Ingredients:\n- " + string.Join("\n- ", ingredients);
+                ingredientListText.text = formattedIngredients;
+            }
+            else
+            {
+                Debug.Log("ASUU anjing cok");
+                ingredientListText.text = "Ingredients not found.";
+            }
+        }
+
+        if (detailImage != null)
+        {
+            detailImage.material = orderItem.dishImage.material; // Use the sprite already set in OrderItem
+        }
+
         Button closeButton = activeOrderDetail.GetComponentInChildren<Button>();
         if (closeButton != null)
         {
@@ -82,11 +112,9 @@ public class OrderManager : MonoBehaviour
         OrderItem orderItem = newOrder.GetComponent<OrderItem>();
 
         string imagePath =  ($"Foods_ICONS/{dishName}");
-        Debug.Log("Setting order details for dish: " + dishName);
         orderItem.SetOrderDetails(dishName);
 
         activeOrders.Add(newOrder);
-        Debug.Log("Order successfully created and added to active orders.");
     }
 
     public void ClearOrders()
