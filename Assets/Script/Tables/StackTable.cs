@@ -9,16 +9,16 @@ public class StackTable : Table
     private StackFood stackFood = null;
     public override GameObject PutItem(GameObject gameObject) {
         /* Empty Hand, Take the food */
-        if (gameObject == null)
-        {
-            if (foodObject == null)
-            {
-                return null;
-            }
-            GameObject ret = foodObject;
-            foodObject = null;
-            return ret;
-        }
+        // if (gameObject == null)
+        // {
+        //     if (foodObject == null)
+        //     {
+        //         return null;
+        //     }
+        //     GameObject ret = foodObject;
+        //     foodObject = null;
+        //     return ret;
+        // }
         /* Empty Table */
         if (foodObject == null)
         {

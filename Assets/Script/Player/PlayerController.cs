@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Table lastHitTable;
     private GameObject holdItem;
     private StackFood backpack;
+    private float backpackDelay;
 
     /*
         MOVE        : WASD
@@ -26,13 +27,22 @@ public class PlayerController : MonoBehaviour
         backpackObject.transform.SetParent(transform);
         backpack = backpackObject.AddComponent<StackFood>();
         backpack.transform.localPosition = new Vector3(0, 0, -1);
+        backpackDelay = 0.0f;
     }
 
     void Update()
     {
+        /* Timer */
+        if(backpackDelay > 0.0f){
+            backpackDelay -= Time.deltaTime;
+        }
+        
+
+        /* Update Function */
         UpdatePlayerMovement();
         RayCastObject();
         UseItem();
+        
     }
 
     private void UpdatePlayerMovement()
@@ -62,11 +72,22 @@ public class PlayerController : MonoBehaviour
         // }
     }
 
+    private void RefillCrate(FiniteCrate crate){
+        if (Input.GetKey(KeyCode.F)){
+            if (backpack.foodStack.Count > 0 && backpackDelay <= 0.0f) {
+                GameObject obj = backpack.Pop();
+                crate.PutItem(obj);
+                backpackDelay = 0.1f;
+            }
+        }
+    }
+
     private void ObjectInteract(Table table)
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
             GameObject item = null;
+            
             if (holdItem)
             {
                 holdItem.transform.SetParent(null);
@@ -78,6 +99,7 @@ public class PlayerController : MonoBehaviour
             {
                 item = table.TakeItem();
             }
+
             if (item != null)
             {
                 holdItem = item;
@@ -117,6 +139,7 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, raycastRange))
         {
             Table table = hit.collider.GetComponent<Table>();
+            FiniteCrate finiteCrate = hit.collider.GetComponent<FiniteCrate>();
 
             if (table != null)
             {
@@ -129,7 +152,12 @@ public class PlayerController : MonoBehaviour
                 lastHitTable = table;
 
                 /* Interact */
-                ObjectInteract(table);
+                if(finiteCrate){
+                    RefillCrate(finiteCrate);
+                }
+                else{
+                    ObjectInteract(table);
+                }
             }
             else if (lastHitTable != null)
             {

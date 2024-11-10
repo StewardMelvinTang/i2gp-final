@@ -51,8 +51,8 @@ public class StackFood : MonoBehaviour
     }
 
     // use this to check if this has the order of requierd items
-    //example usage: List<string> order = new List<string> { "Burger", "Fries" };
-    //bool isOrderComplete = stackFoodObject.HasOrder(order);
+    // example usage: List<string> order = new List<string> { "Burger", "Fries" };
+    // bool isOrderComplete = stackFoodObject.HasOrder(order);
 
     public bool HasOrder(List<string> requiredItems)
     {
@@ -98,8 +98,6 @@ public class StackFood : MonoBehaviour
         return true;
     }
 
-
-
     public void JoinFood(StackFood other) {
         // if (CanJoinFood(other) == false) return;
         Stack<GameObject> otherStack = other.GetFoodStack();
@@ -141,6 +139,15 @@ public class StackFood : MonoBehaviour
 
                 foodStack.Push(foodItem);
             // }
+        }
+    }
+
+    public GameObject Pop(){
+        if(foodStack.Count > 0){
+            return foodStack.Pop();
+        }
+        else{
+            return null;
         }
     }
 
