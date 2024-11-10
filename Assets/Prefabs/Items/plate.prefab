@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: -8679921383154817045}
   - component: {fileID: -5754084199372789682}
   - component: {fileID: -7511558181221131132}
+  - component: {fileID: -6428512972514275547}
   m_Layer: 0
   m_Name: plate
   m_TagString: plate
@@ -83,3 +84,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-6428512972514275547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149155446097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97df77ab9c3f0cc4eae7ea6f32556bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Plate
+  isTool: 0
+  canPlate: 0
+  canBackpack: 0
+  canPan: 0
+  objAfterPan: {fileID: 0}
+  panTime: 0
+  canPot: 0
+  objAfterPot: {fileID: 0}
+  potTime: 0
+  canCut: 0
+  objAfterCut: {fileID: 0}
