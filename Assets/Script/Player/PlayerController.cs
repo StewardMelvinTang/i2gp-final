@@ -33,18 +33,15 @@ public class PlayerController : MonoBehaviour
 
     private void UpdatePlayerMovement()
     {
-        Vector3 moveVector = new Vector3(0.0f, 0.0f, 0.0f);
+        Vector3 moveVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        if (Input.GetKey(KeyCode.W)) moveVector.z += 1.0f;
-        if (Input.GetKey(KeyCode.S)) moveVector.z -= 1.0f;
-        if (Input.GetKey(KeyCode.A)) moveVector.x -= 1.0f;
-        if (Input.GetKey(KeyCode.D)) moveVector.x += 1.0f;
-
-        if (moveVector != Vector3.zero)
+        if (moveVector.magnitude > 0.1f)
         {
-            transform.position += moveVector.normalized * movementSpeed * Time.deltaTime;
+            moveVector = moveVector.normalized;
+            transform.position += moveVector * movementSpeed * Time.deltaTime;
+
             Quaternion targetRotation = Quaternion.LookRotation(moveVector);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10 * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
         }
     }
 
