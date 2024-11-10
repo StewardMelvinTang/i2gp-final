@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private Table lastHitTable;
     private GameObject holdItem;
-    private Stack<GameObject> backpack;
+    private StackFood backpack;
 
     /*
         MOVE        : WASD
@@ -21,7 +21,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         holdItem = null;
-        backpack = new Stack<GameObject>();
+
+        GameObject backpackObject = new GameObject("Backpack");
+        backpackObject.transform.SetParent(transform);
+        backpack = backpackObject.AddComponent<StackFood>();
+        backpack.transform.localPosition = new Vector3(0, 0, -1);
     }
 
     void Update()
@@ -94,9 +98,8 @@ public class PlayerController : MonoBehaviour
             GameObject droppedObj = holdItem.GetComponent<Item>().Use();
             if (droppedObj) {
                 GameObject obj = Instantiate(droppedObj);
-                obj.transform.SetParent(gameObject.transform);
-                backpack.Push(droppedObj);
-                obj.transform.localPosition = new Vector3(0, 0, -1 * backpack.Count);
+                // obj.transform.SetParent(gameObject.transform);
+                backpack.InsertFood(obj);
             }
         }
     }

@@ -30,11 +30,11 @@ public class StackFood : MonoBehaviour
 
     public void InsertFood(GameObject gameObject){
 
-        foreach (GameObject food in foodStack) {
-            if (food.name == gameObject.name) {
-                return;
-            }
-        }
+        // foreach (GameObject food in foodStack) {
+        //     if (food.name == gameObject.name) {
+        //         return;
+        //     }
+        // }
         
         gameObject.transform.SetParent(transform);
         gameObject.transform.localPosition = new Vector3(
@@ -101,7 +101,7 @@ public class StackFood : MonoBehaviour
 
 
     public void JoinFood(StackFood other) {
-        if (CanJoinFood(other) == false) return;
+        // if (CanJoinFood(other) == false) return;
         Stack<GameObject> otherStack = other.GetFoodStack();
         int currentSize = foodStack.Count;
 
@@ -118,20 +118,20 @@ public class StackFood : MonoBehaviour
             GameObject foodItem = tempItems[i];
 
             // Check if an item of the same type already exists in foodStack
-            bool itemExists = false;
-            foreach (GameObject existingItem in foodStack)
-            {
-                if (existingItem.name == foodItem.name) // Using name as type identifier
-                {
-                    itemExists = true;
-                    Debug.Log($"Item '{foodItem.name}' already exists in the stack, skipping...");
-                    break;
-                }
-            }
+            // bool itemExists = false;
+            // foreach (GameObject existingItem in foodStack)
+            // {
+            //     if (existingItem.name == foodItem.name) // Using name as type identifier
+            //     {
+            //         itemExists = true;
+            //         Debug.Log($"Item '{foodItem.name}' already exists in the stack, skipping...");
+            //         break;
+            //     }
+            // }
 
-            // If item of the same type doesn't exist, add it to the stack
-            if (!itemExists)
-            {
+            // // If item of the same type doesn't exist, add it to the stack
+            // if (!itemExists)
+            // {
                 foodItem.transform.SetParent(transform, false);
                 foodItem.transform.localPosition = new Vector3(
                     0,
@@ -140,7 +140,7 @@ public class StackFood : MonoBehaviour
                 );
 
                 foodStack.Push(foodItem);
-            }
+            // }
         }
     }
 
