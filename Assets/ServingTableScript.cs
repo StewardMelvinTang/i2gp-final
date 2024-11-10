@@ -5,6 +5,8 @@ using UnityEngine;
 public class ServingTableScript : Table
 {
     private Dictionary<string, HashSet<string>> dishes;
+    private OrderManager orderManager;
+
 
     // Initialize the dictionary with possible dishes and ingredients
     void Start()
@@ -14,6 +16,15 @@ public class ServingTableScript : Table
             { "hamBurger", new HashSet<string> { "plate", "cookedmeat", "bun" } },
             { "hamBurgerWithCarrot", new HashSet<string> { "plate", "cookedmeat", "bun", "carrot" } }
         };
+        orderManager = FindObjectOfType<OrderManager>();
+        if (orderManager != null)
+        {
+            Debug.Log("asu anjing");
+            // orderManager.MakeOrder("hamBurger", dishes["hamBurger"]);
+            // orderManager.MakeOrder("hamBurgerWithCarrot", dishes["hamBurgerWithCarrot"]);
+            orderManager.MakeOrder("hamBurger");
+            orderManager.MakeOrder("hamBurgerWithCarrot");
+        }
     }
 
     public override GameObject PutItem(GameObject gameObject)

@@ -33,34 +33,13 @@ public class OrderManager : MonoBehaviour
     public GameObject orderPrefab;             // Assign your order UI prefab
     public Transform orderHolder;              // Assign the content area of the Scroll View              // For debugging to add random orders
 
-    private List<GameObject> activeOrders;     // List to hold active orders
-    public List<FoodData> foodList;            // List of foods loaded from JSON
-    public IngredientData ingredientData;      // Ingredients loaded from JSON
+    private List<GameObject> activeOrders = new List<GameObject>();      // List to hold active order 
     public GameObject orderDetailPrefab; 
     private GameObject activeOrderDetail = null;    // Current active detailed view
     private OrderItem lastDeactivatedOrder = null; // Last deactivated order
 
     void Start()
-    {
-        activeOrders = new List<GameObject>(); // Initialize the active orders list
-        LoadFoods();                           // Load food data from JSON
-        LoadIngredients();                     // Load ingredients data from JSON
-    }
-
-    void LoadFoods()
-    {
-        string path = Path.Combine(Application.streamingAssetsPath, "Foods_JSON/foods.json");
-        string json = File.ReadAllText(path);
-        Foods foodsData = JsonConvert.DeserializeObject<Foods>(json);
-        foodList = foodsData.foods;
-    }
-
-    void LoadIngredients()
-    {
-        string path = Path.Combine(Application.streamingAssetsPath, "Foods_JSON/ingredients.json");
-        string json = File.ReadAllText(path);
-        Ingredients ingredientsData = JsonConvert.DeserializeObject<Ingredients>(json);
-        ingredientData = ingredientsData.ingredients;
+    {// Initialize the active orders list                   // Load ingredients data from JSON
     }
 
     public void ShowOrderDetail(OrderItem orderItem)
@@ -95,13 +74,19 @@ public class OrderManager : MonoBehaviour
 
     public void CreateRandomOrder()
     {
-        MakeOrder();
+        MakeOrder("null");
     }
-    public void MakeOrder()
+    public void MakeOrder(string dishName)
     {
-        Debug.Log("Asu");
         GameObject newOrder = Instantiate(orderPrefab, orderHolder);
+        OrderItem orderItem = newOrder.GetComponent<OrderItem>();
+
+        string imagePath =  ($"Foods_ICONS/{dishName}");
+        Debug.Log("Setting order details for dish: " + dishName);
+        orderItem.SetOrderDetails(dishName);
+
         activeOrders.Add(newOrder);
+        Debug.Log("Order successfully created and added to active orders.");
     }
 
     public void ClearOrders()
