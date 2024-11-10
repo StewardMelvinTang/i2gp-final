@@ -28,6 +28,10 @@ public class Item : MonoBehaviour {
     }
   }
 
+  public virtual void Use() {
+    Debug.Log("Item used but not implemented");
+  }
+
   void Start() {
 
   }

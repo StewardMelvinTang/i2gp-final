@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         UpdatePlayerMovement();
         RayCastObject();
+        UseItem();
     }
 
     private void UpdatePlayerMovement()
@@ -67,6 +68,18 @@ public class PlayerController : MonoBehaviour
                 holdItem.transform.SetParent(transform); 
                 holdItem.transform.localPosition = item.GetComponent<Item>().getHoldPosition();
             }
+        }
+    }
+
+    private void UseItem() {
+        Item item = null;
+
+        if (holdItem) {
+            item = holdItem.GetComponent<Item>();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && item && item.isTool) {
+            holdItem.GetComponent<Item>().Use();
         }
     }
 

@@ -10,6 +10,7 @@ TagManager:
   - plate
   - bun
   - cookedmeat
+  - animal
   layers:
   - Default
   - TransparentFX

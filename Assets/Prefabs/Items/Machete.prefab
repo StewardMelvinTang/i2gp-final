@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &919132149155446097
+--- !u!1 &1657996491295356
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: -8679921383154817045}
-  - component: {fileID: -5754084199372789682}
-  - component: {fileID: -7511558181221131132}
-  - component: {fileID: -1647737415072097120}
+  - component: {fileID: 4244360012557640}
+  - component: {fileID: 33474420055630012}
+  - component: {fileID: 23224106587744794}
+  - component: {fileID: 64502121300571016}
+  - component: {fileID: -675850643621084581}
   m_Layer: 0
-  m_Name: Knife
-  m_TagString: knife
+  m_Name: Machete
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &-8679921383154817045
+--- !u!4 &4244360012557640
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_GameObject: {fileID: 1657996491295356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!33 &-5754084199372789682
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &33474420055630012
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
-  m_Mesh: {fileID: 7233159054065966114, guid: 96298cc6f84eaef4eb05e558105dcb5f, type: 3}
---- !u!23 &-7511558181221131132
+  m_GameObject: {fileID: 1657996491295356}
+  m_Mesh: {fileID: 4300000, guid: 36893df50df1cc34aab188ecc413329e, type: 3}
+--- !u!23 &23224106587744794
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
+  m_GameObject: {fileID: 1657996491295356}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a6e931ed93711a141a0c7e37e0e3cb76, type: 2}
+  - {fileID: 2100000, guid: a74066172cf19cd4bacae3c6600a7217, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,7 +75,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -84,25 +85,41 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-1647737415072097120
+--- !u!64 &64502121300571016
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657996491295356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43799263115863116, guid: d4b15c9b2f844fa4a8a5796fdc02d44d, type: 2}
+--- !u!114 &-675850643621084581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
+  m_GameObject: {fileID: 1657996491295356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97df77ab9c3f0cc4eae7ea6f32556bc8, type: 3}
+  m_Script: {fileID: 11500000, guid: 982a7e451b774f74fab21977e7ac9fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: knife
+  itemName: 
   isTool: 1
   canPlate: 0
   canBackpack: 0
   canPan: 0
-  afterPan: {fileID: 0}
+  objAfterPan: {fileID: 0}
+  panTime: 0
   canPot: 0
-  afterPot: {fileID: 0}
+  objAfterPot: {fileID: 0}
+  potTime: 0
   canCut: 0
-  afterCut: {fileID: 0}
+  objAfterCut: {fileID: 0}
