@@ -2,11 +2,11 @@
     "dishes": [
         {
             "name": "hamBurger",
-            "ingredients": ["plate", "cookedmeat", "bun"]
+            "ingredients": ["Plate", "BottomBun", "CookedMeat", "TopBun"]
         },
         {
             "name": "hamBurgerWithCarrot",
-            "ingredients": ["plate", "cookedmeat", "bun", "carrot"]
+            "ingredients": ["Plate", "BottomBun", "CookedMeat", "TopBun", "ChoppedCarrot"]
         }
     ]
 }

@@ -96,14 +96,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97df77ab9c3f0cc4eae7ea6f32556bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: BurntMeat
+  isTool: 0
   canPlate: 0
+  canBackpack: 0
   canPan: 0
+  objAfterPan: {fileID: 0}
+  panTime: 0
   canPot: 0
+  objAfterPot: {fileID: 0}
+  potTime: 0
   canCut: 0
-  isUsable: 0
-  isBackpackable: 0
-  holdPosition: {x: 0, y: 0, z: 0}
-  holdRotation: {x: 0, y: 0, z: 0, w: 0}
-  dropPosition: {x: 0, y: 0, z: 0}
-  dropRotation: {x: 0, y: 0, z: 0, w: 0}
+  objAfterCut: {fileID: 0}

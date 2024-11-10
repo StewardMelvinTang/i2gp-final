@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
             backpackDelay -= Time.deltaTime;
         }
         
-
         /* Update Function */
         UpdatePlayerMovement();
         RayCastObject();
@@ -73,12 +72,15 @@ public class PlayerController : MonoBehaviour
     }
 
     private void RefillCrate(FiniteCrate crate){
-        if (Input.GetKey(KeyCode.F)){
-            if (backpack.foodStack.Count > 0 && backpackDelay <= 0.0f) {
+        if (Input.GetKey(KeyCode.F) && backpack.foodStack.Count > 0){
+            if(backpackDelay <= 0.0f){
                 GameObject obj = backpack.Pop();
                 crate.PutItem(obj);
                 backpackDelay = 0.1f;
             }
+        }
+        else{
+            ObjectInteract(crate);
         }
     }
 

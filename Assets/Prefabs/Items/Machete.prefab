@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982a7e451b774f74fab21977e7ac9fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Machete
   isTool: 1
   canPlate: 0
   canBackpack: 0

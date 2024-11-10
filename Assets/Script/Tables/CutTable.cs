@@ -19,7 +19,7 @@ public class CutTable : Table
         }
 
         if (targetObject != null && foodObject != null &&
-            targetItem.itemName == "knife" && currentItem.canCut) {
+            targetItem.itemName == "Knife" && currentItem.canCut) {
             
             Destroy(foodObject);
             foodObject = Instantiate(currentItem.objAfterCut);

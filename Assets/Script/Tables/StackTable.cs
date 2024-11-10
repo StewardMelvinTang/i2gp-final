@@ -71,6 +71,12 @@ public class StackTable : Table
             // Update the foodObject to the current stacked object and reposition it
             foodObject = currentStackFood.gameObject;
             foodObject.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+
+            Item tmp = foodObject.GetComponent<Item>();
+            if(tmp){
+                tmp.Reset();
+            }
+            
             
             return null;
         }

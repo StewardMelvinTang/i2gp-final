@@ -18,6 +18,7 @@ public class Dishes
 
 public class DishLoader : MonoBehaviour
 {
+    public static DishLoader Instance;
     public Dictionary<string, HashSet<string>> dishes = new Dictionary<string, HashSet<string>>();
 
     void Start()
@@ -27,6 +28,7 @@ public class DishLoader : MonoBehaviour
 
     void LoadDishes()
     {
+        Debug.Log("Loading Dishes");
         string path = Path.Combine(Application.streamingAssetsPath, "Foods_JSON/foods.json");
         if (File.Exists(path))
         {
@@ -35,12 +37,22 @@ public class DishLoader : MonoBehaviour
 
             foreach (Dish dish in dishList.dishes)
             {
+                Debug.Log(dish.name);
                 dishes[dish.name] = new HashSet<string>(dish.ingredients);
             }
         }
         else
         {
             Debug.LogError("Dishes file not found at path: " + path);
+        }
+    }
+
+    public void RemoveDish(string dishName)
+    {
+        if (dishes.ContainsKey(dishName))
+        {
+            dishes.Remove(dishName);
+            Debug.Log($"Dish removed: {dishName}");
         }
     }
 }

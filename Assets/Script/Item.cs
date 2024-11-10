@@ -40,4 +40,8 @@ public class Item : MonoBehaviour {
   void Update() {
 
   }
+
+  public void Reset(){
+    canPan = canPot = canCut = false;
+  }
 }

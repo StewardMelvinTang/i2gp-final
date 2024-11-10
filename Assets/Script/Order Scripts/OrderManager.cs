@@ -118,6 +118,27 @@ public class OrderManager : MonoBehaviour
         activeOrders.Add(newOrder);
     }
 
+    public void RemoveOrder(string dishName)
+    {
+        // Find the order that matches the dish name
+        GameObject orderToRemove = activeOrders.Find(order => order.GetComponent<OrderItem>().foodName == dishName);
+
+        if (orderToRemove != null)
+        {
+            // Remove the order from the active orders list
+            activeOrders.Remove(orderToRemove);
+
+            // Destroy the order game object
+            Destroy(orderToRemove);
+            Debug.Log($"Order removed: {dishName}");
+        }
+        else
+        {
+            Debug.Log($"No order found for: {dishName}");
+        }
+    }
+
+
     public void ClearOrders()
     {
         // Optionally clear all active orders
