@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed = 2.5f;
     [SerializeField] private float raycastRange = 1f;
     [SerializeField] private float holdDistance = 1.0f;
 
@@ -14,12 +13,13 @@ public class PlayerController : MonoBehaviour
     private StackFood backpack;
     private float backpackDelay;
 
+
     /*
         MOVE        : WASD
         INTERACT    : F
     */
 
-    void Start()
+    void Start() 
     {
         holdItem = null;
 
@@ -36,42 +36,45 @@ public class PlayerController : MonoBehaviour
         if(backpackDelay > 0.0f){
             backpackDelay -= Time.deltaTime;
         }
-        
         /* Update Function */
-        UpdatePlayerMovement();
+        // UpdatePlayerMovement();
         RayCastObject();
         UseItem();
         
     }
 
-    void FixedUpdate() {}
+    // void FixedUpdate() {
+    //     UpdatePlayerMovement();
+    // }
 
-    private void UpdatePlayerMovement()
-    {
-        Vector3 moveVector = new Vector3(0.0f, 0.0f, 0.0f);
+    // private void UpdatePlayerMovement()
+    // {
+    //     Vector3 moveVector = new Vector3(0.0f, 0.0f, 0.0f);
 
-        if (Input.GetKey(KeyCode.W)) moveVector.z += 1.0f;
-        if (Input.GetKey(KeyCode.S)) moveVector.z -= 1.0f;
-        if (Input.GetKey(KeyCode.A)) moveVector.x -= 1.0f;
-        if (Input.GetKey(KeyCode.D)) moveVector.x += 1.0f;
+    //     if (Input.GetKey(KeyCode.W)) moveVector.z += 1.0f;
+    //     if (Input.GetKey(KeyCode.S)) moveVector.z -= 1.0f;
+    //     if (Input.GetKey(KeyCode.A)) moveVector.x -= 1.0f;
+    //     if (Input.GetKey(KeyCode.D)) moveVector.x += 1.0f;
 
-        if (moveVector != Vector3.zero)
-        {
-            transform.position += moveVector.normalized * movementSpeed * Time.deltaTime;
-            Quaternion targetRotation = Quaternion.LookRotation(moveVector);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-        }
-        // Vector3 moveVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+    //     if (moveVector != Vector3.zero)
+    //     {
+    //         transform.position += moveVector.normalized * movementSpeed * Time.deltaTime;
+    //         Quaternion targetRotation = Quaternion.LookRotation(moveVector);
+    //         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+    //     }
+    //     // Vector3 moveVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        // if (moveVector.magnitude > 0.1f)
-        // {
-        //     moveVector = moveVector.normalized;
-        //     transform.position += moveVector * movementSpeed * Time.deltaTime;
+    //     // if (moveVector.magnitude > 0.1f)
+    //     // {
+    //     //     moveVector = moveVector.normalized;
+    //     //     transform.position += moveVector * movementSpeed * Time.deltaTime;
 
-        //     Quaternion targetRotation = Quaternion.LookRotation(moveVector);
-        //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-        // }
-    }
+    //     //     Quaternion targetRotation = Quaternion.LookRotation(moveVector);
+    //     //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+    //     // }
+    // }
+
+
 
     private void RefillCrate(FiniteCrate crate){
         if (Input.GetKey(KeyCode.F) && backpack.foodStack.Count > 0){
