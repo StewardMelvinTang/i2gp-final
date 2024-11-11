@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44824433, g: 0.49827123, b: 0.5755804, a: 1}
+  m_IndirectSpecularColor: {r: 0.44824535, g: 0.49827206, b: 0.5755818, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13804,7 +13804,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708549417}
-  m_LocalRotation: {x: 0.52573115, y: -0.00000003272848, z: 0.000000020227313, w: 0.8506508}
+  m_LocalRotation: {x: 0.52573115, y: -1e-45, z: 1e-45, w: 0.85065085}
   m_LocalPosition: {x: 2, y: 11, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17980,6 +17980,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7524552857562890163, guid: dbdc28e634e4e684c8adb26bfc1c216c, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8063182245791299723, guid: dbdc28e634e4e684c8adb26bfc1c216c, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -19604,6 +19608,7 @@ GameObject:
   - component: {fileID: 1010740469}
   - component: {fileID: 1010740468}
   - component: {fileID: 1010740472}
+  - component: {fileID: 1010740473}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -19640,7 +19645,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &1010740469
 CapsuleCollider:
@@ -19718,9 +19723,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5754ac84839b244851776bb329f087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 6
   raycastRange: 2
   holdDistance: 1
+--- !u!114 &1010740473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010740466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018311644ca2c0a4790028eddf0059de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
+  rotationSpeed: 10
 --- !u!4 &1011435468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4661435515762813124, guid: e289bf5debb17f6459818c207d781953, type: 3}
@@ -20966,6 +20984,7 @@ GameObject:
   - component: {fileID: 1051606863}
   - component: {fileID: 1051606866}
   - component: {fileID: 1051606865}
+  - component: {fileID: 1051606867}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -21038,6 +21057,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051606862}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1051606867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051606862}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1055560418 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2222111361405018444, guid: 88f2fd29f58b9734683512546acec310, type: 3}
@@ -24669,7 +24701,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231411682}
-  m_LocalRotation: {x: 0.52573115, y: -0.00000003272848, z: 0.000000020227313, w: 0.8506508}
+  m_LocalRotation: {x: 0.52573115, y: -1e-45, z: 1e-45, w: 0.85065085}
   m_LocalPosition: {x: 2, y: 11, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
