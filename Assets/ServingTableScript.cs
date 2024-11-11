@@ -88,6 +88,7 @@ public class ServingTableScript : Table
         if (matchedDish != null)
         {
             OrderRemoval(matchedDish);
+            Destroy(gameObject);
         }
         else
         {
@@ -109,7 +110,6 @@ public class ServingTableScript : Table
             customerManager.RemoveCustomer(customerToRemove.gameObject);
         }
         scoreManager.AddScore(100);
-        Destroy(gameObject);
     }
 
     private Customer FindCustomerByOrderId(int orderId)

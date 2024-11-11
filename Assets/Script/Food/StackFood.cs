@@ -101,7 +101,6 @@ public class StackFood : MonoBehaviour
     public void JoinFood(StackFood other) {
         // if (CanJoinFood(other) == false) return;
         Stack<GameObject> otherStack = other.GetFoodStack();
-        int currentSize = foodStack.Count;
 
         List<GameObject> tempItems = new List<GameObject>();
 
@@ -111,7 +110,7 @@ public class StackFood : MonoBehaviour
         Debug.Log("Iterating through items to join stacks");
 
         // Iterate over each item to add to the current stack
-        for (int i = 0; i < tempItems.Count; i++)
+        for (int i = tempItems.Count-1; i >= 0; i--)
         {
             GameObject foodItem = tempItems[i];
 
@@ -133,7 +132,7 @@ public class StackFood : MonoBehaviour
                 foodItem.transform.SetParent(transform, false);
                 foodItem.transform.localPosition = new Vector3(
                     0,
-                    (currentSize + i) * stackDistance,
+                    foodStack.Count * stackDistance,
                     0
                 );
 
