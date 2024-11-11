@@ -9,6 +9,7 @@ public class ServingTableScript : Table
     private OrderManager orderManager;
     private CustomerManager customerManager;
     private DishLoader dishLoader;
+    private ScoreManager scoreManager;
 
 
     // Initialize the dictionary with possible dishes and ingredients
@@ -21,7 +22,7 @@ public class ServingTableScript : Table
         // };
         orderManager = FindObjectOfType<OrderManager>();
         customerManager = FindObjectOfType<CustomerManager>();
-
+        scoreManager = FindObjectOfType<ScoreManager>();
         dishLoader = FindObjectOfType<DishLoader>(); // Initialize the DishLoader reference
         if (dishLoader == null)
         {
@@ -86,15 +87,7 @@ public class ServingTableScript : Table
         // Output the result
         if (matchedDish != null)
         {
-            int orderId = orderManager.GetOrderId(matchedDish); // Get ID of the matched order
-            orderManager.RemoveOrder(orderId); 
-
-            Customer customerToRemove = FindCustomerByOrderId(orderId);
-            if (customerToRemove != null)
-            {
-                customerManager.RemoveCustomer(customerToRemove.gameObject);
-            }
-            Destroy(gameObject);
+            OrderRemoval(matchedDish);
         }
         else
         {
@@ -104,6 +97,21 @@ public class ServingTableScript : Table
 
         return null;
     }
+
+    private void OrderRemoval(string matchedDish)
+    {
+        int orderId = orderManager.GetOrderId(matchedDish);
+        orderManager.RemoveOrder(orderId); 
+
+        Customer customerToRemove = FindCustomerByOrderId(orderId);
+        if (customerToRemove != null)
+        {
+            customerManager.RemoveCustomer(customerToRemove.gameObject);
+        }
+        scoreManager.AddScore(100);
+        Destroy(gameObject);
+    }
+
     private Customer FindCustomerByOrderId(int orderId)
     {
         Customer[] customers = FindObjectsOfType<Customer>();
