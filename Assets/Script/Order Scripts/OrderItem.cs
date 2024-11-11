@@ -6,6 +6,7 @@ public class OrderItem : MonoBehaviour
     private OrderManager orderManager;// Transform for where to place ingredients as text objects
     public Image dishImage;
     public string foodName;
+    public int order_ID;
 
     private void Start()
     {
@@ -21,9 +22,10 @@ public class OrderItem : MonoBehaviour
         }
     }
 
-    public void SetOrderDetails(string dishName)
+    public void SetOrderDetails(string dishName, int orderId)
     {
         foodName = dishName;
+        order_ID = orderId;
         // Load the material from Resources based on the dish name
         Material material = Resources.Load<Material>($"Foods_ICONS/{dishName}");
         if (material != null)

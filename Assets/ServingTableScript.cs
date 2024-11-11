@@ -7,6 +7,7 @@ public class ServingTableScript : Table
 {
     // private Dictionary<string, HashSet<string>> dishes;
     private OrderManager orderManager;
+    private CustomerManager customerManager;
     private DishLoader dishLoader;
 
 
@@ -19,6 +20,7 @@ public class ServingTableScript : Table
         //     { "hamBurgerWithCarrot", new HashSet<string> { "Plate", "BottomBun", "CookedMeat", "TopBun", "ChoppedCarrot" } }
         // };
         orderManager = FindObjectOfType<OrderManager>();
+        customerManager = FindObjectOfType<CustomerManager>();
 
         dishLoader = FindObjectOfType<DishLoader>(); // Initialize the DishLoader reference
         if (dishLoader == null)
@@ -35,8 +37,8 @@ public class ServingTableScript : Table
             // }
             // orderManager.MakeOrder("hamBurger", dishes["hamBurger"]);
             // orderManager.MakeOrder("hamBurgerWithCarrot", dishes["hamBurgerWithCarrot"]);
-            orderManager.MakeOrder("hamBurger");
-            orderManager.MakeOrder("hamBurgerWithCarrot");
+            //orderManager.MakeOrder("hamBurger");
+            //orderManager.MakeOrder("hamBurgerWithCarrot");
         }
         else{
             Debug.LogError("Order Manager not found");
@@ -84,8 +86,14 @@ public class ServingTableScript : Table
         // Output the result
         if (matchedDish != null)
         {
-            Debug.Log("Dish created: " + matchedDish);
-            orderManager.RemoveOrder(matchedDish); 
+            int orderId = orderManager.GetOrderId(matchedDish); // Get ID of the matched order
+            orderManager.RemoveOrder(orderId); 
+
+            Customer customerToRemove = FindCustomerByOrderId(orderId);
+            if (customerToRemove != null)
+            {
+                customerManager.RemoveCustomer(customerToRemove.gameObject);
+            }
             Destroy(gameObject);
         }
         else
@@ -96,5 +104,16 @@ public class ServingTableScript : Table
 
         return null;
     }
-
+    private Customer FindCustomerByOrderId(int orderId)
+    {
+        Customer[] customers = FindObjectsOfType<Customer>();
+        foreach (Customer customer in customers)
+        {
+            if (customer.OrderId == orderId)
+            {
+                return customer;
+            }
+        }
+        return null;
+    }
 }

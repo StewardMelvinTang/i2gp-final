@@ -39,6 +39,7 @@ public class OrderManager : MonoBehaviour
     private GameObject activeOrderDetail = null;    // Current active detailed view
     private OrderItem lastDeactivatedOrder = null; // Last deactivated order
     private DishLoader dishLoader;
+    private int nextOrderId = 0;
 
     void Start()
     {
@@ -102,26 +103,39 @@ public class OrderManager : MonoBehaviour
         }
     }
 
-    public void CreateRandomOrder()
+
+    public int GetOrderId(string dishName)
     {
-        MakeOrder("null");
+        foreach (GameObject order in activeOrders)
+        {
+            OrderItem orderItem = order.GetComponent<OrderItem>();
+            if (orderItem != null && orderItem.foodName == dishName)
+            {
+                return orderItem.order_ID;
+            }
+        }
+        
+        Debug.LogWarning($"Order ID for dish '{dishName}' not found.");
+        return -1; // Return -1 if no matching order ID is found
     }
     
-    public void MakeOrder(string dishName)
+    public int MakeOrder(string dishName)
     {
         GameObject newOrder = Instantiate(orderPrefab, orderHolder);
         OrderItem orderItem = newOrder.GetComponent<OrderItem>();
+        int orderId = nextOrderId++;
 
         string imagePath =  ($"Foods_ICONS/{dishName}");
-        orderItem.SetOrderDetails(dishName);
+        orderItem.SetOrderDetails(dishName, orderId);
 
         activeOrders.Add(newOrder);
+        return orderId;
     }
 
-    public void RemoveOrder(string dishName)
+    public void RemoveOrder(int orderId)
     {
         // Find the order that matches the dish name
-        GameObject orderToRemove = activeOrders.Find(order => order.GetComponent<OrderItem>().foodName == dishName);
+        GameObject orderToRemove = activeOrders.Find(order => order.GetComponent<OrderItem>().order_ID == orderId);
 
         if (orderToRemove != null)
         {
@@ -130,11 +144,11 @@ public class OrderManager : MonoBehaviour
 
             // Destroy the order game object
             Destroy(orderToRemove);
-            Debug.Log($"Order removed: {dishName}");
+            Debug.Log($"Order removed: {orderId}");
         }
         else
         {
-            Debug.Log($"No order found for: {dishName}");
+            Debug.Log($"No order found for: {orderId}");
         }
     }
 
