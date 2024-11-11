@@ -108,3 +108,4 @@ MonoBehaviour:
   potTime: 0
   canCut: 0
   objAfterCut: {fileID: 0}
+  canBeTrash: 1

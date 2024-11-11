@@ -20,6 +20,8 @@ public class Item : MonoBehaviour {
   public bool canCut;
   public GameObject objAfterCut;
 
+  public bool canBeTrash;
+
   public Vector3 getHoldPosition() {
     if (isTool) {
       return new Vector3(0.75f, 0, 0);

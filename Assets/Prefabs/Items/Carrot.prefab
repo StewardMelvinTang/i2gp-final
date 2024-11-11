@@ -108,3 +108,4 @@ MonoBehaviour:
   potTime: 0
   canCut: 1
   objAfterCut: {fileID: 919132149155446097, guid: c9c17d2ab4a620f4bbc244af6ee7b914, type: 3}
+  canBeTrash: 1
