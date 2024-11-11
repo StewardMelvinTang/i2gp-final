@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    void FixedUpdate() {}
+
     private void UpdatePlayerMovement()
     {
         Vector3 moveVector = new Vector3(0.0f, 0.0f, 0.0f);
