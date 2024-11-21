@@ -10,7 +10,7 @@ public class Table : MonoBehaviour
     protected MeshRenderer tableRenderer;
     protected float originalMetallic;
 
-    protected void Start()
+    protected virtual void Start()
     {
         tableRenderer = GetComponent<MeshRenderer>();
         if (tableRenderer != null)
