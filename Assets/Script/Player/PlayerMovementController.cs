@@ -22,11 +22,15 @@ public class PlayerMovementController : MonoBehaviour
     // For tracking double-tap
     private float lastTapTime;
     private KeyCode lastKeyPressed;
+    
+    private Animator animator;
 
+    private float currentSpeed;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -34,6 +38,8 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (isDashing) return;
         HandleInput();
+        
+        UpdateAnimations();
     }
 
     void FixedUpdate() {
@@ -104,5 +110,13 @@ public class PlayerMovementController : MonoBehaviour
             // Stop horizontal movement if no input is detected
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
+    }
+
+    private void UpdateAnimations() {
+        if (animator == null) return;
+        float targetSpeed = moveDirection.magnitude > 0 ? 1.0f : 0.0f;
+        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * 10f);
+        animator.SetFloat("Speed", currentSpeed);
+        
     }
 }

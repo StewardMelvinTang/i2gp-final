@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Machete : Item {
 
+    [SerializeField] private string rightHandBoneName;
     public override GameObject Use() {
         GameObject[] animals = GameObject.FindGameObjectsWithTag("animal");
         foreach (GameObject animal in animals) {
@@ -14,6 +15,9 @@ public class Machete : Item {
         }
         return null;
     }
+    
+
+
 
     void Start() {
 

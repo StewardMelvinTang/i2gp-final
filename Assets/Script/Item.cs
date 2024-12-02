@@ -22,6 +22,11 @@ public class Item : MonoBehaviour {
 
   public bool canBeTrash;
 
+  [Header("Interaction Settings")] 
+  public bool attachToBone;
+
+  public string boneName;
+
   public Vector3 getHoldPosition() {
     if (isTool) {
       return new Vector3(0.75f, 0, 0);

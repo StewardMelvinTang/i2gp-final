@@ -14,6 +14,11 @@ public class PlayerController : MonoBehaviour
     private float backpackDelay;
 
 
+    [Header("Attachment Settings")] [SerializeField]
+    private GameObject handAttachment;
+
+
+    private Animator animator;
     /*
         MOVE        : WASD
         INTERACT    : F
@@ -24,6 +29,7 @@ public class PlayerController : MonoBehaviour
         holdItem = null;
 
         GameObject backpackObject = new GameObject("Backpack");
+        animator = GetComponentInChildren<Animator>();
         backpackObject.transform.SetParent(transform);
         backpack = backpackObject.AddComponent<StackFood>();
         backpack.transform.localPosition = new Vector3(0, 0, -1);
@@ -110,6 +116,16 @@ public class PlayerController : MonoBehaviour
             if (item != null)
             {
                 holdItem = item;
+                
+                var itemRef = item.GetComponent<Item>();
+                if (itemRef.attachToBone == true && handAttachment != null) {
+                
+                    holdItem.transform.SetParent(handAttachment.transform);
+                    holdItem.transform.localPosition = Vector3.zero;
+                    holdItem.transform.localRotation = Quaternion.identity;
+                    return;
+                }
+                
                 holdItem.transform.SetParent(transform); 
                 holdItem.transform.localPosition = item.GetComponent<Item>().getHoldPosition();
             }
@@ -124,6 +140,8 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.E) && item && item.isTool) {
+            // Attacking
+            if (animator) animator.SetTrigger("AttackTrigger");
             GameObject droppedObj = holdItem.GetComponent<Item>().Use();
             if (droppedObj) {
                 GameObject obj = Instantiate(droppedObj);
@@ -140,11 +158,20 @@ public class PlayerController : MonoBehaviour
     */
     private void RayCastObject()
     {
-        Ray ray = new Ray(transform.position, transform.forward + Vector3.down * 0.5f);
+        // Define the ray starting point and direction
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.5f; // Adjust origin if necessary
+        Vector3 rayDirection = transform.forward + Vector3.up * 0.2f; // Adjust direction if necessary
+
+        // Draw a visible debug line in the Scene view
+        Debug.DrawRay(rayOrigin, rayDirection * raycastRange, Color.red);
+
+        Ray ray = new Ray(rayOrigin, rayDirection * raycastRange);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, raycastRange))
         {
+            // Debug.Log("Raycast Hit Object : " + hit.collider.name);
+
             Table table = hit.collider.GetComponent<Table>();
             FiniteCrate finiteCrate = hit.collider.GetComponent<FiniteCrate>();
 
@@ -159,23 +186,31 @@ public class PlayerController : MonoBehaviour
                 lastHitTable = table;
 
                 /* Interact */
-                if(finiteCrate){
+                if (finiteCrate)
+                {
                     RefillCrate(finiteCrate);
                 }
-                else{
+                else
+                {
                     ObjectInteract(table);
                 }
             }
-            else if (lastHitTable != null)
+            else
             {
-                lastHitTable.SetHighlighted(false);
-                lastHitTable = null;
+                // Debug.LogWarning("Raycast hit an object, but it doesn't have a Table component.");
+                if (lastHitTable != null)
+                {
+                    lastHitTable.SetHighlighted(false);
+                    lastHitTable = null;
+                }
             }
         }
         else if (lastHitTable != null)
         {
+            // Debug.Log("No hit table found");
             lastHitTable.SetHighlighted(false);
             lastHitTable = null;
         }
     }
+
 }

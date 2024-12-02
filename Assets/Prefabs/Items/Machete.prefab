@@ -94,7 +94,7 @@ MeshCollider:
   m_GameObject: {fileID: 1657996491295356}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -124,3 +124,7 @@ MonoBehaviour:
   canCut: 0
   objAfterCut: {fileID: 0}
   canBeTrash: 0
+  attachToBone: 1
+  boneName: 'Player/Playher/TT_demo_male_B/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001
+    R Clavicle/Bip001 R UpperArm/Bip001 R Forearm/Bip001 R Hand/R_hand_container '
+  rightHandBoneName: R_hand_container
