@@ -11,6 +11,8 @@ TagManager:
   - bun
   - cookedmeat
   - animal
+  - ground
+  - fence
   layers:
   - Default
   - TransparentFX
