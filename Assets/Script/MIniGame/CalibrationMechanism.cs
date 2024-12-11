@@ -7,7 +7,7 @@ public class CalibrationMechanism : MonoBehaviour
     public RectTransform pointer;     // 动态指针
     public RectTransform judgeZone;   // 判定窗口
 
-    public float moveSpeed = 10f;      // 指针移动速度
+    public float moveSpeed = 0.01f;      // 指针移动速度
     private bool isMovingRight = true; // 指针移动方向
 
     private bool isCalibrating = false; // 校准进行中
@@ -23,6 +23,7 @@ public class CalibrationMechanism : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 60;  
         StartCalibration();  // 游戏开始时调用校准方法
     }
 
@@ -39,53 +40,53 @@ public class CalibrationMechanism : MonoBehaviour
         }
     }
 
-    void MovePointer()
-    {
-        float step = moveSpeed * Time.deltaTime;
-        Vector3 currentPosition = pointer.localPosition;
+    // void MovePointer()
+    // {
+    //     float step = moveSpeed * Time.deltaTime;
+    //     Vector3 currentPosition = pointer.localPosition;
 
-        // 控制指针在指定范围内移动
-        if (isMovingRight)
+    //     // 控制指针在指定范围内移动
+    //     if (isMovingRight)
+    //     {
+    //         pointer.localPosition += Vector3.right * step;
+    //         if (pointer.localPosition.x >= pointerMaxX)
+    //         {
+    //             isMovingRight = false; // 到达右边界，反转方向
+    //         }
+    //     }
+    //     else
+    //     {
+    //         pointer.localPosition += Vector3.left * step;
+    //         if (pointer.localPosition.x <= pointerMinX)
+    //         {
+    //             isMovingRight = true; // 到达左边界，反转方向
+    //         }
+    //     }
+    // }
+
+    void MovePointer()
+{
+    float step = moveSpeed;  // 移除 Time.deltaTime 影响，直接控制移动步长
+    Vector3 currentPosition = pointer.localPosition;
+
+    // 控制指针在指定范围内移动
+    if (isMovingRight)
+    {
+        pointer.localPosition += Vector3.right * step;
+        if (pointer.localPosition.x >= pointerMaxX)
         {
-            pointer.localPosition += Vector3.right * step;
-            if (pointer.localPosition.x >= pointerMaxX)
-            {
-                isMovingRight = false; // 到达右边界，反转方向
-            }
-        }
-        else
-        {
-            pointer.localPosition += Vector3.left * step;
-            if (pointer.localPosition.x <= pointerMinX)
-            {
-                isMovingRight = true; // 到达左边界，反转方向
-            }
+            isMovingRight = false; // 到达右边界，反转方向
         }
     }
-
-//     void MovePointer()
-// {
-//     float step = moveSpeed;  // 移除 Time.deltaTime 影响，直接控制移动步长
-//     Vector3 currentPosition = pointer.localPosition;
-
-//     // 控制指针在指定范围内移动
-//     if (isMovingRight)
-//     {
-//         pointer.localPosition += Vector3.right * step;
-//         if (pointer.localPosition.x >= pointerMaxX)
-//         {
-//             isMovingRight = false; // 到达右边界，反转方向
-//         }
-//     }
-//     else
-//     {
-//         pointer.localPosition += Vector3.left * step;
-//         if (pointer.localPosition.x <= pointerMinX)
-//         {
-//             isMovingRight = true; // 到达左边界，反转方向
-//         }
-//     }
-// }
+    else
+    {
+        pointer.localPosition += Vector3.left * step;
+        if (pointer.localPosition.x <= pointerMinX)
+        {
+            isMovingRight = true; // 到达左边界，反转方向
+        }
+    }
+}
 
 // void MovePointer()
 // {
