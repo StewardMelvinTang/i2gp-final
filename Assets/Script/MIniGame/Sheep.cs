@@ -9,12 +9,19 @@ public class Sheep : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded = true; // Check if the sheep is on the ground
     private bool isStopped = false; // Check if the sheep should stop moving
+    public string runForwardAnimation = "run_forward";
+    public string standtositAnimation = "stand_to_sit";
+
+    private Animator animator; // Reference to the Animator component
 
     // Start is called before the first frame update
     void Start()
     {
         // Get the Rigidbody component
         rb = GetComponent<Rigidbody>();
+
+        // Get the Animator component
+        animator = GetComponent<Animator>();
 
         // Freeze unnecessary axes to prevent falling or rotation
         rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
@@ -25,7 +32,10 @@ public class Sheep : MonoBehaviour
     {
         // Stop movement if the sheep has been stopped
         if (isStopped)
+        {
+            animator.Play(standtositAnimation);
             return;
+        }
 
         // Keep the sheep facing to the right
         transform.rotation = Quaternion.Euler(0, 90, 0);
@@ -35,6 +45,9 @@ public class Sheep : MonoBehaviour
         {
             // Move the sheep forward in the direction it's facing
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+            // Play walking animation
+            animator.Play(runForwardAnimation);
 
             // Check for jump input (e.g., spacebar or a specific key)
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -53,6 +66,9 @@ public class Sheep : MonoBehaviour
     {
         // Apply a vertical force for jumping
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+        // Play jump animation
+        animator.SetTrigger("Jump");
 
         // Set isGrounded to false since the sheep is now in the air
         isGrounded = false;
