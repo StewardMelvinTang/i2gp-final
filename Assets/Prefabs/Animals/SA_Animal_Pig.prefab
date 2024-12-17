@@ -342,7 +342,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItem: {fileID: 919132149155446097, guid: be4d15b25087f084d919c795e2aacf02, type: 3}
-  health: 1
+  health: 2
+  moveSpeed: 2
+  rotationSpeed: 5
+  minStopTime: 2
+  maxStopTime: 5
+  minMoveTime: 3
+  maxMoveTime: 8
+  panicSpeedMultiplier: 3
+  minPanicTime: 2
+  maxPanicTime: 4
 --- !u!1 &1371199119966910114
 GameObject:
   m_ObjectHideFlags: 0
