@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 2
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9aa8ed67591432941bb76f12eb23ff91, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -14166,7 +14166,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708549417}
-  m_LocalRotation: {x: 0.5257311, y: -0.000000021954936, z: 0.000000013568896, w: 0.85065085}
+  m_LocalRotation: {x: 0.5257311, y: 0.00000002195493, z: -0.000000013568893, w: 0.85065085}
   m_LocalPosition: {x: 2, y: 10, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16024,9 +16024,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 0
   m_FollowOffset: {x: 0, y: 10, z: -5}
-  m_XDamping: 0.2
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -16048,8 +16048,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 0
+  m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -25247,7 +25247,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231411682}
-  m_LocalRotation: {x: 0.5257311, y: -0.000000021954936, z: 0.000000013568896, w: 0.85065085}
+  m_LocalRotation: {x: 0.5257311, y: 0.00000002195493, z: -0.000000013568893, w: 0.85065085}
   m_LocalPosition: {x: 2, y: 10, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34755,14 +34755,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1668938130}
-  m_LocalRotation: {x: 0.92387956, y: 0, z: 0, w: 0.38268343}
+  m_LocalRotation: {x: 0.7249089, y: -0.034349058, z: -0.027021207, w: 0.687457}
   m_LocalPosition: {x: 0, y: 50, z: 33.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 203777260}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 135, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 95.828, y: 58.309, z: 58.903}
 --- !u!1001 &1670032802
 PrefabInstance:
   m_ObjectHideFlags: 0
