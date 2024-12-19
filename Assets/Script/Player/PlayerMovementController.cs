@@ -9,6 +9,8 @@ public class PlayerMovementController : NetworkBehaviour
     [SerializeField] private float movementSpeed = 5.0f;
     [SerializeField] public float rotationSpeed = 10.0f;
 
+    [SerializeField] public float movementSpeedMultiplier = 1.0f; // used in slime slippery floor, etc
+
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 24.0f;
     [SerializeField] private float dashTime = 0.2f;
@@ -101,7 +103,7 @@ public class PlayerMovementController : NetworkBehaviour
         if (moveDirection != Vector3.zero)
         {
             // Calculate movement vector and apply to Rigidbody
-            Vector3 moveVector = moveDirection * movementSpeed;
+            Vector3 moveVector = moveDirection * (movementSpeed * movementSpeedMultiplier);
             rb.velocity = new Vector3(moveVector.x, rb.velocity.y, moveVector.z);
 
             // Smoothly rotate the player towards the movement direction
