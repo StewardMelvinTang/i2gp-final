@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba834ea376fdbed4e89f25312ecf227a, type: 3}
-  m_Name: Ham
+  m_Name: Tomato
   m_EditorClassIdentifier: 
-  ingredientName: Ham
-  ingredientIcon: {fileID: 21300000, guid: f1f50c7ef90b19741b26f2040806cf56, type: 3}
+  ingredientName: Tomato
+  ingredientIcon: {fileID: 21300000, guid: c9f08c3c1ae2a364aaeaa3712540b1d4, type: 3}

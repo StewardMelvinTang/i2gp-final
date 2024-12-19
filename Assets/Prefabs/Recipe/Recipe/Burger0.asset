@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Burger0
   m_EditorClassIdentifier: 
   recipeName: Burger0
+  recipeIcon: {fileID: 21300000, guid: bee24f07c57157e45a946eed3bfe8b84, type: 3}
   ingredients:
-  - Bun
-  - Ham
-  - Bun
+  - {fileID: 11400000, guid: 8e88b11ab120491468976b10e41eac32, type: 2}
+  - {fileID: 11400000, guid: 2af20341cbefe1a49ac5f7686c641e92, type: 2}
+  - {fileID: 11400000, guid: 8e88b11ab120491468976b10e41eac32, type: 2}

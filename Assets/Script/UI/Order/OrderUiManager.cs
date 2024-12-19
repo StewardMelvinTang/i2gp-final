@@ -16,9 +16,7 @@ public class OrderUiManager : MonoBehaviour
         Sprite recipeIcon = recipe.recipeIcon;
         List<Ingredient> ingredients = recipe.ingredients;
         
-        
-        // string recipeName, List<string> ingredients, Sprite recipeIcon
-        // Instantiate a new order
+        // Create new order object 
         GameObject newOrder = Instantiate(orderPrefab, orderPanel);
 
         // Set the recipe icon
@@ -27,25 +25,18 @@ public class OrderUiManager : MonoBehaviour
 
         // Add ingredients
         Transform ingredientsPanel = newOrder.transform.Find("IngredientsPanel");
+
         foreach (Ingredient ingredient in ingredients)
         {
-            // GameObject ingredientIcon = new GameObject("IngredientIcon", typeof(Image));
-            // ingredientIcon.transform.SetParent(ingredientsPanel);
+            GameObject ingredientIcon = new GameObject("IngredientIcon", typeof(Image));
+            ingredientIcon.transform.SetParent(ingredientsPanel);
 
-            // // Set the ingredient icon
-            // Image iconImage = ingredientIcon.GetComponent<Image>();
-            // if (ingredientIcons.TryGetValue(ingredient, out Sprite icon))
-            // {
-            //     iconImage.sprite = icon;
-            // }
-            // else
-            // {
-            //     Debug.LogWarning($"No icon found for ingredient: {ingredient}");
-            // }
+            Image iconImage = ingredientIcon.GetComponent<Image>();
+            iconImage.sprite = ingredient.ingredientIcon;
 
-            // // Resize and position the ingredient icon
-            // RectTransform rect = ingredientIcon.GetComponent<RectTransform>();
-            // rect.sizeDelta = new Vector2(32, 32); // Example size
+            // Resize and position the ingredient icon
+            RectTransform rect = ingredientIcon.GetComponent<RectTransform>();
+            rect.sizeDelta = new Vector2(32, 32); // Example size
         }
     }
     
