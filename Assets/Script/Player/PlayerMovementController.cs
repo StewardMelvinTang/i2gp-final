@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class PlayerMovementController : NetworkBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 5.0f;
@@ -39,7 +39,7 @@ public class PlayerMovementController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!IsOwner) return;
+        // if(!IsOwner) return;
 
         if (isDashing) return;
         HandleInput();
