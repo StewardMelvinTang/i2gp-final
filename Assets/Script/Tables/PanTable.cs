@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.Networking;
+using Unity.Netcode;
 using UnityEngine;
 
 public class PanTable : Table {
 
-    private float timeCounter;
-    private bool startCounter;
+    public float timeCounter;
+    public bool startCounter { get; set; }
+
+    public float cookingTime { get; set; }
 
     void Update(){
+        // Debug.Log("Start Counter Bool: " + startCounter + " Time Counter Float: " + timeCounter);
         if(startCounter){
             timeCounter -= Time.deltaTime;
             if(timeCounter < 0.0f){
@@ -20,6 +25,7 @@ public class PanTable : Table {
                 if (foodObject.GetComponent<Item>().canPan) {
                     startCounter = true;
                     timeCounter = foodObject.GetComponent<Item>().panTime;
+                    cookingTime = timeCounter;
                 }
             }
         }
@@ -42,6 +48,7 @@ public class PanTable : Table {
             GameObject returnItem = foodObject;
             startCounter = true;
             timeCounter = targetItem.panTime;
+            cookingTime = timeCounter;
             foodObject = targetObject;
             foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
             return returnItem;

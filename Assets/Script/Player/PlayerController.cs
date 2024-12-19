@@ -128,6 +128,7 @@ public class PlayerController : MonoBehaviour
                 
                 holdItem.transform.SetParent(transform); 
                 holdItem.transform.localPosition = item.GetComponent<Item>().getHoldPosition();
+                holdItem.transform.localPosition = new Vector3(holdItem.transform.localPosition.x, holdItem.transform.localPosition.y + 1, holdItem.transform.localPosition.z);
             }
         }
     }

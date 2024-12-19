@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Table : MonoBehaviour
-{
-    [Header("Default Settings")]
-    [SerializeField] protected GameObject foodObject;
+public class Table : MonoBehaviour {
+    [Header("Default Settings")] [SerializeField]
+    public GameObject foodObject;
 
     protected MeshRenderer tableRenderer;
     protected float originalMetallic;
