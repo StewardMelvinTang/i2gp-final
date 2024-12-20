@@ -62,6 +62,8 @@ public class Animal : MonoBehaviour
             return dropItem;
         }
 
+        stateTimer = 0.0f;
+
         // Enter panic mode
         ChangeToNewState(AnimalState.Panicking);
         return null;
@@ -70,6 +72,17 @@ public class Animal : MonoBehaviour
     void Update()
     {
         stateTimer += Time.deltaTime;
+
+        if (currentState == AnimalState.Dying) {
+            if(hitDuration <= 0.0f){
+                Destroy(gameObject);
+            }
+            else{
+                hitDuration -= Time.deltaTime;
+                transform.Rotate(0f, 0f, 100f * Time.deltaTime);
+            }
+            return;
+        }
 
         // State duration check
         if (stateTimer >= currentStateDuration)
@@ -86,16 +99,6 @@ public class Animal : MonoBehaviour
             else if (currentState == AnimalState.Stopping)
             {
                 ChangeToNewState(AnimalState.Moving);
-            }
-            else if (currentState == AnimalState.Dying) {
-                if(hitDuration <= 0.0f){
-                    Destroy(gameObject);
-                }
-                else{
-                    hitDuration -= Time.deltaTime;
-                    transform.Rotate(0f, 0f, 1000f * Time.deltaTime);
-                }
-                return;
             }
         }
 

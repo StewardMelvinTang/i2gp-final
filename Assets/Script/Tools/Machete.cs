@@ -24,6 +24,7 @@ public class Machete : Item {
             Debug.Log("Punch");
             GameObject animal = other.gameObject;
             animal.GetComponent<Animal>().TakeDamage(1);
+            hitDuration = 0.0f;
         }
     }
 
