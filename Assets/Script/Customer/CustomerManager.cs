@@ -13,16 +13,23 @@ public class CustomerManager : MonoBehaviour
     void Start()
     {
         positionOccupied = new bool[targetPositions.Length]; // Initialize the occupied tracker
-        StartCoroutine(SpawnCustomers());
     }
 
-    private IEnumerator SpawnCustomers()
+    public void startSpawningCustomers(RecipeManager recipeManager, System.Action<Recipe> callback) {
+        StartCoroutine(SpawnCustomers(recipeManager, callback));
+    }
+
+    private IEnumerator SpawnCustomers(RecipeManager recipeManager, System.Action<Recipe> callback)
     {
         while (true)
         {
             if (activeCustomers.Count < 5) // Maximum of 5 customers at a time
             {
-                SpawnCustomer();
+                Recipe randomRecipe = recipeManager.GetRandomRecipe();  
+                SpawnCustomer(randomRecipe);
+                
+                // give it back to gameManager 
+                callback?.Invoke(randomRecipe);
             }
             // Wait for a random interval between 2 and 10 seconds before spawning the next customer
             float randomInterval = Random.Range(12f, 25f);
@@ -30,7 +37,7 @@ public class CustomerManager : MonoBehaviour
         }
     }
 
-    private void SpawnCustomer()
+    private void SpawnCustomer(Recipe randomRecipe)
     {
         int freePositionIndex = GetFreePositionIndex();
 
@@ -42,15 +49,16 @@ public class CustomerManager : MonoBehaviour
 
             // Move customer to the free target position
             Vector3 targetPosition = targetPositions[freePositionIndex].position;
-            MoveCustomerToCounter(customer, targetPosition);
 
+            MoveCustomerToCounter(customer, targetPosition, randomRecipe);
+        
             // Mark this position as occupied
             positionOccupied[freePositionIndex] = true;
 
             // Track the target position within the customer for cleanup later
             customer.GetComponent<Customer>().AssignedPositionIndex = freePositionIndex;
             customer.GetComponent<Customer>().exitPoint = spawnPoint;
-            customer.GetComponent<Customer>().customerManager = this;
+            // customer.GetComponent<Customer>().customerManager = this;
         }
     }
 
@@ -66,9 +74,9 @@ public class CustomerManager : MonoBehaviour
         return -1; // Return -1 if no position is free
     }
 
-    private void MoveCustomerToCounter(GameObject customer, Vector3 targetPosition)
+    private void MoveCustomerToCounter(GameObject customer, Vector3 targetPosition, Recipe randomRecipe)
     {
-        customer.GetComponent<Customer>().MoveTo(new Vector3(targetPosition.x, customer.transform.position.y, targetPosition.z));
+        customer.GetComponent<Customer>().OrderFood(new Vector3(targetPosition.x, customer.transform.position.y, targetPosition.z), randomRecipe);
     }
 
     public void RemoveCustomer(GameObject customer)

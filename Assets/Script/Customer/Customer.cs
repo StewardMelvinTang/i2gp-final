@@ -4,37 +4,31 @@ using UnityEngine;
 public class Customer : MonoBehaviour
 {
     public float moveSpeed = 2f;
+    public Transform exitPoint; // The point where the customer exits the restaurant
     public int AssignedPositionIndex { get; set; }
-    public int OrderId { get; private set; }
-    private bool orderPlaced = false;
-    private OrderManager orderManager;
+    // public int OrderId { get; private set; }\
+    public Recipe customerOrder;
+    // private bool orderPlaced = false;
+    // private OrderManager orderManager;
     private bool isWaitingForOrder = false; // Tracks if the customer is waiting for an order
-    private bool orderFulfilled = false;   // Tracks if the order has been fulfilled
+    private bool isOrderFulfilled = false;   // Tracks if the order has been fulfilled
+    private bool hasLeft = false;
+    // public CustomerManager customerManager = null;
+    // private float destroyTime = 5f;
 
+    /* Animation Helper */
     [SerializeField] private GameObject meshMale;
     [SerializeField] private GameObject meshFemale;
 
     private Animator maleAnimator;
     private Animator femaleAnimator;
-
-    [SerializeField] private float patienceTime = 30f; // Time before the customer leaves if no order is given
-    public Transform exitPoint; // The point where the customer exits the restaurant
-
-    public CustomerManager customerManager = null;
-    private float destroyTime = 5f;
-
-    private Vector3 targetPosition; // Store target position for movement
-
+    private Vector3 targetPosition; // Store target                                    position for movement
     private bool leavingRestaurant = false;
 
+    /* Timer */ 
+    [SerializeField] private float patienceTime = 30f; // Time before the customer leaves if no order is given
     void Start()
     {
-        orderManager = FindObjectOfType<OrderManager>();
-        if (orderManager == null)
-        {
-            Debug.LogError("OrderManager not found in the scene.");
-        }
-
         // Set active character mesh and animator
         if (meshMale && meshFemale)
         {
@@ -55,13 +49,26 @@ public class Customer : MonoBehaviour
 
         // Set animator speed based on moveSpeed
         SetAnimatorSpeed(moveSpeed);
+
+        // this.targetPosition = targetPosition;
     }
 
-    public void MoveTo(Vector3 targetPosition)
-    {
-        this.targetPosition = targetPosition; // Set the target position to move towards
+    public void OrderFood(Vector3 targetPosition, Recipe randomOrder) {
+        // set where the customer should stand
+        this.targetPosition = targetPosition;
+
+        // move towards the counter
         StartCoroutine(MoveTowards(targetPosition));
+
+        PlaceOrder(randomOrder);
+        StartCoroutine(PatienceTimer());
     }
+
+    // public void MoveTo(Vector3 targetPosition)
+    // {
+    //     this.targetPosition = targetPosition; // Set the target position to move towards
+    //     StartCoroutine(MoveTowards(targetPosition));
+    // }
 
     private IEnumerator MoveTowards(Vector3 targetPosition)
     {
@@ -78,14 +85,16 @@ public class Customer : MonoBehaviour
         // Stop the animation by setting speed to 0
         SetAnimatorSpeed(0);
 
-        if (!orderPlaced)
-        {
-            PlaceOrder();
-            orderPlaced = true;
+        // // place food order
+        // // if (!orderPlaced)
+        // // {
+        //     PlaceOrder();
+        //     // orderPlaced = true;
 
-            // Start the patience timer after placing the order
-            StartCoroutine(PatienceTimer());
-        }
+        //     // Start the patience timer after placing the order
+        //     StartCoroutine(PatienceTimer());
+        // // }
+
     }
 
     private void Update()
@@ -104,13 +113,16 @@ public class Customer : MonoBehaviour
         }
     }
 
-    private void PlaceOrder()
+    private void PlaceOrder(Recipe randomOrder)
     {
-        if (orderManager != null)
-        {
-            OrderId = orderManager.MakeOrder("hamBurger");
-            isWaitingForOrder = true; // Customer starts waiting for the order
-        }
+        // if (orderManager != null)
+        // {
+        //     OrderId = orderManager.MakeOrder("hamBurger");
+        //     isWaitingForOrder = true; // Customer starts waiting for the order
+        // }
+        // set the customerOrder 
+        customerOrder = randomOrder;
+        isWaitingForOrder = true; 
     }
 
     private IEnumerator PatienceTimer()
@@ -119,7 +131,7 @@ public class Customer : MonoBehaviour
 
         while (elapsedTime < patienceTime)
         {
-            if (orderFulfilled) // If the order is fulfilled, stop the timer
+            if (isOrderFulfilled) // If the order is fulfilled, stop the timer
                 yield break;
 
             elapsedTime += Time.deltaTime;
@@ -127,18 +139,18 @@ public class Customer : MonoBehaviour
         }
 
         // If patience runs out, make the customer leave
-        if (!orderFulfilled)
+        if (!isOrderFulfilled)
         {
             LeaveRestaurant();
             // orderFulfilled = true; // Mark the order as fulfilled
             isWaitingForOrder = false; // Customer is no longer waiting
-            orderManager.RemoveOrder(OrderId);
+            // orderManager.RemoveOrder(OrderId);
         }
     }
 
     public void FulfillOrder()
     {
-        orderFulfilled = true; // Mark the order as fulfilled
+        isOrderFulfilled = true; // Mark the order as fulfilled
         isWaitingForOrder = false; // Customer is no longer waiting
     }
 
@@ -157,7 +169,8 @@ public class Customer : MonoBehaviour
         }
 
         // Optionally destroy the customer object after leaving
-        StartCoroutine(DestroyAfterDelay(destroyTime)); //not destroy but it will call the customer manager's remove customer function
+        // StartCoroutine(DestroyAfterDelay(destroyTime)); //not destroy but it will call the customer manager's remove customer function
+        hasLeft = true;
     }
 
     private void SetAnimatorSpeed(float speed)
@@ -172,12 +185,13 @@ public class Customer : MonoBehaviour
         }
     }
 
-    IEnumerator DestroyAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (customerManager)
-        {
-            customerManager.RemoveCustomer(this.gameObject);
-        }
-    }
+    // IEnumerator DestroyAfterDelay(float delay)
+    // {
+    //     yield return new WaitForSeconds(delay);
+    //     if (customerManager)
+    //     {
+    //         customerManager.RemoveCustomer(this.gameObject);
+    //     }
+    // }
+
 }

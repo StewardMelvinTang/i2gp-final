@@ -7,17 +7,14 @@ public class GameManager : MonoBehaviour
     public RecipeManager recipeManager;
     public OrderUiManager orderUiManager;
     // Start is called before the first frame update
+    public CustomerManager customerManager;
     void Start()
     {
-        // first order 
-        Recipe randomRecipe = recipeManager.GetRandomRecipe();
-
-        orderUiManager.AddOrder(randomRecipe);
+        // a little bit ugly here but basically everytime the customerManager spawns a customer, we get the recipe and show in UI 
+        customerManager.startSpawningCustomers(recipeManager, OnCustomerSpawned);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void OnCustomerSpawned(Recipe recipe) {
+        orderUiManager.AddOrder(recipe);
     }
 }
