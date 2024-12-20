@@ -11,10 +11,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // a little bit ugly here but basically everytime the customerManager spawns a customer, we get the recipe and show in UI 
-        customerManager.startSpawningCustomers(recipeManager, OnCustomerSpawned);
+        customerManager.startSpawningCustomers(recipeManager);
     }
 
-    void OnCustomerSpawned(Recipe recipe) {
-        orderUiManager.AddOrder(recipe);
-    }
+    // void OnCustomerSpawned(Recipe recipe) {
+    //     orderUiManager.AddOrder(recipe);
+    // }
+
+    // void OnCustomerTimerEnd(bool hasLeft) {
+    //     StartCoroutine(RemoveCustomerAfterDelay(customerDestroyDelay));
+    // }
 }

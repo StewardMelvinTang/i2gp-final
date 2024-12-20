@@ -7,9 +7,9 @@ public class OrderUiManager : MonoBehaviour
 {
     public GameObject orderPrefab;
     public Transform orderPanel;
-    public Dictionary<string, Sprite> ingredientIcons;
-    
 
+    private List<GameObject> orderList = new List<GameObject>();
+    
     public void AddOrder(Recipe recipe)
     {
         string recipeName = recipe.recipeName;
@@ -18,6 +18,8 @@ public class OrderUiManager : MonoBehaviour
         
         // Create new order object 
         GameObject newOrder = Instantiate(orderPrefab, orderPanel);
+        // keep track to a list of order so we can remove it later
+        orderList.Add(newOrder);
 
         // Set the recipe icon
         Image recipeImage = newOrder.transform.Find("RecipeIcon").GetComponent<Image>();
@@ -40,8 +42,14 @@ public class OrderUiManager : MonoBehaviour
         }
     }
     
-    public void RemoveOrder(GameObject order)
-    {
+    public void RemoveOrderFromListByIndex(int idx) {
+        GameObject order = orderList[idx];
+        orderList.RemoveAt(idx);
         Destroy(order);
     }
+
+    // public void RemoveOrder(GameObject order)
+    // {
+    //     Destroy(order);
+    // }
 }

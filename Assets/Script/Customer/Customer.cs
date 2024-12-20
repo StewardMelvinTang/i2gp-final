@@ -8,11 +8,11 @@ public class Customer : MonoBehaviour
     public int AssignedPositionIndex { get; set; }
     // public int OrderId { get; private set; }\
     public Recipe customerOrder;
-    // private bool orderPlaced = false;
+    private bool orderPlaced = false;
     // private OrderManager orderManager;
     private bool isWaitingForOrder = false; // Tracks if the customer is waiting for an order
     private bool isOrderFulfilled = false;   // Tracks if the order has been fulfilled
-    private bool hasLeft = false;
+    // private bool hasLeft = false;
     // public CustomerManager customerManager = null;
     // private float destroyTime = 5f;
 
@@ -27,6 +27,9 @@ public class Customer : MonoBehaviour
 
     /* Timer */ 
     [SerializeField] private float patienceTime = 30f; // Time before the customer leaves if no order is given
+
+    // A little bit suspicious, but you need this to leave the  
+    private OrderUiManager orderUiManager;
     void Start()
     {
         // Set active character mesh and animator
@@ -50,19 +53,22 @@ public class Customer : MonoBehaviour
         // Set animator speed based on moveSpeed
         SetAnimatorSpeed(moveSpeed);
 
+        orderUiManager = FindObjectOfType<OrderUiManager>();
+        if (orderUiManager == null) {
+            Debug.Log("what");
+        }
         // this.targetPosition = targetPosition;
     }
 
-    public void OrderFood(Vector3 targetPosition, Recipe randomOrder) {
+    public void OrderFood(Vector3 targetPosition, Recipe randomOrder, System.Action<bool> callback) {
         // set where the customer should stand
         this.targetPosition = targetPosition;
 
         // move towards the counter
-        StartCoroutine(MoveTowards(targetPosition));
-
-        PlaceOrder(randomOrder);
-        StartCoroutine(PatienceTimer());
+        StartCoroutine(MoveTowards(targetPosition, randomOrder, callback));
     }
+
+
 
     // public void MoveTo(Vector3 targetPosition)
     // {
@@ -70,7 +76,7 @@ public class Customer : MonoBehaviour
     //     StartCoroutine(MoveTowards(targetPosition));
     // }
 
-    private IEnumerator MoveTowards(Vector3 targetPosition)
+    private IEnumerator MoveTowards(Vector3 targetPosition, Recipe randomOrder, System.Action<bool> callback)
     {
         // Set the speed in the animator to start moving
         SetAnimatorSpeed(moveSpeed);
@@ -85,16 +91,14 @@ public class Customer : MonoBehaviour
         // Stop the animation by setting speed to 0
         SetAnimatorSpeed(0);
 
-        // // place food order
-        // // if (!orderPlaced)
-        // // {
-        //     PlaceOrder();
-        //     // orderPlaced = true;
+        if (!orderPlaced) {
+            PlaceOrder(randomOrder);
+            orderUiManager.AddOrder(randomOrder);
+            orderPlaced = true;
 
-        //     // Start the patience timer after placing the order
-        //     StartCoroutine(PatienceTimer());
-        // // }
-
+            // start timer 
+            StartCoroutine(PatienceTimer(callback));
+        }
     }
 
     private void Update()
@@ -125,7 +129,7 @@ public class Customer : MonoBehaviour
         isWaitingForOrder = true; 
     }
 
-    private IEnumerator PatienceTimer()
+    private IEnumerator PatienceTimer(System.Action<bool> callback)
     {
         float elapsedTime = 0f;
 
@@ -145,6 +149,7 @@ public class Customer : MonoBehaviour
             // orderFulfilled = true; // Mark the order as fulfilled
             isWaitingForOrder = false; // Customer is no longer waiting
             // orderManager.RemoveOrder(OrderId);
+            callback?.Invoke(true);
         }
     }
 
@@ -161,7 +166,7 @@ public class Customer : MonoBehaviour
         {
             // Move the customer to the exit point
             leavingRestaurant = true;
-            StartCoroutine(MoveTowards(exitPoint.position));
+            StartCoroutine(MoveTowards(exitPoint.position, null, null));
         }
         else
         {
@@ -170,7 +175,7 @@ public class Customer : MonoBehaviour
 
         // Optionally destroy the customer object after leaving
         // StartCoroutine(DestroyAfterDelay(destroyTime)); //not destroy but it will call the customer manager's remove customer function
-        hasLeft = true;
+        // hasLeft = true;
     }
 
     private void SetAnimatorSpeed(float speed)

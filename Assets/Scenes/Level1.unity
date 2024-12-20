@@ -12061,7 +12061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &631567721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15918,6 +15918,7 @@ MonoBehaviour:
   - {fileID: 223706661}
   - {fileID: 817240106}
   - {fileID: 1931662702}
+  orderUiManager: {fileID: 1974041292}
 --- !u!4 &813717840
 Transform:
   m_ObjectHideFlags: 0
@@ -21580,6 +21581,10 @@ PrefabInstance:
       propertyPath: dishloader
       value: 
       objectReference: {fileID: 2119929798}
+    - target: {fileID: 5452180343859871490, guid: 901132a8aad9daa4890cb95819c83480, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1832267790}
     - target: {fileID: 5485578270698890213, guid: 901132a8aad9daa4890cb95819c83480, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -24496,7 +24501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1219376457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24535,7 +24540,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 0.5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -37749,6 +37754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeManager: {fileID: 631567721}
   orderUiManager: {fileID: 1974041292}
+  customerManager: {fileID: 813717839}
 --- !u!1001 &1836054384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40870,7 +40876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1974041292
 MonoBehaviour:
   m_ObjectHideFlags: 0
