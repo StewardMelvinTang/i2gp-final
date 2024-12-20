@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &919132149155446097
+--- !u!1 &2682235802483245809
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: -8679921383154817045}
-  - component: {fileID: -5754084199372789682}
-  - component: {fileID: -7511558181221131132}
-  - component: {fileID: 5259568322342387048}
+  - component: {fileID: 3346992477250328651}
+  - component: {fileID: 1863712313579018222}
+  - component: {fileID: 4483838312728421156}
+  - component: {fileID: 3865126832352628738}
   m_Layer: 0
-  m_Name: wall_doorway
+  m_Name: Potato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &-8679921383154817045
+--- !u!4 &3346992477250328651
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
+  m_GameObject: {fileID: 2682235802483245809}
   m_LocalRotation: {x: 0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 18.950901, y: 2.6435385, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &-5754084199372789682
+--- !u!33 &1863712313579018222
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
-  m_Mesh: {fileID: 4196161430825003242, guid: c66f85b461c81404c9babc9114086638, type: 3}
---- !u!23 &-7511558181221131132
+  m_GameObject: {fileID: 2682235802483245809}
+  m_Mesh: {fileID: -5383345738045517821, guid: 344fb629e60553d4c9a9c3ff6a833e73, type: 3}
+--- !u!23 &4483838312728421156
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
+  m_GameObject: {fileID: 2682235802483245809}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,16 +84,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5259568322342387048
-BoxCollider:
+--- !u!114 &3865126832352628738
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149155446097}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_GameObject: {fileID: 2682235802483245809}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.0000014, y: 4, z: 0.5000007}
-  m_Center: {x: 0.00000029802328, y: 2, z: -0.00000031292447}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97df77ab9c3f0cc4eae7ea6f32556bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Potato
+  isTool: 0
+  canPlate: 0
+  canBackpack: 0
+  canPan: 0
+  objAfterPan: {fileID: 0}
+  panTime: 0
+  canPot: 0
+  objAfterPot: {fileID: 0}
+  potTime: 0
+  canCut: 1
+  objAfterCut: {fileID: 7370019562755216117, guid: 410d7193fa7465b489a4df4ae5b662ff, type: 3}
+  canBeTrash: 1
+  attachToBone: 0
+  boneName: 
