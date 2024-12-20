@@ -24,17 +24,26 @@ public class Animal : MonoBehaviour
     private Quaternion targetRotation;
     private Animator animator;
 
+    private Color originalColor;
+    private Color redOverlay = new Color(1f, 0f, 0f, 0.8f);
+    private float hitDuration = 0.0f;
+
     private enum AnimalState
     {
         Moving,
         Stopping,
-        Panicking
+        Panicking,
+        Dying
     }
 
     private AnimalState currentState;
 
     void Start()
     {
+        Renderer childRenderer = GetComponentInChildren<Renderer>();
+        if (childRenderer != null) {
+            originalColor = childRenderer.material.color;
+        }
         animator = GetComponent<Animator>();
         ChangeToNewState(AnimalState.Moving);
     }
@@ -42,9 +51,14 @@ public class Animal : MonoBehaviour
     public GameObject TakeDamage(int damage)
     {
         health -= damage;
+        hitDuration = 1.0f;
+        Renderer childRenderer = GetComponentInChildren<Renderer>();
+        childRenderer.material.color = originalColor + redOverlay;
+
         if (health <= 0)
         {
-            Destroy(gameObject);
+            // Destroy(gameObject);
+            currentState = AnimalState.Dying;
             return dropItem;
         }
 
@@ -73,10 +87,29 @@ public class Animal : MonoBehaviour
             {
                 ChangeToNewState(AnimalState.Moving);
             }
+            else if (currentState == AnimalState.Dying) {
+                if(hitDuration <= 0.0f){
+                    Destroy(gameObject);
+                }
+                else{
+                    hitDuration -= Time.deltaTime;
+                    transform.Rotate(0f, 0f, 1000f * Time.deltaTime);
+                }
+                return;
+            }
         }
 
         // Movement and animation updates
         UpdateMovementAndAnimation();
+
+        // Update enemy hit red overlay
+        if(hitDuration > 0.0f){
+            hitDuration -= Time.deltaTime;
+            if(hitDuration <= 0.0f){
+                Renderer childRenderer = GetComponentInChildren<Renderer>();
+                childRenderer.material.color = originalColor;
+            }
+        }
     }
 
     private void UpdateMovementAndAnimation()

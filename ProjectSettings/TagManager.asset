@@ -13,14 +13,15 @@ TagManager:
   - animal
   - ground
   - fence
+  - Machette
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Machete
   - Water
   - UI
-  - 
+  - Animal
   - 
   - 
   - 

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 23224106587744794}
   - component: {fileID: 64502121300571016}
   - component: {fileID: -675850643621084581}
-  m_Layer: 0
+  - component: {fileID: 4655567674768921683}
+  m_Layer: 3
   m_Name: Machete
-  m_TagString: Untagged
+  m_TagString: Machette
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +95,7 @@ MeshCollider:
   m_GameObject: {fileID: 1657996491295356}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -128,3 +129,19 @@ MonoBehaviour:
   boneName: 'Player/Playher/TT_demo_male_B/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001
     R Clavicle/Bip001 R UpperArm/Bip001 R Forearm/Bip001 R Hand/R_hand_container '
   rightHandBoneName: R_hand_container
+--- !u!54 &4655567674768921683
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657996491295356}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
