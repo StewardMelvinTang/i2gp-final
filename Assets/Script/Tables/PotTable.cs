@@ -7,24 +7,33 @@ public class PotTable : Table {
 
     [SerializeField] private GameObject colorPot;
     
-    private float timeCounter;
-    private bool startCounter;
+    public float timeCounter;
+    public bool startCounter { get; set; } 
+    public float cookingTime { get; set; }
 
+    private float offsetYObject = -10.0f;
+    private Renderer colorRender;
+    
+    protected override void Start() {
+        base.Start();
+        colorRender = colorPot.GetComponent<Renderer>();
+        colorRender.material.color = new Color(1f, 1f, 1f, 0.1f);
+    }
 
     void Update(){
         if (startCounter) {
-            colorPot.GetComponent<Renderer>().material.color = new Color(1f, 1f, 1f, 0.5f);
             timeCounter -= Time.deltaTime;
             if(timeCounter < 0.0f){
                 startCounter = false;
-                colorPot.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
+                colorRender.material.color = new Color(1, 0, 0, 1f);
                 Destroy(foodObject);
                 foodObject = Instantiate(foodObject.GetComponent<Item>().objAfterPot);
-                foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
+                foodObject.transform.position = new Vector3(transform.position.x, offsetYObject, transform.position.z);
             
                 if (foodObject.GetComponent<Item>().canPot) {
                     startCounter = true;
                     timeCounter = foodObject.GetComponent<Item>().potTime;
+                    cookingTime = timeCounter;
                 }
             }
         }
@@ -48,7 +57,8 @@ public class PotTable : Table {
             startCounter = true;
             timeCounter = targetItem.potTime;
             foodObject = targetObject;
-            foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
+            foodObject.transform.position = new Vector3(transform.position.x, offsetYObject, transform.position.z);
+            cookingTime = timeCounter;
             return returnItem;
         }
         else {
@@ -60,6 +70,7 @@ public class PotTable : Table {
         GameObject returnItem = foodObject;
         foodObject = null;
         startCounter = false;
+        colorRender.material.color = new Color(1f, 1f, 1f, 0.1f);
         return returnItem;
     }
 }
