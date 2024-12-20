@@ -13779,7 +13779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &631567721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18140,6 +18140,7 @@ MonoBehaviour:
   - {fileID: 223706661}
   - {fileID: 817240106}
   - {fileID: 1931662702}
+  orderUiManager: {fileID: 1974041292}
 --- !u!4 &813717840
 Transform:
   m_ObjectHideFlags: 0
@@ -28248,7 +28249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1219376457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42238,7 +42239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeManager: {fileID: 631567721}
   orderUiManager: {fileID: 1974041292}
-  customerManager: {fileID: 0}
+  customerManager: {fileID: 813717839}
 --- !u!1001 &1836054384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45743,7 +45744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1974041292
 MonoBehaviour:
   m_ObjectHideFlags: 0
