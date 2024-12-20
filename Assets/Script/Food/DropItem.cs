@@ -1,0 +1,37 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DropItem : MonoBehaviour{
+
+    private GameObject dropObject;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    public void InitObject(GameObject objectInit){
+        dropObject =  Instantiate(objectInit, this.gameObject.transform);
+        dropObject.transform.localPosition = new Vector3(0, 0.5f, 0);
+        dropObject.transform.localRotation = Quaternion.identity;
+    }
+
+    public GameObject TakeItem () {
+        if (dropObject != null)
+        {
+            dropObject.transform.SetParent(null);
+        }
+
+        Destroy(this.gameObject);
+
+        return dropObject;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Rotate(0f, 10f * Time.deltaTime, 0f);
+    }
+}

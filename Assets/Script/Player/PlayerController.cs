@@ -152,6 +152,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter (Collision collision) {
+        if(collision.gameObject.tag == "dropItem") {
+            DropItem item = collision.gameObject.GetComponent<DropItem>();
+            GameObject obj = item.TakeItem();
+            backpack.InsertFood(obj);
+        }
+    }
+
     /*
         #==================================================#
         #========= You can ignore below functions =========#

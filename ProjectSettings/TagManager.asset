@@ -14,6 +14,7 @@ TagManager:
   - ground
   - fence
   - Machette
+  - dropItem
   layers:
   - Default
   - TransparentFX

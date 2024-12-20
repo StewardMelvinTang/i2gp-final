@@ -5,6 +5,8 @@ using UnityEngine;
 public class Animal : MonoBehaviour
 {
     public GameObject dropItem;
+    public GameObject dropItemPrefab;
+
     public int health = 1;
     public float moveSpeed = 2f;
     public float rotationSpeed = 5f;
@@ -75,6 +77,11 @@ public class Animal : MonoBehaviour
 
         if (currentState == AnimalState.Dying) {
             if(hitDuration <= 0.0f){
+                GameObject obj = Instantiate(dropItemPrefab);
+                DropItem dropItemScript = obj.GetComponent<DropItem>();
+                dropItemScript.InitObject(dropItem);
+                dropItemScript.transform.position = transform.position;
+
                 Destroy(gameObject);
             }
             else{
