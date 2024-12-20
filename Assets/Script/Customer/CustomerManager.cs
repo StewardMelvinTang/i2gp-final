@@ -25,7 +25,7 @@ public class CustomerManager : MonoBehaviour
                 SpawnCustomer();
             }
             // Wait for a random interval between 2 and 10 seconds before spawning the next customer
-            float randomInterval = Random.Range(7f, 20f);
+            float randomInterval = Random.Range(12f, 25f);
             yield return new WaitForSeconds(randomInterval);
         }
     }
@@ -49,6 +49,8 @@ public class CustomerManager : MonoBehaviour
 
             // Track the target position within the customer for cleanup later
             customer.GetComponent<Customer>().AssignedPositionIndex = freePositionIndex;
+            customer.GetComponent<Customer>().exitPoint = spawnPoint;
+            customer.GetComponent<Customer>().customerManager = this;
         }
     }
 

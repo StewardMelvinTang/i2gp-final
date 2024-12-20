@@ -32,7 +32,7 @@ public class PrefabSpawner : MonoBehaviour
         // Calculate random position within the bounding box's area
         Vector3 spawnPosition = new Vector3(
             Random.Range(boxCenter.x - boxSize.x / 2f, boxCenter.x + boxSize.x / 2f), // Random x within box bounds
-            randomBox.transform.position.y, // y axis based on the BoxCollider position
+            randomBox.transform.position.y - 0.1f, // y axis based on the BoxCollider position
             Random.Range(boxCenter.z - boxSize.z / 2f, boxCenter.z + boxSize.z / 2f) // Random z within box bounds
         );
 

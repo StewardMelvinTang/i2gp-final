@@ -12,6 +12,7 @@ public class SlimeSplatterScript : MonoBehaviour
     private Material slimeMaterial; // Material of the slime for fading
     private Color originalColor; // Original color of the material
     private bool isFading = false; // To track if the fade-out is in progress
+    private Collider playerInSlime; // Track the player in the slime
 
     void Start()
     {
@@ -27,11 +28,6 @@ public class SlimeSplatterScript : MonoBehaviour
         StartCoroutine(LifeTimer());
     }
 
-    void Update()
-    {
-        // Optional: Add any additional logic if needed
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -41,6 +37,7 @@ public class SlimeSplatterScript : MonoBehaviour
             if (playerMovement != null)
             {
                 playerMovement.movementSpeedMultiplier = movementSpeedMultp;
+                playerInSlime = other; // Track the player entering the slime
             }
         }
     }
@@ -54,6 +51,7 @@ public class SlimeSplatterScript : MonoBehaviour
             if (playerMovement != null)
             {
                 playerMovement.movementSpeedMultiplier = 1.0f;
+                playerInSlime = null; // Clear the tracked player
             }
         }
     }
@@ -68,6 +66,16 @@ public class SlimeSplatterScript : MonoBehaviour
         {
             isFading = true;
             yield return StartCoroutine(FadeOut());
+        }
+
+        // Reset player speed if still in slime
+        if (playerInSlime != null)
+        {
+            PlayerMovementController playerMovement = playerInSlime.GetComponent<PlayerMovementController>();
+            if (playerMovement != null)
+            {
+                playerMovement.movementSpeedMultiplier = 1.0f;
+            }
         }
 
         // Destroy the object
