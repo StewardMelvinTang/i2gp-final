@@ -115,6 +115,14 @@ public class Customer : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // Smooth rotation
             }
         }
+
+        // for rotation towards the table in the end
+        if (targetPosition != null && Vector3.Distance(transform.position, targetPosition) <= 0.1f) {
+            Vector3 desiredDirection = Vector3.left; 
+            Quaternion desiredRotation = Quaternion.LookRotation(desiredDirection, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, Time.deltaTime * 5f); // Smoothly look towards the desired direction
+            
+        }
     }
 
     private void PlaceOrder(Recipe randomOrder)
