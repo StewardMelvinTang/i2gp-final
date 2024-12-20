@@ -1,58 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
 public class PlayerMovementController : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float movementSpeed = 5.0f;
     [SerializeField] public float rotationSpeed = 10.0f;
-
-    [SerializeField] public float movementSpeedMultiplier = 1.0f; // used in slime slippery floor, etc
+    [SerializeField] public float movementSpeedMultiplier = 1.0f;
 
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 24.0f;
     [SerializeField] private float dashTime = 0.2f;
-    [SerializeField] private float dashCooldown = 1.0f; // Cooldown in seconds
-    [SerializeField] private float doubleTapTimeWindow = 0.3f; // Time window to detect double tap
+    [SerializeField] private float dashCooldown = 1.0f;
+    [SerializeField] private float doubleTapTimeWindow = 0.3f;
+
+    [Header("Footstep Settings")]
+    // [SerializeField] private AudioClip[] footstepClips; // Array for random footstep sounds
+    [SerializeField] private float footstepInterval = 0.3f; // Time between footstep sounds
+    // private AudioSource audioSource; // AudioSource for footstep sounds
 
     private Rigidbody rb;
     private Vector3 moveDirection;
     private bool canDash = true;
     private bool isDashing = false;
+    private bool isMoving = false; // To track movement for footstep sounds
 
-    // For tracking double-tap
+    private float lastStepTime; // Time since last footstep sound
     private float lastTapTime;
     private KeyCode lastKeyPressed;
-    
-    private Animator animator;
 
+    private Animator animator;
     private float currentSpeed;
-    // Start is called before the first frame update
-    void Start()
-    {
+
+    private AudioManager audioManager;
+    // [SerializeField] private AudioClip dashSoundEffect;
+
+    void Start() {
+        audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // if(!IsOwner) return;
-
         if (isDashing) return;
+
         HandleInput();
-        
         UpdateAnimations();
+        PlayFootstepSounds();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         if (isDashing) return;
         UpdatePlayerMovement();
     }
 
-    void HandleInput() {
+    void HandleInput()
+    {
         float moveHorizontal = 0f;
         float moveVertical = 0f;
 
@@ -61,10 +67,10 @@ public class PlayerMovementController : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) moveHorizontal -= 1.0f;
         if (Input.GetKey(KeyCode.D)) moveHorizontal += 1.0f;
 
-        // Create a normalized move direction vector
         moveDirection = new Vector3(moveHorizontal, 0, moveVertical).normalized;
 
-        // Check for double-tap dash
+        isMoving = moveDirection.magnitude > 0;
+
         if (Input.GetKeyDown(KeyCode.W)) TryDash(KeyCode.W);
         if (Input.GetKeyDown(KeyCode.S)) TryDash(KeyCode.S);
         if (Input.GetKeyDown(KeyCode.A)) TryDash(KeyCode.A);
@@ -76,9 +82,10 @@ public class PlayerMovementController : MonoBehaviour
         if (canDash && key == lastKeyPressed && Time.time - lastTapTime < doubleTapTimeWindow)
         {
             StartCoroutine(DashCoroutine());
+            if (audioManager && audioManager.dashSoundEffect) audioManager.PlayAudioOnce(audioManager.dashSoundEffect);
         }
 
-        // Update double-tap tracking
+        
         lastKeyPressed = key;
         lastTapTime = Time.time;
     }
@@ -88,7 +95,6 @@ public class PlayerMovementController : MonoBehaviour
         canDash = false;
         isDashing = true;
 
-        // Apply dash velocity
         rb.velocity = moveDirection * dashSpeed;
 
         yield return new WaitForSeconds(dashTime);
@@ -102,26 +108,35 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (moveDirection != Vector3.zero)
         {
-            // Calculate movement vector and apply to Rigidbody
             Vector3 moveVector = moveDirection * (movementSpeed * movementSpeedMultiplier);
             rb.velocity = new Vector3(moveVector.x, rb.velocity.y, moveVector.z);
 
-            // Smoothly rotate the player towards the movement direction
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
         else
         {
-            // Stop horizontal movement if no input is detected
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
     }
 
-    private void UpdateAnimations() {
+    private void UpdateAnimations()
+    {
         if (animator == null) return;
         float targetSpeed = moveDirection.magnitude > 0 ? 1.0f : 0.0f;
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * 10f);
         animator.SetFloat("Speed", currentSpeed);
-        
+    }
+
+    private void PlayFootstepSounds() {
+        // if () return;
+        if (!audioManager || !isMoving || audioManager.footstepClips.Length == 0) return;
+
+        if (Time.time - lastStepTime > footstepInterval)
+        {
+            AudioClip footstepClip = audioManager.footstepClips[Random.Range(0, audioManager.footstepClips.Length)];
+            audioManager.PlayAudioOnce(footstepClip);
+            lastStepTime = Time.time;
+        }
     }
 }

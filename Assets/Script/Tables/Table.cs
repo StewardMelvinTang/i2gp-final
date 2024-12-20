@@ -9,8 +9,10 @@ public class Table : MonoBehaviour {
     protected MeshRenderer tableRenderer;
     protected float originalMetallic;
 
-    protected virtual void Start()
-    {
+    private AudioManager audioMamager;
+
+    protected virtual void Start() {
+        audioMamager = FindObjectOfType<AudioManager>();
         tableRenderer = GetComponent<MeshRenderer>();
         if (tableRenderer != null)
         {
@@ -38,7 +40,10 @@ public class Table : MonoBehaviour {
         GameObject ret = foodObject;
         foodObject = gameObject;
         foodObject.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+        //play sound effect
+        if (audioMamager && audioMamager.putdownObjectSFX) audioMamager.PlayAudioOnce(audioMamager.putdownObjectSFX, 0.25f);
         return ret;
+        
     }
     
     public virtual GameObject TakeItem(){

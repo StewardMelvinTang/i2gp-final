@@ -19,13 +19,15 @@ public class PlayerController : MonoBehaviour
 
 
     private Animator animator;
+
+    private AudioManager audioManager;
     /*
         MOVE        : WASD
         INTERACT    : F
     */
 
-    void Start() 
-    {
+    void Start() {
+        audioManager = FindObjectOfType<AudioManager>();
         holdItem = null;
 
         GameObject backpackObject = new GameObject("Backpack");
@@ -39,15 +41,28 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         /* Timer */
-        if(backpackDelay > 0.0f){
+        if (backpackDelay > 0.0f)
+        {
             backpackDelay -= Time.deltaTime;
         }
+
         /* Update Function */
-        // UpdatePlayerMovement();
         RayCastObject();
         UseItem();
-        
+
+        if (animator)
+        {
+            // Smoothly blend the weight of layer 1
+            float targetWeight = holdItem ? 1.0f : 0.0f;
+            float currentWeight = animator.GetLayerWeight(1);
+            float newWeight = Mathf.MoveTowards(currentWeight, targetWeight, Time.deltaTime * 5f); // Adjust 5f for faster/slower blending
+            animator.SetLayerWeight(1, newWeight);
+
+            // Set the pickingUpItem parameter
+            animator.SetBool("pickingUpItem", holdItem);
+        }
     }
+
 
     // void FixedUpdate() {
     //     UpdatePlayerMovement();
@@ -116,6 +131,8 @@ public class PlayerController : MonoBehaviour
             if (item != null)
             {
                 holdItem = item;
+                // play sound effect
+                if(audioManager && audioManager.pickupObjectSFX) audioManager.PlayAudioOnce(audioManager.pickupObjectSFX, 0.25f);
                 
                 var itemRef = item.GetComponent<Item>();
                 if (itemRef.attachToBone == true && handAttachment != null) {

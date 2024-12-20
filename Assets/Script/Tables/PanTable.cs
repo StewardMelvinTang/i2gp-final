@@ -11,6 +11,9 @@ public class PanTable : Table {
     public bool startCounter { get; set; }
 
     public float cookingTime { get; set; }
+    
+    public AudioSource audioSource;
+    private AudioManager audioManager;
 
     void Update(){
         // Debug.Log("Start Counter Bool: " + startCounter + " Time Counter Float: " + timeCounter);
@@ -22,6 +25,7 @@ public class PanTable : Table {
                 foodObject = Instantiate(foodObject.GetComponent<Item>().objAfterPan);
                 foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
             
+                
                 if (foodObject.GetComponent<Item>().canPan) {
                     startCounter = true;
                     timeCounter = foodObject.GetComponent<Item>().panTime;
@@ -35,6 +39,8 @@ public class PanTable : Table {
 
         Item targetItem = null;
         Item currentItem = null;
+
+        if (audioManager == null) audioManager = FindObjectOfType<AudioManager>();
         
         if (targetObject != null) {
             targetItem = targetObject.GetComponent<Item>();
@@ -45,6 +51,9 @@ public class PanTable : Table {
         }
 
         if (targetObject != null && targetItem.canPan) {
+            if (audioManager && audioSource) {
+                audioManager.PlayAudioOnce(audioManager.panCookingSFX, 0.35f, audioSource);
+            }
             GameObject returnItem = foodObject;
             startCounter = true;
             timeCounter = targetItem.panTime;
@@ -56,12 +65,16 @@ public class PanTable : Table {
         else {
             return targetObject;
         }
+        
     }
 
     public override GameObject TakeItem(){
         GameObject returnItem = foodObject;
         foodObject = null;
         startCounter = false;
+        
         return returnItem;
     }
+    
+    
 }
