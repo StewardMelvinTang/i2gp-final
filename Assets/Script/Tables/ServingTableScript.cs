@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class ServingTableScript : Table
 {
-    public GameManager gameManager; // can get other components from gameManager
+    private GameManager gameManager; // can get other components from gameManager
 
     void Start() {
+        gameManager = FindObjectOfType<GameManager>();
         if (gameManager == null) {
             Debug.LogError("Game manager not found");
         }
