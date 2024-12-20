@@ -54,9 +54,9 @@ MonoBehaviour:
   canPan: 0
   objAfterPan: {fileID: 0}
   panTime: 0
-  canPot: 0
-  objAfterPot: {fileID: 0}
-  potTime: 0
+  canPot: 1
+  objAfterPot: {fileID: 2377128077260658706, guid: 382f3f8af8d66f9409aaf219e4dc600b, type: 3}
+  potTime: 5
   canCut: 0
   objAfterCut: {fileID: 0}
   canBeTrash: 1

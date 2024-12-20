@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class PotTable : Table {
 
+    [SerializeField] private GameObject colorPot;
+    
     private float timeCounter;
     private bool startCounter;
 
+
     void Update(){
         if (startCounter) {
+            colorPot.GetComponent<Renderer>().material.color = new Color(1f, 1f, 1f, 0.5f);
             timeCounter -= Time.deltaTime;
             if(timeCounter < 0.0f){
                 startCounter = false;
+                colorPot.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
                 Destroy(foodObject);
                 foodObject = Instantiate(foodObject.GetComponent<Item>().objAfterPot);
                 foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);

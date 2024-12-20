@@ -15,8 +15,6 @@ public class Machete : Item {
         }
         return null;
     }
-    
-
 
 
     void Start() {

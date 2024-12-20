@@ -104,10 +104,10 @@ MonoBehaviour:
   objAfterPan: {fileID: 0}
   panTime: 0
   canPot: 0
-  objAfterPot: {fileID: 0}
-  potTime: 0
+  objAfterPot: {fileID: 5471916924000888296, guid: 55d7dac08869e89438add47c6d025a28, type: 3}
+  potTime: 5
   canCut: 1
-  objAfterCut: {fileID: 0}
+  objAfterCut: {fileID: 8623285834923963249, guid: d5f2734b6392a914288665c2cdb44adc, type: 3}
   canBeTrash: 1
   attachToBone: 0
   boneName: 
