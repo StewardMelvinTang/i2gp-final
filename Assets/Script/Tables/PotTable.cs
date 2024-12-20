@@ -13,6 +13,9 @@ public class PotTable : Table {
 
     private float offsetYObject = -10.0f;
     private Renderer colorRender;
+
+    private AudioSource audioSource;
+    private AudioManager audioManager;
     
     protected override void Start() {
         base.Start();
@@ -52,13 +55,21 @@ public class PotTable : Table {
             currentItem = foodObject.GetComponent<Item>();
         }
 
+        if (audioManager == null) {
+            audioManager = FindObjectOfType<AudioManager>();
+        }
+
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
+
         if (targetObject != null && targetItem.canPot) {
+            audioManager.PlayAudioOnce(audioManager.boilingCookingSFX, 0.35f, audioSource);
             GameObject returnItem = foodObject;
             startCounter = true;
             timeCounter = targetItem.potTime;
             foodObject = targetObject;
             foodObject.transform.position = new Vector3(transform.position.x, offsetYObject, transform.position.z);
             cookingTime = timeCounter;
+            
             return returnItem;
         }
         else {

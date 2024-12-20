@@ -151,6 +151,7 @@ MonoBehaviour:
   dashTime: 0.2
   dashCooldown: 1
   doubleTapTimeWindow: 0.3
+  footstepInterval: 0.5
 --- !u!1 &5466226936740595988
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +331,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5466226936846556159}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &5466226936846556155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +382,7 @@ GameObject:
   - component: {fileID: -5632270250516370154}
   - component: {fileID: 5466226938492836863}
   - component: {fileID: 4737294479360932631}
+  - component: {fileID: 4473310487777623045}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -534,6 +536,7 @@ MonoBehaviour:
   dashTime: 0.2
   dashCooldown: 1
   doubleTapTimeWindow: 0.3
+  footstepInterval: 0.5
 --- !u!114 &4737294479360932631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,6 +568,14 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!81 &4473310487777623045
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5466226938492836849}
+  m_Enabled: 1
 --- !u!1 &5466226938504239412
 GameObject:
   m_ObjectHideFlags: 0
