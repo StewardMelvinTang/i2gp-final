@@ -42059,6 +42059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeManager: {fileID: 631567721}
   orderUiManager: {fileID: 1974041292}
+  customerManager: {fileID: 0}
 --- !u!1001 &1836054384
 PrefabInstance:
   m_ObjectHideFlags: 0
