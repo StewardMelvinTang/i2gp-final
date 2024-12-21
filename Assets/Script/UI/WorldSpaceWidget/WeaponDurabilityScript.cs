@@ -31,14 +31,11 @@ public class WeaponDurabilityScript : MonoBehaviour
     
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
 
-        player.holdItem.TryGetComponent<Item>(out playerItemHolding);
+        if (player.holdItem) player.holdItem.TryGetComponent<Item>(out playerItemHolding);
+        else canvasGroup.alpha = 0.0f;
         
-        
-
         // Ensure the player is holding a valid item
         if (player.holdItem && playerItemHolding && playerItemHolding.enableDurabilitySystem && playerItemHolding.isTool)
         {
