@@ -30,14 +30,14 @@ public class WeaponDurabilityScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        // Debug.Log(player.holdItem.name);
         // Check if the player is holding an item
         if (!playerItemHolding)
         {
-            if (canvasGroup)
-            {
-                canvasGroup.alpha = 0.0f; // Hide the UI if no item is held
-            }
 
+            canvasGroup.alpha = 0.0f; // Hide the UI if no item is held
+            
             // Try to get the Item component from the player's held item
             if (player.holdItem && player.holdItem.TryGetComponent<Item>(out playerItemHolding))
             {
@@ -53,14 +53,14 @@ public class WeaponDurabilityScript : MonoBehaviour
             }
         }
 
+        player.holdItem.TryGetComponent<Item>(out playerItemHolding);
+
         // Ensure the player is holding a valid item
-        if (playerItemHolding)
+        if (player.holdItem && playerItemHolding && playerItemHolding.enableDurabilitySystem && playerItemHolding.isTool)
         {
+            
             // Enable or disable the UI based on the durability system flag
-            if (canvasGroup)
-            {
-                canvasGroup.alpha = playerItemHolding.enableDurabilitySystem ? 1.0f : 0.0f;
-            }
+            canvasGroup.alpha = 1.0f;
 
             // Update the durability progress bar
             if (durabilityProgressBar && playerItemHolding.enableDurabilitySystem)
@@ -68,7 +68,8 @@ public class WeaponDurabilityScript : MonoBehaviour
                 durabilityProgressBar.fillAmount = Mathf.Clamp01(playerItemHolding.currentDurability / playerItemHolding.maxDurability);
             }
         }
+        else {
+            canvasGroup.alpha = 0.0f;
+        }
     }
-
-    
 }
