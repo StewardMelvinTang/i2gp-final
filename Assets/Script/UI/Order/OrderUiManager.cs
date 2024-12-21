@@ -18,6 +18,7 @@ public class OrderUiManager : MonoBehaviour
         
         // Create new order object 
         GameObject newOrder = Instantiate(orderPrefab, orderPanel);
+        
         // keep track to a list of order so we can remove it later
         orderList.Add(newOrder);
 
