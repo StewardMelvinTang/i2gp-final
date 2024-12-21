@@ -47574,7 +47574,7 @@ MonoBehaviour:
   orderUiManager: {fileID: 1974041292}
   customerManager: {fileID: 813717839}
   currentGameTime: 0
-  totalGameTime: 60
+  totalGameTime: 120
   timerText: {fileID: 474771450}
   ordersMade: 0
   ordersMissed: 0
