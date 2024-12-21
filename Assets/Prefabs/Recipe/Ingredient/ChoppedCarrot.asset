@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba834ea376fdbed4e89f25312ecf227a, type: 3}
   m_Name: ChoppedCarrot
   m_EditorClassIdentifier: 
-  ingredientName: Carrot
+  ingredientName: ChoppedCarrot
   ingredientIcon: {fileID: 0}
