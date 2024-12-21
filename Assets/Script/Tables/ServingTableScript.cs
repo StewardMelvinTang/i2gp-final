@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ServingTableScript : Table
 {
     private GameManager gameManager; // can get other components from gameManager
 
     void Start() {
+        base.Start();
+
         gameManager = FindObjectOfType<GameManager>();
         if (gameManager == null) {
             Debug.LogError("Game manager not found");
@@ -31,12 +34,18 @@ public class ServingTableScript : Table
         List<Recipe> recipeList = gameManager.customerManager.GetRecipesList();
 
         int cust_idx = 0;
-        bool isRecipeMatch = true;
+        bool isRecipeMatch = false;
+        Debug.Log("sTARTING");
         for (cust_idx = 0; cust_idx < customerList.Count; ++cust_idx) {
             Recipe customerOrder = recipeList[cust_idx];
 
             
             int i = 0;
+            if (stackFood.GetFoodStack().Count != customerOrder.ingredients.Count) {
+                continue;
+            }
+
+            isRecipeMatch = true;
             foreach (GameObject food in stackFood.GetFoodStack())
             {   
                 
@@ -55,6 +64,7 @@ public class ServingTableScript : Table
             if (isRecipeMatch) {
                 break;
             }
+            Debug.Log("ending");
         }
 
         if (isRecipeMatch) {

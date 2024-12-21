@@ -17,7 +17,7 @@ public class WorldProgressBar : MonoBehaviour
         // progressBar = GetComponentInChildren<Image>();
         // potTable = GetComponentInParent<PotTable>();
         gameManager = FindObjectOfType<GameManager>();
-        Debug.Log("is the timer here");
+        
     }
 
     void Update()

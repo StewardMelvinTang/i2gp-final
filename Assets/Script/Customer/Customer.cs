@@ -54,9 +54,7 @@ public class Customer : MonoBehaviour
         SetAnimatorSpeed(moveSpeed);
 
         orderUiManager = FindObjectOfType<OrderUiManager>();
-        if (orderUiManager == null) {
-            Debug.Log("what");
-        }
+
         // this.targetPosition = targetPosition;
     }
 

@@ -9,11 +9,11 @@ public class RecipeManager : MonoBehaviour
     void Start()
     {
         // debug print
-        foreach (var recipe in recipeDatabase.recipes)
-        {
-            Debug.Log("Recipe: " + recipe.recipeName);
-            Debug.Log("Ingredients: " + string.Join(", ", recipe.ingredients));
-        }
+        // foreach (var recipe in recipeDatabase.recipes)
+        // {
+        //     Debug.Log("Recipe: " + recipe.recipeName);
+        //     Debug.Log("Ingredients: " + string.Join(", ", recipe.ingredients));
+        // }
     }
 
     public Recipe GetRecipeByIndex(int index) {
