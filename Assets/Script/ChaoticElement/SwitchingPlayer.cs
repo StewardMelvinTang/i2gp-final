@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SwitchingPlayer : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SwitchingPlayer : MonoBehaviour
     [SerializeField] private PlayerController player2;
     [SerializeField] private float MaxTimer;
     [SerializeField] private float timer;
+    public TextMeshProUGUI text;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +36,18 @@ public class SwitchingPlayer : MonoBehaviour
 
             player2.transform.position = tempPosition;
             player2.transform.rotation = tempRotation;
-
+        }
+        else if(timer <= 1.0f){
+            text.text = "1";
+        }
+        else if(timer <= 2.0f){
+            text.text = "2";
+        }
+        else if(timer <= 3.0f){
+            text.text = "3";
+        }
+        else {
+            text.text = "";
         }
     }
 }
