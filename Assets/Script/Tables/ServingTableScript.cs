@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class ServingTableScript : Table
 {
     private GameManager gameManager; // can get other components from gameManager
+    public GameObject scorePopupPrefab;
+    public float scoreIncrement = 15f;
 
     void Start() {
         base.Start();
@@ -75,6 +77,10 @@ public class ServingTableScript : Table
             gameManager.orderUiManager.RemoveOrderFromListByIndex(cust_idx);
             // destroy gameobject
             Destroy(gameObject);
+
+            gameManager.IncrementGameTime(scoreIncrement);
+            ShowScorePopup($"+{(int)scoreIncrement}");
+
         } else {
             // no matching dish found
             return gameObject;
@@ -109,6 +115,22 @@ public class ServingTableScript : Table
         // return null;
     }
 
+    private void ShowScorePopup(string scoreText)
+    {
+        if (scorePopupPrefab == null)
+        {
+            Debug.LogError("Score popup prefab is not assigned!");
+            return;
+        }
+
+        // Instantiate the popup at the serving table's position
+        GameObject popup = Instantiate(scorePopupPrefab, transform.position, Quaternion.identity);
+        ScorePopup popupScript = popup.GetComponent<ScorePopup>();
+        if (popupScript != null)
+        {
+            popupScript.SetScoreText(scoreText);
+        }
+    }
     // private void OrderRemoval(string matchedDish)
     // {
     //     int orderId = orderManager.GetOrderId(matchedDish);

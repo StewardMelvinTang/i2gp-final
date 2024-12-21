@@ -204,12 +204,18 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(m_KeyUse) && item && item.isTool) {
             // Attacking
-            if (animator) animator.SetTrigger("AttackTrigger");
-            GameObject droppedObj = holdItem.GetComponent<Item>().Use();
-            if (droppedObj) {
-                GameObject obj = Instantiate(droppedObj);
-                // obj.transform.SetParent(gameObject.transform);
-                backpack.InsertFood(obj);
+            Firearm gun = item as Firearm;
+            if (gun != null){
+                gun.Use();
+            }
+            else {
+                if (animator) animator.SetTrigger("AttackTrigger");
+                GameObject droppedObj = holdItem.GetComponent<Item>().Use();
+                if (droppedObj) {
+                    GameObject obj = Instantiate(droppedObj);
+                    // obj.transform.SetParent(gameObject.transform);
+                    backpack.InsertFood(obj);
+                }
             }
         }
     }
