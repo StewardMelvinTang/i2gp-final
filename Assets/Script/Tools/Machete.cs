@@ -15,8 +15,14 @@ public class Machete : Item {
         //         return animal.GetComponent<Animal>().TakeDamage(1);
         //     }
         // }
+
+        if (currentDurability <= 0.0f) return null;
         hitDuration = 1.0f;
+
+        currentDurability = Mathf.Clamp(currentDurability - durabilityDmgPerHit, 0.0f, maxDurability);
+        
         return null;
+        
     }
 
     void OnCollisionEnter(Collision other){
@@ -39,4 +45,7 @@ public class Machete : Item {
             hitDuration -= Time.deltaTime;
         }
     }
+}
+
+public class FMath {
 }

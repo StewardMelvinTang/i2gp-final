@@ -21,6 +21,7 @@ public class Table : MonoBehaviour {
     protected Quaternion initialItemRotation;
     protected GameObject initialItemClass;
 
+    public bool isHighlighted = false;
     protected virtual void Start() {
         audioMamager = FindObjectOfType<AudioManager>();
         tableRenderer = GetComponent<MeshRenderer>();
@@ -58,9 +59,9 @@ public class Table : MonoBehaviour {
 
     public void SetHighlighted(bool highlighted)
     {
-        if (tableRenderer != null)
-        {
+        if (tableRenderer != null) {
             tableRenderer.material.SetFloat("_Metallic", highlighted ? 0.8f : originalMetallic); // Adjust metallic value
+            isHighlighted = highlighted;
         }
     }
 

@@ -27,6 +27,14 @@ public class Item : MonoBehaviour {
 
   public string boneName;
 
+  [Header("Durability")]
+  public bool enableDurabilitySystem = false;
+
+  public float durabilityDmgPerHit = 20;
+  public float maxDurability = 100;
+  public float currentDurability = 100;
+  
+
   public Vector3 getHoldPosition() {
     if (isTool) {
       return new Vector3(0.75f, 0, 0);
