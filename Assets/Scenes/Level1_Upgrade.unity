@@ -7474,7 +7474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5466226936846556154, guid: 82dbb80f03c4e684791aacba277360d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.759998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5466226936846556154, guid: 82dbb80f03c4e684791aacba277360d7, type: 3}
       propertyPath: m_LocalRotation.y
@@ -24373,7 +24373,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 490335350711628747, guid: 0a7f51b5f4ba6294a889f661114da0d3, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 490335350711628747, guid: 0a7f51b5f4ba6294a889f661114da0d3, type: 3}
       propertyPath: m_LocalScale.x
@@ -24579,7 +24579,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 490335350711628747, guid: 0a7f51b5f4ba6294a889f661114da0d3, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 490335350711628747, guid: 0a7f51b5f4ba6294a889f661114da0d3, type: 3}
       propertyPath: m_LocalScale.x
@@ -30132,7 +30132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5466226936846556154, guid: ebf141e875468db4398a9a0ec4527f08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 16.759998
       objectReference: {fileID: 0}
     - target: {fileID: 5466226936846556154, guid: ebf141e875468db4398a9a0ec4527f08, type: 3}
       propertyPath: m_LocalRotation.y
@@ -36700,6 +36700,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SA_Animals_Chicken_Brown Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8450507048241546186, guid: 6e1f8be006e5bb142aaa91c92913306d, type: 3}
+      propertyPath: dropItem
+      value: 
+      objectReference: {fileID: 147771524176043338, guid: b0343fdc893f6cc4785794d6b707f30b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e1f8be006e5bb142aaa91c92913306d, type: 3}
 --- !u!4 &1611450489 stripped

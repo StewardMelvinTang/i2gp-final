@@ -101,8 +101,8 @@ MonoBehaviour:
   canPlate: 0
   canBackpack: 0
   canPan: 1
-  objAfterPan: {fileID: 0}
-  panTime: 0
+  objAfterPan: {fileID: 980804746807523437, guid: b940b57983de67840b9fb0fc5f3d3064, type: 3}
+  panTime: 5
   canPot: 0
   objAfterPot: {fileID: 0}
   potTime: 0
