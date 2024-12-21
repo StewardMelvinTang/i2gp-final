@@ -7,25 +7,29 @@ using UnityEngine;
 public class StackTable : Table
 {
     private StackFood stackFood = null;
+    
+
     public override GameObject PutItem(GameObject gameObject) {
-        /* Empty Hand, Take the food */
-        // if (gameObject == null)
-        // {
-        //     if (foodObject == null)
-        //     {
-        //         return null;
-        //     }
-        //     GameObject ret = foodObject;
-        //     foodObject = null;
-        //     return ret;
-        // }
-        /* Empty Table */
+        // Empty Table
         if (foodObject == null)
         {
             foodObject = gameObject;
-            foodObject.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+
+            if (foodObject.TryGetComponent(out ItemTransformData itemData)) {
+                itemData.ApplySavedTransform(
+                    foodObject.transform, 
+                    transform.position
+                );
+                    
+                itemData.SaveTransform(foodObject.transform, itemPositionOffset); // save new transform
+            }
+            else {
+                foodObject.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+            }
+            
             return null;
         }
+
         /* Switch For Knife */
         Item item1 = gameObject.GetComponent<Item>();
         Item item2 = foodObject.GetComponent<Item>();
@@ -33,7 +37,21 @@ public class StackTable : Table
         {
             GameObject ret = foodObject;
             foodObject = gameObject;
-            foodObject.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+            
+            if (foodObject.TryGetComponent(out ItemTransformData itemData)) {
+                itemData.ApplySavedTransform(
+                    foodObject.transform, 
+                    transform.position
+                );
+                    
+                itemData.SaveTransform(foodObject.transform, itemPositionOffset); // save new transform
+            }
+            
+            else {
+                foodObject.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+            }
+            
+            
             return ret;
         }
         /* If there is some food, stack the food */

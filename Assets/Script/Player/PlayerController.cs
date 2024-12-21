@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float raycastRange = 1f;
     [SerializeField] private float holdDistance = 1.0f;
+    [Header("Change Keybind")]
+    [SerializeField] private int playerMovementType;
 
     private Table lastHitTable;
     private GameObject holdItem;
     private StackFood backpack;
     private float backpackDelay;
+
+    private KeyCode m_KeyInteract;
+    private KeyCode m_KeyUse;
 
 
     [Header("Attachment Settings")] [SerializeField]
@@ -19,8 +25,10 @@ public class PlayerController : MonoBehaviour
 
 
     private Animator animator;
+    private bool canHoldAnimation = true;
 
     private AudioManager audioManager;
+    
     /*
         MOVE        : WASD
         INTERACT    : F
@@ -36,6 +44,16 @@ public class PlayerController : MonoBehaviour
         backpack = backpackObject.AddComponent<StackFood>();
         backpack.transform.localPosition = new Vector3(0, 0, -1);
         backpackDelay = 0.0f;
+
+        if(playerMovementType == 1) {
+            m_KeyInteract = KeyCode.F;
+            m_KeyUse = KeyCode.E;
+        }
+        else if(playerMovementType == 2) {
+            m_KeyInteract = KeyCode.Comma;
+            m_KeyUse = KeyCode.Period;
+        }
+        
     }
 
     void Update()
@@ -50,9 +68,10 @@ public class PlayerController : MonoBehaviour
         RayCastObject();
         UseItem();
 
-        if (animator)
+        if (canHoldAnimation)
         {
             // Smoothly blend the weight of layer 1
+            
             float targetWeight = holdItem ? 1.0f : 0.0f;
             float currentWeight = animator.GetLayerWeight(1);
             float newWeight = Mathf.MoveTowards(currentWeight, targetWeight, Time.deltaTime * 5f); // Adjust 5f for faster/slower blending
@@ -60,6 +79,15 @@ public class PlayerController : MonoBehaviour
 
             // Set the pickingUpItem parameter
             animator.SetBool("pickingUpItem", holdItem);
+        }
+        else {
+            float targetWeight = 0.0f;
+            float currentWeight = animator.GetLayerWeight(1);
+            float newWeight = Mathf.MoveTowards(currentWeight, targetWeight, Time.deltaTime * 5f); // Adjust 5f for faster/slower blending
+            animator.SetLayerWeight(1, newWeight);
+
+            // Set the pickingUpItem parameter
+            animator.SetBool("pickingUpItem", false);
         }
     }
 
@@ -98,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
 
     private void RefillCrate(FiniteCrate crate){
-        if (Input.GetKey(KeyCode.F) && backpack.foodStack.Count > 0){
+        if (Input.GetKey(m_KeyInteract) && backpack.foodStack.Count > 0){
             if(backpackDelay <= 0.0f){
                 GameObject obj = backpack.Pop();
                 crate.PutItem(obj);
@@ -112,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     private void ObjectInteract(Table table)
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(m_KeyInteract))
         {
             GameObject item = null;
             
@@ -121,7 +149,18 @@ public class PlayerController : MonoBehaviour
                 holdItem.transform.SetParent(null);
                 item = table.PutItem(holdItem);
                 holdItem = item;
-                if (item) Debug.Log("Object Interaction returns an output (it failed putting) : " + item.name);
+
+                if (holdItem == null) canHoldAnimation = false;
+                else Debug.Log("Replacing Holding Item With " + holdItem.name);
+
+                Item itemRef;
+                if (item != null && item.TryGetComponent<Item>(out itemRef))
+                {
+                    Debug.Log("Item Ref is " + itemRef.isTool);
+                    canHoldAnimation = !itemRef.isTool;
+                }
+
+
             }
             else
             {
@@ -135,6 +174,11 @@ public class PlayerController : MonoBehaviour
                 if(audioManager && audioManager.pickupObjectSFX) audioManager.PlayAudioOnce(audioManager.pickupObjectSFX, 0.25f);
                 
                 var itemRef = item.GetComponent<Item>();
+                
+                if (itemRef.isTool) canHoldAnimation = false;
+                else canHoldAnimation = true;
+                //if is tool, don't play the item picking up animation, instead use the original idle animation (since it will have the attach to bone feature)
+                
                 if (itemRef.attachToBone == true && handAttachment != null) {
                 
                     holdItem.transform.SetParent(handAttachment.transform);
@@ -146,6 +190,7 @@ public class PlayerController : MonoBehaviour
                 holdItem.transform.SetParent(transform); 
                 holdItem.transform.localPosition = item.GetComponent<Item>().getHoldPosition();
                 holdItem.transform.localPosition = new Vector3(holdItem.transform.localPosition.x, holdItem.transform.localPosition.y + 1, holdItem.transform.localPosition.z);
+                
             }
         }
     }
@@ -157,7 +202,7 @@ public class PlayerController : MonoBehaviour
             item = holdItem.GetComponent<Item>();
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && item && item.isTool) {
+        if (Input.GetKeyDown(m_KeyUse) && item && item.isTool) {
             // Attacking
             if (animator) animator.SetTrigger("AttackTrigger");
             GameObject droppedObj = holdItem.GetComponent<Item>().Use();

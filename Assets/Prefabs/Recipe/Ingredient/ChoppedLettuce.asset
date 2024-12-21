@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba834ea376fdbed4e89f25312ecf227a, type: 3}
   m_Name: ChoppedLettuce
   m_EditorClassIdentifier: 
-  ingredientName: 
-  ingredientIcon: {fileID: 0}
+  ingredientName: ChoppedLettuce
+  ingredientIcon: {fileID: 21300000, guid: 26c25e04bf1da554881b112c1fc846b6, type: 2}
