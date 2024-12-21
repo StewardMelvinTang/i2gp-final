@@ -6,7 +6,7 @@ using UnityEngine;
 public class FiniteCrate : Table
 {
     private StackFood stack;
-    private String name;
+    // private String name;
 
     int idx = 0;
 
@@ -27,15 +27,15 @@ public class FiniteCrate : Table
 
     public override GameObject PutItem(GameObject gameObject){
         if(gameObject == null) return null;
-        String curname = gameObject.GetComponent<Item>().itemName;
-        if(idx != 0) {
-            if (curname != name) {
-                return gameObject;
-            }
-        }
-        else {
-            name = curname;
-        }
+        // String curname = gameObject.GetComponent<Item>().itemName;
+        // if(idx != 0) {
+        //     if (curname != name) {
+        //         return gameObject;
+        //     }
+        // }
+        // else {
+        //     name = curname;
+        // }
 
         stack.InsertFood(gameObject);
         idx++;

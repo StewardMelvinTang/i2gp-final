@@ -8,11 +8,16 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float raycastRange = 1f;
     [SerializeField] private float holdDistance = 1.0f;
+    [Header("Change Keybind")]
+    [SerializeField] private int playerMovementType;
 
     private Table lastHitTable;
     private GameObject holdItem;
     private StackFood backpack;
     private float backpackDelay;
+
+    private KeyCode m_KeyInteract;
+    private KeyCode m_KeyUse;
 
 
     [Header("Attachment Settings")] [SerializeField]
@@ -40,23 +45,15 @@ public class PlayerController : MonoBehaviour
         backpack.transform.localPosition = new Vector3(0, 0, -1);
         backpackDelay = 0.0f;
 
-        Camera mainCamera = GetComponentInChildren<Camera>();
-        Cinemachine.CinemachineVirtualCamera virtualCamera = GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>();
-
-        if (mainCamera != null && virtualCamera != null) {
-            Cinemachine.CinemachineBrain cinemachineBrain = mainCamera.gameObject.GetComponent<Cinemachine.CinemachineBrain>();
-            if (cinemachineBrain == null)
-            {
-                cinemachineBrain = mainCamera.gameObject.AddComponent<Cinemachine.CinemachineBrain>();
-            }
-
-            // Set the virtual camera to follow and look at this object
-            virtualCamera.Follow = transform;
-            virtualCamera.LookAt = transform;
+        if(playerMovementType == 1) {
+            m_KeyInteract = KeyCode.F;
+            m_KeyUse = KeyCode.E;
         }
-        else {
-            Debug.LogWarning("Camera or Virtual Camera not found in children.");
+        else if(playerMovementType == 2) {
+            m_KeyInteract = KeyCode.Comma;
+            m_KeyUse = KeyCode.Period;
         }
+        
     }
 
     void Update()
@@ -129,7 +126,7 @@ public class PlayerController : MonoBehaviour
 
 
     private void RefillCrate(FiniteCrate crate){
-        if (Input.GetKey(KeyCode.F) && backpack.foodStack.Count > 0){
+        if (Input.GetKey(m_KeyInteract) && backpack.foodStack.Count > 0){
             if(backpackDelay <= 0.0f){
                 GameObject obj = backpack.Pop();
                 crate.PutItem(obj);
@@ -143,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     private void ObjectInteract(Table table)
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(m_KeyInteract))
         {
             GameObject item = null;
             
@@ -154,10 +151,8 @@ public class PlayerController : MonoBehaviour
                 holdItem = item;
 
                 if (holdItem == null) canHoldAnimation = false;
-                // Debug.Log("Replacing Holding Item With " + holdItem.name);
-
                 Item itemRef;
-                if (item.TryGetComponent<Item>(out itemRef))
+                if (item != null && item.TryGetComponent<Item>(out itemRef))
                 {
                     Debug.Log("Item Ref is " + itemRef.isTool);
                     canHoldAnimation = !itemRef.isTool;
@@ -205,14 +200,20 @@ public class PlayerController : MonoBehaviour
             item = holdItem.GetComponent<Item>();
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && item && item.isTool) {
+        if (Input.GetKeyDown(m_KeyUse) && item && item.isTool) {
             // Attacking
-            if (animator) animator.SetTrigger("AttackTrigger");
-            GameObject droppedObj = holdItem.GetComponent<Item>().Use();
-            if (droppedObj) {
-                GameObject obj = Instantiate(droppedObj);
-                // obj.transform.SetParent(gameObject.transform);
-                backpack.InsertFood(obj);
+            Firearm gun = item as Firearm;
+            if (gun != null){
+                gun.Use();
+            }
+            else {
+                if (animator) animator.SetTrigger("AttackTrigger");
+                GameObject droppedObj = holdItem.GetComponent<Item>().Use();
+                if (droppedObj) {
+                    GameObject obj = Instantiate(droppedObj);
+                    // obj.transform.SetParent(gameObject.transform);
+                    backpack.InsertFood(obj);
+                }
             }
         }
     }
@@ -224,6 +225,59 @@ public class PlayerController : MonoBehaviour
             backpack.InsertFood(obj);
         }
     }
+
+    public GameObject Swap(GameObject newItem)
+    {
+        GameObject previousItem = holdItem;
+
+        if (newItem != null)
+        {
+            // Set the new item as the held item
+            holdItem = newItem;
+
+            // Play sound effect
+            if (audioManager && audioManager.pickupObjectSFX)
+            {
+                audioManager.PlayAudioOnce(audioManager.pickupObjectSFX, 0.25f);
+            }
+
+            // Handle item-specific behavior
+            Item itemRef = newItem.GetComponent<Item>();
+
+            if (itemRef != null)
+            {
+                canHoldAnimation = !itemRef.isTool;
+
+                if (itemRef.attachToBone && handAttachment != null)
+                {
+                    // Attach to bone
+                    holdItem.transform.SetParent(handAttachment.transform);
+                    holdItem.transform.localPosition = Vector3.zero;
+                    holdItem.transform.localRotation = Quaternion.identity;
+                }
+                else
+                {
+                    // Attach to player and adjust position
+                    holdItem.transform.SetParent(transform);
+                    holdItem.transform.localPosition = itemRef.getHoldPosition();
+                    holdItem.transform.localPosition += Vector3.up; // Add a slight vertical offset
+                }
+            }
+        }
+        else
+        {
+            holdItem = null; // Clear held item if no new item is provided
+        }
+
+        if (previousItem != null)
+        {
+            // Detach the previous item
+            previousItem.transform.SetParent(null);
+        }
+
+        return previousItem; // Return the previously held item
+    }
+
 
     /*
         #==================================================#

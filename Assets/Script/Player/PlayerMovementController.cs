@@ -15,6 +15,9 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float dashCooldown = 1.0f;
     [SerializeField] private float doubleTapTimeWindow = 0.3f;
 
+    [Header("Change Keybind")]
+    [SerializeField] private int playerMovementType;
+
     [Header("Footstep Settings")]
     // [SerializeField] private AudioClip[] footstepClips; // Array for random footstep sounds
     [SerializeField] private float footstepInterval = 0.3f; // Time between footstep sounds
@@ -33,6 +36,11 @@ public class PlayerMovementController : MonoBehaviour
     private Animator animator;
     private float currentSpeed;
 
+    private KeyCode m_Up;
+    private KeyCode m_Down;
+    private KeyCode m_Left;
+    private KeyCode m_Right;
+
     private AudioManager audioManager;
     // [SerializeField] private AudioClip dashSoundEffect;
 
@@ -40,6 +48,20 @@ public class PlayerMovementController : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+
+        if(playerMovementType == 1) {
+            m_Up = KeyCode.W;
+            m_Down = KeyCode.S;
+            m_Left = KeyCode.A;
+            m_Right = KeyCode.D;
+        }
+        else  if(playerMovementType == 2) {
+            m_Up = KeyCode.UpArrow;
+            m_Down = KeyCode.DownArrow;
+            m_Left = KeyCode.LeftArrow;
+            m_Right = KeyCode.RightArrow;
+        }
+        
     }
 
     void Update()
@@ -62,19 +84,19 @@ public class PlayerMovementController : MonoBehaviour
         float moveHorizontal = 0f;
         float moveVertical = 0f;
 
-        if (Input.GetKey(KeyCode.W)) moveVertical += 1.0f;
-        if (Input.GetKey(KeyCode.S)) moveVertical -= 1.0f;
-        if (Input.GetKey(KeyCode.A)) moveHorizontal -= 1.0f;
-        if (Input.GetKey(KeyCode.D)) moveHorizontal += 1.0f;
+        if (Input.GetKey(m_Up)) moveVertical += 1.0f;
+        if (Input.GetKey(m_Down)) moveVertical -= 1.0f;
+        if (Input.GetKey(m_Left)) moveHorizontal -= 1.0f;
+        if (Input.GetKey(m_Right)) moveHorizontal += 1.0f;
 
         moveDirection = new Vector3(moveHorizontal, 0, moveVertical).normalized;
 
         isMoving = moveDirection.magnitude > 0;
 
-        if (Input.GetKeyDown(KeyCode.W)) TryDash(KeyCode.W);
-        if (Input.GetKeyDown(KeyCode.S)) TryDash(KeyCode.S);
-        if (Input.GetKeyDown(KeyCode.A)) TryDash(KeyCode.A);
-        if (Input.GetKeyDown(KeyCode.D)) TryDash(KeyCode.D);
+        if (Input.GetKeyDown(m_Up)) TryDash(m_Up);
+        if (Input.GetKeyDown(m_Down)) TryDash(m_Down);
+        if (Input.GetKeyDown(m_Left)) TryDash(m_Left);
+        if (Input.GetKeyDown(m_Right)) TryDash(m_Right);
     }
 
     private void TryDash(KeyCode key)

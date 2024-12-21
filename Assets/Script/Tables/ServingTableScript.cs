@@ -2,12 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ServingTableScript : Table
 {
     private GameManager gameManager; // can get other components from gameManager
+    public GameObject scorePopupPrefab;
+    public float scoreIncrement = 15f;
 
     void Start() {
+        base.Start();
+
         gameManager = FindObjectOfType<GameManager>();
         if (gameManager == null) {
             Debug.LogError("Game manager not found");
@@ -31,16 +36,26 @@ public class ServingTableScript : Table
         List<Recipe> recipeList = gameManager.customerManager.GetRecipesList();
 
         int cust_idx = 0;
-        bool isRecipeMatch = true;
+        bool isRecipeMatch = false;
+        Debug.Log("sTARTING");
         for (cust_idx = 0; cust_idx < customerList.Count; ++cust_idx) {
             Recipe customerOrder = recipeList[cust_idx];
 
             
             int i = 0;
+            if (stackFood.GetFoodStack().Count != customerOrder.ingredients.Count) {
+                continue;
+            }
+
+            isRecipeMatch = true;
             foreach (GameObject food in stackFood.GetFoodStack())
-            {
+            {   
+                
                 // stack gets element from top of the list
                 String foodStackName = food.GetComponent<Item>().itemName;
+                Debug.Log(foodStackName);
+                Debug.Log(customerOrder.ingredients[i].ingredientName);
+                Debug.Log("=====");
                 // ingredients from left to right
                 if (customerOrder.ingredients[i].ingredientName != foodStackName) {
                     isRecipeMatch = false;
@@ -51,6 +66,7 @@ public class ServingTableScript : Table
             if (isRecipeMatch) {
                 break;
             }
+            Debug.Log("ending");
         }
 
         if (isRecipeMatch) {
@@ -61,6 +77,10 @@ public class ServingTableScript : Table
             gameManager.orderUiManager.RemoveOrderFromListByIndex(cust_idx);
             // destroy gameobject
             Destroy(gameObject);
+
+            gameManager.IncrementGameTime(scoreIncrement);
+            ShowScorePopup($"+{(int)scoreIncrement}");
+
         } else {
             // no matching dish found
             return gameObject;
@@ -95,6 +115,22 @@ public class ServingTableScript : Table
         // return null;
     }
 
+    private void ShowScorePopup(string scoreText)
+    {
+        if (scorePopupPrefab == null)
+        {
+            Debug.LogError("Score popup prefab is not assigned!");
+            return;
+        }
+
+        // Instantiate the popup at the serving table's position
+        GameObject popup = Instantiate(scorePopupPrefab, transform.position, Quaternion.identity);
+        ScorePopup popupScript = popup.GetComponent<ScorePopup>();
+        if (popupScript != null)
+        {
+            popupScript.SetScoreText(scoreText);
+        }
+    }
     // private void OrderRemoval(string matchedDish)
     // {
     //     int orderId = orderManager.GetOrderId(matchedDish);

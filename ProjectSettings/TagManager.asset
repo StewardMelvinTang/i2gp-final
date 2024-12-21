@@ -15,6 +15,7 @@ TagManager:
   - fence
   - Machette
   - dropItem
+  - pond
   layers:
   - Default
   - TransparentFX
