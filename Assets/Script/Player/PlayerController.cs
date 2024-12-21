@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private Table lastHitTable;
     public GameObject holdItem;
-    private StackFood backpack;
+    public StackFood backpack;
     private float backpackDelay;
 
     private KeyCode m_KeyInteract;
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         backpackObject.transform.SetParent(transform);
         backpack = backpackObject.AddComponent<StackFood>();
-        backpack.transform.localPosition = new Vector3(0, 0, -1);
+        backpack.transform.localPosition = new Vector3(0, 0.5f, -1);
         backpackDelay = 0.0f;
 
         if(playerMovementType == 1) {

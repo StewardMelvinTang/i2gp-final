@@ -36,6 +36,16 @@ public class SwitchingPlayer : MonoBehaviour
 
             player2.transform.position = tempPosition;
             player2.transform.rotation = tempRotation;
+
+            StackFood a = player1.backpack;
+            player1.backpack = player2.backpack;
+            player2.backpack = a;
+
+            player1.backpack.transform.SetParent(player1.transform);
+            player2.backpack.transform.SetParent(player2.transform);
+            player1.backpack.transform.localPosition = new Vector3(0, 0.5f, -1);
+            player2.backpack.transform.localPosition = new Vector3(0, 0.5f, -1);
+
         }
         else if(timer <= 1.0f){
             text.text = "1";
