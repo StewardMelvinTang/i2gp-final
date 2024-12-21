@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip panCookingSFX;
     public AudioClip boilingCookingSFX;
+
+    public AudioClip swordSlashingSFX;
     void Start() {
         audioSource = GetComponent<AudioSource>();
 

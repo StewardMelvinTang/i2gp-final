@@ -5,7 +5,9 @@ using UnityEngine;
 public class Machete : Item {
 
     [SerializeField] private string rightHandBoneName;
-    private float hitDuration = 0.0f; 
+    private float hitDuration = 0.0f;
+
+    private AudioManager audioManager;
 
     public override GameObject Use() {
         // GameObject[] animals = GameObject.FindGameObjectsWithTag("animal");
@@ -21,6 +23,8 @@ public class Machete : Item {
 
         hitDuration = 1.0f;
         currentDurability = Mathf.Clamp(currentDurability - durabilityDmgPerHit, 0.0f, maxDurability);
+        
+        if (audioManager) audioManager.PlayAudioOnce(audioManager.swordSlashingSFX, 0.35f);
         
         return null;
         
@@ -38,6 +42,9 @@ public class Machete : Item {
 
     void Start() {
         hitDuration = 0.0f;
+
+        audioManager = FindObjectOfType<AudioManager>();
+        
     }
 
     // Update is called once per frame
