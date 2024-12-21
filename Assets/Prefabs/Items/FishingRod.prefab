@@ -96,7 +96,7 @@ MeshCollider:
   m_GameObject: {fileID: 9213258348294838622}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -126,7 +126,7 @@ MonoBehaviour:
   canCut: 0
   objAfterCut: {fileID: 0}
   canBeTrash: 0
-  attachToBone: 0
+  attachToBone: 1
   boneName: 
   progressDecayRate: 0.5
   progressIncreaseAmount: 0.2

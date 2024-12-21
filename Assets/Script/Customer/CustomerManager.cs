@@ -17,9 +17,16 @@ public class CustomerManager : MonoBehaviour
     // ugly code
     public OrderUiManager orderUiManager; 
 
+    private GameManager gameManager;
+    
+    private float initialTime = 45f; // Starting leave time
+    private float minTime = 15f;     // Minimum leave time
+    private float decayRate = 0.01f; // Adjust this to control how fast the time decreases
+
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         positionOccupied = new bool[targetPositions.Length]; // Initialize the occupied tracker
     }
 
@@ -31,7 +38,7 @@ public class CustomerManager : MonoBehaviour
     {
         while (true)
         {
-            if (activeCustomers.Count < 5) // Maximum of 5 customers at a time
+            if (activeCustomers.Count < 6) // Maximum of 5 customers at a time
             {
                 Recipe randomRecipe = recipeManager.GetRandomRecipe();  
                 
@@ -39,7 +46,10 @@ public class CustomerManager : MonoBehaviour
                 
             }
             // Wait for a random interval between 2 and 10 seconds before spawning the next customer
-            float randomInterval = Random.Range(12f, 25f);
+            float timeTaken = gameManager.GetRealTime();
+            // ugly code
+            
+            float randomInterval = Random.Range(8f, 17f);
             yield return new WaitForSeconds(randomInterval);
         }
     }
@@ -52,6 +62,14 @@ public class CustomerManager : MonoBehaviour
         {
             // Instantiate customer at spawn point
             GameObject customer = Instantiate(customerPrefab, spawnPoint.position, Quaternion.identity);
+            float timeTaken = gameManager.GetRealTime();
+            
+            // Exponential decay to shrink the leave time
+            float leaveTime = Mathf.Lerp(minTime, initialTime, Mathf.Exp(-decayRate * timeTaken));
+
+            customer.GetComponent<Customer>().SetPatienceTime(Mathf.Max(leaveTime, minTime)); // Ensure it doesn't go below the minimum
+
+
             activeCustomers.Add(customer);
             activeRecipes.Add(randomRecipe);
 
