@@ -222,6 +222,59 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public GameObject Swap(GameObject newItem)
+    {
+        GameObject previousItem = holdItem;
+
+        if (newItem != null)
+        {
+            // Set the new item as the held item
+            holdItem = newItem;
+
+            // Play sound effect
+            if (audioManager && audioManager.pickupObjectSFX)
+            {
+                audioManager.PlayAudioOnce(audioManager.pickupObjectSFX, 0.25f);
+            }
+
+            // Handle item-specific behavior
+            Item itemRef = newItem.GetComponent<Item>();
+
+            if (itemRef != null)
+            {
+                canHoldAnimation = !itemRef.isTool;
+
+                if (itemRef.attachToBone && handAttachment != null)
+                {
+                    // Attach to bone
+                    holdItem.transform.SetParent(handAttachment.transform);
+                    holdItem.transform.localPosition = Vector3.zero;
+                    holdItem.transform.localRotation = Quaternion.identity;
+                }
+                else
+                {
+                    // Attach to player and adjust position
+                    holdItem.transform.SetParent(transform);
+                    holdItem.transform.localPosition = itemRef.getHoldPosition();
+                    holdItem.transform.localPosition += Vector3.up; // Add a slight vertical offset
+                }
+            }
+        }
+        else
+        {
+            holdItem = null; // Clear held item if no new item is provided
+        }
+
+        if (previousItem != null)
+        {
+            // Detach the previous item
+            previousItem.transform.SetParent(null);
+        }
+
+        return previousItem; // Return the previously held item
+    }
+
+
     /*
         #==================================================#
         #========= You can ignore below functions =========#
