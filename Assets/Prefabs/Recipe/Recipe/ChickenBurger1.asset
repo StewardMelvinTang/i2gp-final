@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChickenBurger1
   m_EditorClassIdentifier: 
   recipeName: ChickenBurger1
-  recipeIcon: {fileID: 0}
+  recipeIcon: {fileID: 21300000, guid: b1a0d1d3dba5a0f4dbcb2f920231c468, type: 3}
   ingredients:
   - {fileID: 11400000, guid: eee74890f20ffb941b21362f7783769c, type: 2}
   - {fileID: 11400000, guid: 33094ab301006354484fe1be1a5b6bef, type: 2}
