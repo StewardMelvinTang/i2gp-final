@@ -38,9 +38,13 @@ public class ServingTableScript : Table
             
             int i = 0;
             foreach (GameObject food in stackFood.GetFoodStack())
-            {
+            {   
+                
                 // stack gets element from top of the list
                 String foodStackName = food.GetComponent<Item>().itemName;
+                Debug.Log(foodStackName);
+                Debug.Log(customerOrder.ingredients[i].ingredientName);
+                Debug.Log("=====");
                 // ingredients from left to right
                 if (customerOrder.ingredients[i].ingredientName != foodStackName) {
                     isRecipeMatch = false;
