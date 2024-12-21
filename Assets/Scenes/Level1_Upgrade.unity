@@ -21309,7 +21309,7 @@ Transform:
   - {fileID: 808783349}
   - {fileID: 1558227096}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0.83, y: 0, z: 0}
 --- !u!4 &854467771 stripped
 Transform:
@@ -26678,6 +26678,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3488506400783593000, guid: 55d89f241522cd44aa281dbe3a9f33a0, type: 3}
   m_PrefabInstance: {fileID: 1036472691}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1037765537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1037765539}
+  - component: {fileID: 1037765538}
+  m_Layer: 0
+  m_Name: GameManagerNew
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1037765538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037765537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5943d5cfc5420a48bef8b4901e9c9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ordersMade: 0
+  ordersMissed: 0
+  animalsKilled: 0
+  score: 0
+--- !u!4 &1037765539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037765537}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 630.4595, y: 167.34515, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1038592560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7668645860801000401, guid: 6e1f8be006e5bb142aaa91c92913306d, type: 3}
@@ -47282,6 +47330,7 @@ MonoBehaviour:
   orderUiManager: {fileID: 1974041292}
   customerManager: {fileID: 813717839}
   currentGameTime: 0
+  totalGameTime: 5
   timerText: {fileID: 474771450}
   ordersMade: 0
   ordersMissed: 0

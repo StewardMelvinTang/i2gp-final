@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private float currentGameTime;
 
     // 5 minutes?
+    [SerializeField]
     private float totalGameTime = 120f;  
     public TextMeshProUGUI timerText;
 
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ordersMadeText; // Text for orders made
     public TextMeshProUGUI finalScoreText; // Text for final score
     public Image fadeImage; 
+
+    
 
     void Start()
     {
@@ -110,7 +113,10 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over!");
         //SceneManager.LoadScene("EndGameScene");
-        StartCoroutine(FadeToEndGame());
+        // SceneManager.LoadScene("EndGame");
+        // StartCoroutine(FadeToEndGame());
+
+        FindObjectOfType<GameManagerNew>().ChangingScene(ordersMade, ordersMissed, animalsKilled, score);
     }
 
     public void GetStats(out int made, out int missed, out int killed, out int finalScore)
