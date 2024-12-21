@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Animal : MonoBehaviour
 {
+    private GameManager gameManager;
     public GameObject dropItem;
     public GameObject dropItemPrefab;
 
@@ -47,6 +48,7 @@ public class Animal : MonoBehaviour
             originalColor = childRenderer.material.color;
         }
         animator = GetComponent<Animator>();
+        gameManager = FindObjectOfType<GameManager>();
         ChangeToNewState(AnimalState.Moving);
     }
 
@@ -60,6 +62,7 @@ public class Animal : MonoBehaviour
         if (health <= 0)
         {
             // Destroy(gameObject);
+            gameManager.IncrementAnimalsKilled();
             currentState = AnimalState.Dying;
             return dropItem;
         }

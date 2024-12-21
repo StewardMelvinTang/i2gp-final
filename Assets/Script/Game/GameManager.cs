@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro; 
+using UnityEngine.UI;
+using UnityEngine.SceneManagement; 
 
 public class GameManager : MonoBehaviour
 {
@@ -14,11 +16,23 @@ public class GameManager : MonoBehaviour
     private float currentGameTime;
 
     // 5 minutes?
-    private float totalGameTime = 60f;  
+    private float totalGameTime = 120f;  
     public TextMeshProUGUI timerText;
 
     private float realTimeTaken = 0f;
 
+    public int ordersMade = 0;
+    public int ordersMissed = 0;
+    public int animalsKilled = 0;
+    public int score = 0;
+
+
+    public GameObject endGamePanel;
+    public TextMeshProUGUI animalsKilledText; // Text for animals killed
+    public TextMeshProUGUI ordersMissedText; // Text for orders missed
+    public TextMeshProUGUI ordersMadeText; // Text for orders made
+    public TextMeshProUGUI finalScoreText; // Text for final score
+    public Image fadeImage; 
 
     void Start()
     {
@@ -35,11 +49,32 @@ public class GameManager : MonoBehaviour
             currentGameTime -= Time.deltaTime;
         } else {
             Debug.Log("Game is finished");
+            EndGame();
         }
         realTimeTaken += Time.deltaTime;
         UpdateTimerUI();
     }
 
+
+    public void UpdateScore(int value)
+    {
+        score += value;
+    }
+
+    public void IncrementOrdersMade()
+    {
+        ordersMade++;
+    }
+
+    public void IncrementOrdersMissed()
+    {
+        ordersMissed++;
+    }
+
+    public void IncrementAnimalsKilled()
+    {
+        animalsKilled++;
+    }
 
     public void IncrementGameTime(float seconds)
     {
@@ -70,6 +105,72 @@ public class GameManager : MonoBehaviour
             timerText.text = $"{minutes:00}:{seconds:00}";
         }
     }
+
+    private void EndGame()
+    {
+        Debug.Log("Game Over!");
+        //SceneManager.LoadScene("EndGameScene");
+        StartCoroutine(FadeToEndGame());
+    }
+
+    public void GetStats(out int made, out int missed, out int killed, out int finalScore)
+    {
+        made = ordersMade;
+        missed = ordersMissed;
+        killed = animalsKilled;
+        finalScore = score;
+    }
+
+    private IEnumerator FadeToEndGame()
+    {
+        float fadeDuration = 2f; // Duration of the fade
+        float elapsedTime = 0f;
+
+        if (fadeImage != null)
+        {
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
+                fadeImage.color = new Color(0, 0, 0, alpha);
+                yield return null;
+            }
+        }
+
+        // Activate end game panel and update stats
+        if (endGamePanel != null)
+        {
+            endGamePanel.SetActive(true);
+
+            // Update individual stats UI elements
+            if (animalsKilledText != null)
+            {
+                animalsKilledText.text = $"{animalsKilled}";
+            }
+
+            if (ordersMissedText != null)
+            {
+                ordersMissedText.text = $"{ordersMissed}";
+            }
+
+            if (ordersMadeText != null)
+            {
+                ordersMadeText.text = $"{ordersMade}";
+            }
+
+            if (finalScoreText != null)
+            {
+                finalScoreText.text = $"{score}";
+            }
+        }
+    }
+
+    public void SwitchScene(string sceneName)
+    {
+        // Load the specified scene
+        SceneManager.LoadScene(sceneName);
+    }
+
 
     // void OnCustomerSpawned(Recipe recipe) {
     //     orderUiManager.AddOrder(recipe);

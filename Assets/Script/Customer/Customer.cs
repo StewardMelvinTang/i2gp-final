@@ -24,6 +24,7 @@ public class Customer : MonoBehaviour
     private Animator femaleAnimator;
     private Vector3 targetPosition; // Store target                                    position for movement
     private bool leavingRestaurant = false;
+    private GameManager gameManager;
 
     /* Timer */ 
     [SerializeField] private float patienceTime = 45f; // Time before the customer leaves if no order is given
@@ -33,6 +34,7 @@ public class Customer : MonoBehaviour
     void Start()
     {
         // Set active character mesh and animator
+        gameManager = FindObjectOfType<GameManager>();
         if (meshMale && meshFemale)
         {
             bool randomCharMesh = Random.value > 0.5f;
@@ -155,6 +157,7 @@ public class Customer : MonoBehaviour
         // If patience runs out, make the customer leave
         if (!isOrderFulfilled)
         {
+            gameManager.IncrementOrdersMissed();   
             LeaveRestaurant();
             // orderFulfilled = true; // Mark the order as fulfilled
             isWaitingForOrder = false; // Customer is no longer waiting

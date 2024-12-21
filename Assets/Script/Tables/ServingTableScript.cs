@@ -79,6 +79,7 @@ public class ServingTableScript : Table
             Destroy(gameObject);
 
             gameManager.IncrementGameTime(scoreIncrement);
+            gameManager.IncrementOrdersMade();
             ShowScorePopup($"+{(int)scoreIncrement}");
 
         } else {
