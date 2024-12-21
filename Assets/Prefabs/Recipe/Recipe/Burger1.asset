@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba834ea376fdbed4e89f25312ecf227a, type: 3}
-  m_Name: Carrot
+  m_Script: {fileID: 11500000, guid: 6584c03e660fd3243b767b9dc80e8031, type: 3}
+  m_Name: Burger1
   m_EditorClassIdentifier: 
-  ingredientName: Carrot
-  ingredientIcon: {fileID: 0}
+  recipeName: 
+  recipeIcon: {fileID: 0}
+  ingredients: []
