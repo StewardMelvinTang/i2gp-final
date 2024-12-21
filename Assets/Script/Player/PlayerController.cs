@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -38,6 +39,24 @@ public class PlayerController : MonoBehaviour
         backpack = backpackObject.AddComponent<StackFood>();
         backpack.transform.localPosition = new Vector3(0, 0, -1);
         backpackDelay = 0.0f;
+
+        Camera mainCamera = GetComponentInChildren<Camera>();
+        Cinemachine.CinemachineVirtualCamera virtualCamera = GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>();
+
+        if (mainCamera != null && virtualCamera != null) {
+            Cinemachine.CinemachineBrain cinemachineBrain = mainCamera.gameObject.GetComponent<Cinemachine.CinemachineBrain>();
+            if (cinemachineBrain == null)
+            {
+                cinemachineBrain = mainCamera.gameObject.AddComponent<Cinemachine.CinemachineBrain>();
+            }
+
+            // Set the virtual camera to follow and look at this object
+            virtualCamera.Follow = transform;
+            virtualCamera.LookAt = transform;
+        }
+        else {
+            Debug.LogWarning("Camera or Virtual Camera not found in children.");
+        }
     }
 
     void Update()
