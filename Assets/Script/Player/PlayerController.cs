@@ -211,11 +211,11 @@ public class PlayerController : MonoBehaviour
             else {
                 if (animator) animator.SetTrigger("AttackTrigger");
                 GameObject droppedObj = holdItem.GetComponent<Item>().Use();
-                if (droppedObj) {
-                    GameObject obj = Instantiate(droppedObj);
-                    // obj.transform.SetParent(gameObject.transform);
-                    backpack.InsertFood(obj);
-                }
+                // if (droppedObj) {
+                //     GameObject obj = Instantiate(droppedObj);
+                //     // obj.transform.SetParent(gameObject.transform);
+                //     backpack.InsertFood(obj);
+                // }
             }
         }
     }
@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.tag == "dropItem") {
             DropItem item = collision.gameObject.GetComponent<DropItem>();
             GameObject obj = item.TakeItem();
-            backpack.InsertFood(obj);
+            if(obj != null) backpack.InsertFood(obj);
         }
     }
 

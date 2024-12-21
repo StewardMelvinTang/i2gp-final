@@ -102,10 +102,12 @@ MonoBehaviour:
   canBackpack: 0
   canPan: 1
   objAfterPan: {fileID: 919132149155446097, guid: e210f31e6e212e84fa7918056f3b471f, type: 3}
-  panTime: 5
+  panTime: 7
   canPot: 0
   objAfterPot: {fileID: 0}
   potTime: 0
   canCut: 0
   objAfterCut: {fileID: 0}
   canBeTrash: 1
+  attachToBone: 0
+  boneName: 

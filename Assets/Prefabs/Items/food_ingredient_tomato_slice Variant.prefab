@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c02536131aca5274ca54c06c20a77c37, type: 3}
       propertyPath: m_Name
-      value: food_ingredient_tomato_slice
+      value: food_ingredient_tomato_slice Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c02536131aca5274ca54c06c20a77c37, type: 3}
@@ -86,6 +86,6 @@ MonoBehaviour:
   potTime: 0
   canCut: 0
   objAfterCut: {fileID: 0}
-  canBeTrash: 0
+  canBeTrash: 1
   attachToBone: 0
   boneName: 

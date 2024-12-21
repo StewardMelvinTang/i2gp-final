@@ -27,19 +27,10 @@ public class FiniteCrate : Table
 
     public override GameObject PutItem(GameObject gameObject){
         if(gameObject == null) return null;
-        // String curname = gameObject.GetComponent<Item>().itemName;
-        // if(idx != 0) {
-        //     if (curname != name) {
-        //         return gameObject;
-        //     }
-        // }
-        // else {
-        //     name = curname;
-        // }
-
+        if(idx >= 8) return gameObject;
         stack.InsertFood(gameObject);
         idx++;
-        gameObject.transform.rotation = Quaternion.Euler(45f, 0f, 0f);
+        gameObject.transform.rotation = Quaternion.Euler(-45f, 0f, 0f);
         if(idx == 1) gameObject.transform.localPosition = new Vector3(0.345f, 100.2f, 0.4f);
         else if(idx == 2) gameObject.transform.localPosition = new Vector3(0.345f, 100.2f, 0.1f);
         else if(idx == 3) gameObject.transform.localPosition = new Vector3(0.345f, 100.2f, -0.2f);

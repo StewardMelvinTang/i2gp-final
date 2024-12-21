@@ -123,6 +123,6 @@ MonoBehaviour:
   potTime: 0
   canCut: 1
   objAfterCut: {fileID: 8941734377256294768, guid: 154e5b0ef17f81942aa34f18c413991c, type: 3}
-  canBeTrash: 0
+  canBeTrash: 1
   attachToBone: 0
   boneName: 

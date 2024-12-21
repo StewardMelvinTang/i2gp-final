@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BottomBun
   m_EditorClassIdentifier: 
   ingredientName: BottomBun
-  ingredientIcon: {fileID: 21300000, guid: 77b28124b8bda494381c80bd5aa42c22, type: 3}
+  ingredientIcon: {fileID: 21300000, guid: d20c1229e20e85c4f8adaf3d3f4f9c4d, type: 3}

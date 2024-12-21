@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6584c03e660fd3243b767b9dc80e8031, type: 3}
+  m_Name: TomatoSoup
+  m_EditorClassIdentifier: 
+  recipeName: TomatoSoup
+  recipeIcon: {fileID: 21300000, guid: ed04a098396f8a44ebd1eff53179582a, type: 3}
+  ingredients:
+  - {fileID: 11400000, guid: c8563ac861572414d92c74151164e1da, type: 2}
+  - {fileID: 11400000, guid: 669aabf5cde7d3448b99c5e646926376, type: 2}
+  - {fileID: 11400000, guid: 57cd7f77800e3014ea8d3fa5a6717cb8, type: 2}

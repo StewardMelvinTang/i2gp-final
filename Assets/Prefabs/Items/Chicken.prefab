@@ -9,9 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 146109897357841528}
-  - component: {fileID: 179092534464610516}
-  - component: {fileID: 170553406597062738}
-  - component: {fileID: 210246662657734608}
   - component: {fileID: -8046104618704485863}
   m_Layer: 0
   m_Name: Chicken
@@ -28,28 +25,90 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147771524176043338}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.2981043, y: 0.35791242, z: -18.272398}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8373921873833863501}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &179092534464610516
+--- !u!114 &-8046104618704485863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147771524176043338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97df77ab9c3f0cc4eae7ea6f32556bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Chicken
+  isTool: 0
+  canPlate: 0
+  canBackpack: 0
+  canPan: 1
+  objAfterPan: {fileID: 8245300292069438889, guid: 39266a2657291a0479171b002bf76573, type: 3}
+  panTime: 5
+  canPot: 0
+  objAfterPot: {fileID: 0}
+  potTime: 0
+  canCut: 0
+  objAfterCut: {fileID: 7761846225042401803, guid: 82b68b5c0e4dc5d46ae55e96d46c0548, type: 3}
+  canBeTrash: 1
+  attachToBone: 0
+  boneName: 
+--- !u!1 &2077577412872680969
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8373921873833863501}
+  - component: {fileID: 7688666659408647167}
+  - component: {fileID: 3870066345075869821}
+  - component: {fileID: 4121138944368843952}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8373921873833863501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2077577412872680969}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 146109897357841528}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7688666659408647167
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147771524176043338}
+  m_GameObject: {fileID: 2077577412872680969}
   m_Mesh: {fileID: 4300000, guid: 78c5443c2657351419e0854527bc2647, type: 3}
---- !u!23 &170553406597062738
+--- !u!23 &3870066345075869821
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147771524176043338}
+  m_GameObject: {fileID: 2077577412872680969}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,44 +144,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &210246662657734608
+--- !u!64 &4121138944368843952
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147771524176043338}
+  m_GameObject: {fileID: 2077577412872680969}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 43863938785642910, guid: a06127f2c84389d488b0867ddee8ad44, type: 2}
---- !u!114 &-8046104618704485863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 147771524176043338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97df77ab9c3f0cc4eae7ea6f32556bc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Chicken
-  isTool: 0
-  canPlate: 0
-  canBackpack: 0
-  canPan: 1
-  objAfterPan: {fileID: 8245300292069438889, guid: 39266a2657291a0479171b002bf76573, type: 3}
-  panTime: 5
-  canPot: 0
-  objAfterPot: {fileID: 0}
-  potTime: 0
-  canCut: 0
-  objAfterCut: {fileID: 7761846225042401803, guid: 82b68b5c0e4dc5d46ae55e96d46c0548, type: 3}
-  canBeTrash: 1
-  attachToBone: 0
-  boneName: 
+  m_Mesh: {fileID: 4300000, guid: 78c5443c2657351419e0854527bc2647, type: 3}

@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Fire Estinguisher
-  isTool: 0
+  isTool: 1
   canPlate: 0
   canBackpack: 0
   canPan: 0
@@ -379,7 +379,7 @@ MonoBehaviour:
   potTime: 0
   canCut: 0
   objAfterCut: {fileID: 0}
-  canBeTrash: 0
+  canBeTrash: 1
   attachToBone: 1
   boneName: 'Player/Playher/TT_demo_male_B/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001
     R Clavicle/Bip001 R UpperArm/Bip001 R Forearm/Bip001 R Hand/R_hand_container '

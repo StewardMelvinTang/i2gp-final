@@ -15,13 +15,14 @@ public class DropItem : MonoBehaviour{
     public void InitObject(GameObject objectInit){
         dropObject =  Instantiate(objectInit, this.gameObject.transform);
         dropObject.transform.localPosition = new Vector3(0, 0.5f, 0);
-        dropObject.transform.localRotation = Quaternion.identity;
+        dropObject.transform.localRotation = Quaternion.Euler(45, 0, 0);
     }
 
     public GameObject TakeItem () {
         if (dropObject != null)
         {
             dropObject.transform.SetParent(null);
+            dropObject.transform.localRotation = Quaternion.identity;
         }
 
         Destroy(this.gameObject);
