@@ -17,8 +17,9 @@ public class Machete : Item {
         // }
 
         if (currentDurability <= 0.0f) return null;
-        hitDuration = 1.0f;
+        if(hitDuration > 0.0f) return null;
 
+        hitDuration = 1.0f;
         currentDurability = Mathf.Clamp(currentDurability - durabilityDmgPerHit, 0.0f, maxDurability);
         
         return null;

@@ -62,7 +62,7 @@ public class RepairBench : Table
         while (true)
         {
             // Repair the item (increase durability smoothly)
-            itemToRepair.currentDurability = Mathf.Clamp(itemToRepair.currentDurability + 10 * Time.deltaTime, 0.0f, itemToRepair.maxDurability);
+            itemToRepair.currentDurability = Mathf.Clamp(itemToRepair.currentDurability + 100 * Time.deltaTime, 0.0f, itemToRepair.maxDurability);
 
             // Log the current durability (optional for debugging)
             Debug.Log($"Current Durability: {itemToRepair.currentDurability}");
