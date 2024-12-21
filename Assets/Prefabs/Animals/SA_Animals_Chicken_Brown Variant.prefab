@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890de40d863a61144b9e19277e581e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropItem: {fileID: 919132149155446097, guid: be4d15b25087f084d919c795e2aacf02, type: 3}
+  dropItem: {fileID: 147771524176043338, guid: b0343fdc893f6cc4785794d6b707f30b, type: 3}
   dropItemPrefab: {fileID: 4613966058525194274, guid: 80217647a4c188c4b8374a0c71b07f86, type: 3}
   health: 1
   moveSpeed: 2

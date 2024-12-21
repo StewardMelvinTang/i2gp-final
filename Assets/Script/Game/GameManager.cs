@@ -14,14 +14,17 @@ public class GameManager : MonoBehaviour
     private float currentGameTime;
 
     // 5 minutes?
-    private float totalGameTime = 300f;  
+    private float totalGameTime = 60f;  
     public TextMeshProUGUI timerText;
+
+    private float realTimeTaken = 0f;
 
 
     void Start()
     {
         // a little bit ugly here but basically everytime the customerManager spawns a customer, we get the recipe and show in UI 
         currentGameTime = totalGameTime;
+        realTimeTaken = 0f;
 
         customerManager.startSpawningCustomers(recipeManager);
         UpdateTimerUI();
@@ -33,18 +36,17 @@ public class GameManager : MonoBehaviour
         } else {
             Debug.Log("Game is finished");
         }
+        realTimeTaken += Time.deltaTime;
         UpdateTimerUI();
     }
+
 
     public void IncrementGameTime(float seconds)
     {
         currentGameTime += seconds;
 
         // Ensure the time does not exceed the total game time
-        if (currentGameTime > totalGameTime)
-        {
-            currentGameTime = totalGameTime;
-        }
+        currentGameTime = totalGameTime;
         UpdateTimerUI();
     }
 
@@ -53,6 +55,10 @@ public class GameManager : MonoBehaviour
     }
     public float GetTotalGameTime() {
         return totalGameTime;
+    }
+
+    public float GetRealTime() {
+        return realTimeTaken;
     }
 
     private void UpdateTimerUI()

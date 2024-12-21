@@ -26,7 +26,7 @@ public class Customer : MonoBehaviour
     private bool leavingRestaurant = false;
 
     /* Timer */ 
-    [SerializeField] private float patienceTime = 30f; // Time before the customer leaves if no order is given
+    [SerializeField] private float patienceTime = 45f; // Time before the customer leaves if no order is given
 
     // A little bit suspicious, but you need this to leave the  
     private OrderUiManager orderUiManager;
@@ -64,6 +64,10 @@ public class Customer : MonoBehaviour
 
         // move towards the counter
         StartCoroutine(MoveTowards(targetPosition, randomOrder, callback));
+    }
+
+    public void SetPatienceTime(float patienceTime) {
+        this.patienceTime = patienceTime;
     }
 
 
