@@ -8,11 +8,16 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float raycastRange = 1f;
     [SerializeField] private float holdDistance = 1.0f;
+    [Header("Change Keybind")]
+    [SerializeField] private int playerMovementType;
 
     private Table lastHitTable;
     private GameObject holdItem;
     private StackFood backpack;
     private float backpackDelay;
+
+    private KeyCode m_KeyInteract;
+    private KeyCode m_KeyUse;
 
 
     [Header("Attachment Settings")] [SerializeField]
@@ -38,23 +43,15 @@ public class PlayerController : MonoBehaviour
         backpack.transform.localPosition = new Vector3(0, 0, -1);
         backpackDelay = 0.0f;
 
-        Camera mainCamera = GetComponentInChildren<Camera>();
-        Cinemachine.CinemachineVirtualCamera virtualCamera = GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>();
-
-        if (mainCamera != null && virtualCamera != null) {
-            Cinemachine.CinemachineBrain cinemachineBrain = mainCamera.gameObject.GetComponent<Cinemachine.CinemachineBrain>();
-            if (cinemachineBrain == null)
-            {
-                cinemachineBrain = mainCamera.gameObject.AddComponent<Cinemachine.CinemachineBrain>();
-            }
-
-            // Set the virtual camera to follow and look at this object
-            virtualCamera.Follow = transform;
-            virtualCamera.LookAt = transform;
+        if(playerMovementType == 1) {
+            m_KeyInteract = KeyCode.F;
+            m_KeyUse = KeyCode.E;
         }
-        else {
-            Debug.LogWarning("Camera or Virtual Camera not found in children.");
+        else if(playerMovementType == 2) {
+            m_KeyInteract = KeyCode.Comma;
+            m_KeyUse = KeyCode.Period;
         }
+        
     }
 
     void Update()
@@ -117,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
 
     private void RefillCrate(FiniteCrate crate){
-        if (Input.GetKey(KeyCode.F) && backpack.foodStack.Count > 0){
+        if (Input.GetKey(m_KeyInteract) && backpack.foodStack.Count > 0){
             if(backpackDelay <= 0.0f){
                 GameObject obj = backpack.Pop();
                 crate.PutItem(obj);
@@ -131,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
     private void ObjectInteract(Table table)
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(m_KeyInteract))
         {
             GameObject item = null;
             
@@ -176,7 +173,7 @@ public class PlayerController : MonoBehaviour
             item = holdItem.GetComponent<Item>();
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && item && item.isTool) {
+        if (Input.GetKeyDown(m_KeyUse) && item && item.isTool) {
             // Attacking
             if (animator) animator.SetTrigger("AttackTrigger");
             GameObject droppedObj = holdItem.GetComponent<Item>().Use();
