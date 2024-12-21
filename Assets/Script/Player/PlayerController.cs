@@ -19,8 +19,10 @@ public class PlayerController : MonoBehaviour
 
 
     private Animator animator;
+    private bool canHoldAnimation = true;
 
     private AudioManager audioManager;
+    
     /*
         MOVE        : WASD
         INTERACT    : F
@@ -50,9 +52,10 @@ public class PlayerController : MonoBehaviour
         RayCastObject();
         UseItem();
 
-        if (animator)
+        if (canHoldAnimation)
         {
             // Smoothly blend the weight of layer 1
+            
             float targetWeight = holdItem ? 1.0f : 0.0f;
             float currentWeight = animator.GetLayerWeight(1);
             float newWeight = Mathf.MoveTowards(currentWeight, targetWeight, Time.deltaTime * 5f); // Adjust 5f for faster/slower blending
@@ -60,6 +63,15 @@ public class PlayerController : MonoBehaviour
 
             // Set the pickingUpItem parameter
             animator.SetBool("pickingUpItem", holdItem);
+        }
+        else {
+            float targetWeight = 0.0f;
+            float currentWeight = animator.GetLayerWeight(1);
+            float newWeight = Mathf.MoveTowards(currentWeight, targetWeight, Time.deltaTime * 5f); // Adjust 5f for faster/slower blending
+            animator.SetLayerWeight(1, newWeight);
+
+            // Set the pickingUpItem parameter
+            animator.SetBool("pickingUpItem", false);
         }
     }
 
@@ -121,7 +133,18 @@ public class PlayerController : MonoBehaviour
                 holdItem.transform.SetParent(null);
                 item = table.PutItem(holdItem);
                 holdItem = item;
-                if (item) Debug.Log("Object Interaction returns an output (it failed putting) : " + item.name);
+
+                if (holdItem == null) canHoldAnimation = false;
+                Debug.Log("Replacing Holding Item With " + holdItem.name);
+
+                Item itemRef;
+                if (item.TryGetComponent<Item>(out itemRef))
+                {
+                    Debug.Log("Item Ref is " + itemRef.isTool);
+                    canHoldAnimation = !itemRef.isTool;
+                }
+
+
             }
             else
             {
@@ -135,6 +158,11 @@ public class PlayerController : MonoBehaviour
                 if(audioManager && audioManager.pickupObjectSFX) audioManager.PlayAudioOnce(audioManager.pickupObjectSFX, 0.25f);
                 
                 var itemRef = item.GetComponent<Item>();
+                
+                if (itemRef.isTool) canHoldAnimation = false;
+                else canHoldAnimation = true;
+                //if is tool, don't play the item picking up animation, instead use the original idle animation (since it will have the attach to bone feature)
+                
                 if (itemRef.attachToBone == true && handAttachment != null) {
                 
                     holdItem.transform.SetParent(handAttachment.transform);
@@ -146,6 +174,7 @@ public class PlayerController : MonoBehaviour
                 holdItem.transform.SetParent(transform); 
                 holdItem.transform.localPosition = item.GetComponent<Item>().getHoldPosition();
                 holdItem.transform.localPosition = new Vector3(holdItem.transform.localPosition.x, holdItem.transform.localPosition.y + 1, holdItem.transform.localPosition.z);
+                
             }
         }
     }
