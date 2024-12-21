@@ -51459,6 +51459,14 @@ PrefabInstance:
       propertyPath: canvasGroup
       value: 
       objectReference: {fileID: 1317807724}
+    - target: {fileID: 5262461602708705275, guid: 525c1a1a73336e64ba21bfd8ff9580a0, type: 3}
+      propertyPath: fireChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262461602708705275, guid: 525c1a1a73336e64ba21bfd8ff9580a0, type: 3}
+      propertyPath: spawnInterval
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7173723132719468918, guid: 525c1a1a73336e64ba21bfd8ff9580a0, type: 3}
       propertyPath: m_FillAmount
       value: 1

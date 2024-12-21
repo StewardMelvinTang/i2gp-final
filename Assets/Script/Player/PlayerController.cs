@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
                 holdItem = item;
 
                 if (holdItem == null) canHoldAnimation = false;
-                Debug.Log("Replacing Holding Item With " + holdItem.name);
+                // Debug.Log("Replacing Holding Item With " + holdItem.name);
 
                 Item itemRef;
                 if (item.TryGetComponent<Item>(out itemRef))
