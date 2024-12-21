@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &894887859894389963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 780685153855228106}
+  m_Layer: 0
+  m_Name: FireSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &780685153855228106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894887859894389963}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.033999883, y: -0.110000014, z: 0.06400007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7863958474898149139}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1117222215217051763
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +177,7 @@ GameObject:
   - component: {fileID: 804044315155701717}
   - component: {fileID: 4257103895459816548}
   - component: {fileID: 6586457450332428585}
+  - component: {fileID: 7412442043853610910}
   m_Layer: 5
   m_Name: CookingProgressBar_Empty
   m_TagString: Untagged
@@ -212,6 +244,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &7412442043853610910
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934757448816924091}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4709345662766955675
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +368,7 @@ RectTransform:
   m_Children:
   - {fileID: 9173913662969213451}
   - {fileID: 804044315155701717}
+  - {fileID: 5113747998427248562}
   m_Father: {fileID: 7863958474898149139}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -419,6 +464,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBar: {fileID: 7173723132719468918}
   canvasGroup: {fileID: 212512867186084781}
+  dangerImage: {fileID: 4252696258904678146}
+  scaleUpSize: 0.016
+  scaleDownSize: 0.01
+  animationDuration: 1
 --- !u!225 &212512867186084781
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -445,6 +494,7 @@ GameObject:
   - component: {fileID: 7685636771521255267}
   - component: {fileID: 8725122914089942162}
   - component: {fileID: 8764222469636928050}
+  - component: {fileID: 5262461602708705275}
   m_Layer: 0
   m_Name: PanTable
   m_TagString: Untagged
@@ -466,6 +516,7 @@ Transform:
   m_Children:
   - {fileID: 7863958474451789263}
   - {fileID: 8257098259567738186}
+  - {fileID: 780685153855228106}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -546,9 +597,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodObject: {fileID: 0}
+  useCustomItemTransformOffset: 0
+  itemPositionOffset: {x: 0, y: 0, z: 0}
+  itemRotationOffset: {x: 0, y: 0, z: 0}
+  maintainObjectTransformWhenPlaced: 1
   timeCounter: 0
   audioSource: {fileID: 8764222469636928050}
-  audioManager: {fileID: 0}
 --- !u!82 &8764222469636928050
 AudioSource:
   m_ObjectHideFlags: 0
@@ -645,6 +699,99 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5262461602708705275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7379627642704254377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6a6bf70dc307c4b9e5d0d2543ae054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePrefab: {fileID: 6360420542703049433, guid: 8fcb9d2d43929c04f8c70c38581418d4, type: 3}
+  spawnPoint: {fileID: 780685153855228106}
+  spawnInterval: 10
+  fireChance: 1
+  isOnFire: 0
+--- !u!1 &7465493636922551745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5113747998427248562}
+  - component: {fileID: 4945768759991009291}
+  - component: {fileID: 4252696258904678146}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5113747998427248562
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7465493636922551745}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 8257098259567738186}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.667}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4945768759991009291
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7465493636922551745}
+  m_CullTransparentMesh: 1
+--- !u!114 &4252696258904678146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7465493636922551745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: eba4edea9b9be4147a275d64e080bfb9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1001 &7685636770739929636
 PrefabInstance:
   m_ObjectHideFlags: 0

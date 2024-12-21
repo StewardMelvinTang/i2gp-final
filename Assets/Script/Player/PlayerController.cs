@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int playerMovementType;
 
     private Table lastHitTable;
-    private GameObject holdItem;
+    public GameObject holdItem;
     private StackFood backpack;
     private float backpackDelay;
 
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         MOVE        : WASD
         INTERACT    : F
     */
+    
 
     void Start() {
         audioManager = FindObjectOfType<AudioManager>();
@@ -151,8 +152,6 @@ public class PlayerController : MonoBehaviour
                 holdItem = item;
 
                 if (holdItem == null) canHoldAnimation = false;
-                else Debug.Log("Replacing Holding Item With " + holdItem.name);
-
                 Item itemRef;
                 if (item != null && item.TryGetComponent<Item>(out itemRef))
                 {
@@ -202,7 +201,7 @@ public class PlayerController : MonoBehaviour
             item = holdItem.GetComponent<Item>();
         }
 
-        if (Input.GetKeyDown(m_KeyUse) && item && item.isTool) {
+        if (Input.GetKeyDown(m_KeyUse) && item && item.isTool && (!item.enableDurabilitySystem || item.currentDurability > 0.0f)) {
             // Attacking
             Firearm gun = item as Firearm;
             if (gun != null){
@@ -210,6 +209,7 @@ public class PlayerController : MonoBehaviour
             }
             else {
                 if (animator) animator.SetTrigger("AttackTrigger");
+                
                 GameObject droppedObj = holdItem.GetComponent<Item>().Use();
                 // if (droppedObj) {
                 //     GameObject obj = Instantiate(droppedObj);

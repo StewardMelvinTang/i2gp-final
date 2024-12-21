@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,19 +15,27 @@ public class PanTable : Table {
     
     public AudioSource audioSource;
     private AudioManager audioManager;
+    
+    //custom action eventp
+    public event Action<GameObject> OnItemPlaced;
+    public bool isCooking = false;
 
     void Update(){
         // Debug.Log("Start Counter Bool: " + startCounter + " Time Counter Float: " + timeCounter);
         if(startCounter){
             timeCounter -= Time.deltaTime;
+            isCooking = true;
+            
             if(timeCounter < 0.0f){
                 startCounter = false;
+                isCooking = false;
                 Destroy(foodObject);
                 foodObject = Instantiate(foodObject.GetComponent<Item>().objAfterPan);
                 foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
             
                 
                 if (foodObject.GetComponent<Item>().canPan) {
+                    isCooking = false;
                     startCounter = true;
                     timeCounter = foodObject.GetComponent<Item>().panTime;
                     cookingTime = timeCounter;
@@ -37,6 +46,8 @@ public class PanTable : Table {
 
     public override GameObject PutItem(GameObject targetObject) {
 
+        // Debug.Log("PUT ITEMM!" + targetObject.name);
+        OnItemPlaced?.Invoke(targetObject);
         Item targetItem = null;
         Item currentItem = null;
 
@@ -59,6 +70,7 @@ public class PanTable : Table {
             timeCounter = targetItem.panTime;
             cookingTime = timeCounter;
             foodObject = targetObject;
+            // isCooking = true;
             foodObject.transform.position = new Vector3(transform.position.x, 1.2f, transform.position.z);
             return returnItem;
         }
