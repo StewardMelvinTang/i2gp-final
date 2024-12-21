@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8941734377256294768
+--- !u!1 &499819777574654201
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8935934556099651936}
-  - component: {fileID: 8963640020915900534}
-  - component: {fileID: 8953205180807095024}
-  - component: {fileID: 9004195576177697444}
-  - component: {fileID: 5854847890731326069}
+  - component: {fileID: 593633692404407058}
+  - component: {fileID: 1175588482978346118}
+  - component: {fileID: 7898471717564236575}
+  - component: {fileID: 3499699982794974628}
   m_Layer: 0
-  m_Name: ChoppedFish
+  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8935934556099651936
+--- !u!4 &593633692404407058
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8941734377256294768}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.336273, y: -5.551115e-19, z: -8.782436}
+  m_GameObject: {fileID: 499819777574654201}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 8935934556099651936}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8963640020915900534
+--- !u!33 &1175588482978346118
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8941734377256294768}
+  m_GameObject: {fileID: 499819777574654201}
   m_Mesh: {fileID: 4300000, guid: 6b33751dc4e7e58448bd25cf41c73303, type: 3}
---- !u!23 &8953205180807095024
+--- !u!23 &7898471717564236575
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8941734377256294768}
+  m_GameObject: {fileID: 499819777574654201}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,20 +84,53 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &9004195576177697444
+--- !u!64 &3499699982794974628
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8941734377256294768}
+  m_GameObject: {fileID: 499819777574654201}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 43896213191872628, guid: 025a06b03e4e4e34baa6acee85ccdba0, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 6b33751dc4e7e58448bd25cf41c73303, type: 3}
+--- !u!1 &8941734377256294768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8935934556099651936}
+  - component: {fileID: 5854847890731326069}
+  m_Layer: 0
+  m_Name: ChoppedFish
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8935934556099651936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941734377256294768}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 593633692404407058}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5854847890731326069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +155,6 @@ MonoBehaviour:
   potTime: 0
   canCut: 0
   objAfterCut: {fileID: 0}
-  canBeTrash: 0
+  canBeTrash: 1
   attachToBone: 0
   boneName: 

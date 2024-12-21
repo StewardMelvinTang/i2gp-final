@@ -129,7 +129,7 @@ MonoBehaviour:
   boneName: 'Player/Playher/TT_demo_male_B/Bip001/Bip001 Pelvis/Bip001 Spine/Bip001
     R Clavicle/Bip001 R UpperArm/Bip001 R Forearm/Bip001 R Hand/R_hand_container '
   enableDurabilitySystem: 1
-  durabilityDmgPerHit: 20
+  durabilityDmgPerHit: 10
   maxDurability: 100
   currentDurability: 100
   rightHandBoneName: R_hand_container

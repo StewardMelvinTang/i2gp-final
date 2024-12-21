@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba834ea376fdbed4e89f25312ecf227a, type: 3}
-  m_Name: TopBun
+  m_Name: CookedFish
   m_EditorClassIdentifier: 
-  ingredientName: TopBun
-  ingredientIcon: {fileID: 21300000, guid: 0b1ef8476b0dd6c4faa167f2482f7fc4, type: 3}
+  ingredientName: CookedFish
+  ingredientIcon: {fileID: 21300000, guid: 5cf5574fba26eec4983bf7fbb9ebd592, type: 3}

@@ -9,9 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8806395393331849731}
-  - component: {fileID: 8813398186224860167}
-  - component: {fileID: 8820513277390218937}
-  - component: {fileID: 8853075350981085887}
   - component: {fileID: 8615328179575268899}
   m_Layer: 0
   m_Name: BurntFries
@@ -28,28 +25,90 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808250181179581293}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.979697, y: 0.35674548, z: -18.063433}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6856529433518978761}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8813398186224860167
+--- !u!114 &8615328179575268899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8808250181179581293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97df77ab9c3f0cc4eae7ea6f32556bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: BurntFries
+  isTool: 0
+  canPlate: 0
+  canBackpack: 0
+  canPan: 0
+  objAfterPan: {fileID: 0}
+  panTime: 0
+  canPot: 0
+  objAfterPot: {fileID: 0}
+  potTime: 0
+  canCut: 0
+  objAfterCut: {fileID: 0}
+  canBeTrash: 1
+  attachToBone: 0
+  boneName: 
+--- !u!1 &8936205559521687962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6856529433518978761}
+  - component: {fileID: 1235507933982183878}
+  - component: {fileID: 9060385874084076325}
+  - component: {fileID: 7251131804348431425}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6856529433518978761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936205559521687962}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8806395393331849731}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1235507933982183878
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8808250181179581293}
+  m_GameObject: {fileID: 8936205559521687962}
   m_Mesh: {fileID: 4300000, guid: ce84e9574b9e29d4aa38fc1cbe0048b9, type: 3}
---- !u!23 &8820513277390218937
+--- !u!23 &9060385874084076325
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8808250181179581293}
+  m_GameObject: {fileID: 8936205559521687962}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,44 +144,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8853075350981085887
+--- !u!64 &7251131804348431425
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8808250181179581293}
+  m_GameObject: {fileID: 8936205559521687962}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 43291076200603270, guid: 600d2439458842847a2a88c814c9e6d9, type: 2}
---- !u!114 &8615328179575268899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8808250181179581293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97df77ab9c3f0cc4eae7ea6f32556bc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: BurntFries
-  isTool: 0
-  canPlate: 0
-  canBackpack: 0
-  canPan: 0
-  objAfterPan: {fileID: 0}
-  panTime: 0
-  canPot: 0
-  objAfterPot: {fileID: 0}
-  potTime: 0
-  canCut: 0
-  objAfterCut: {fileID: 0}
-  canBeTrash: 1
-  attachToBone: 0
-  boneName: 
+  m_Mesh: {fileID: 4300000, guid: ce84e9574b9e29d4aa38fc1cbe0048b9, type: 3}

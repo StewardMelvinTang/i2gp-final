@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 24301737187557902}
   - component: {fileID: 4534096236162348229}
   m_Layer: 0
-  m_Name: bowl(Clone)
+  m_Name: TomatoSoup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97df77ab9c3f0cc4eae7ea6f32556bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: TomatoSoup
   isTool: 0
   canPlate: 0
   canBackpack: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   potTime: 0
   canCut: 0
   objAfterCut: {fileID: 0}
-  canBeTrash: 0
+  canBeTrash: 1
   attachToBone: 0
   boneName: 
 --- !u!1 &6145423275237956141

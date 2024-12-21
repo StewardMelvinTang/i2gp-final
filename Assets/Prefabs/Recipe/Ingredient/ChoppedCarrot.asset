@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ChoppedCarrot
   m_EditorClassIdentifier: 
   ingredientName: ChoppedCarrot
-  ingredientIcon: {fileID: 0}
+  ingredientIcon: {fileID: 21300000, guid: 337ad393c9e4f274b86280f09235e807, type: 3}

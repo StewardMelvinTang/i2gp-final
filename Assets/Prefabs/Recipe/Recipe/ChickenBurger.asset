@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6584c03e660fd3243b767b9dc80e8031, type: 3}
+  m_Name: ChickenBurger
+  m_EditorClassIdentifier: 
+  recipeName: ChickenBurger
+  recipeIcon: {fileID: 0}
+  ingredients:
+  - {fileID: 11400000, guid: eee74890f20ffb941b21362f7783769c, type: 2}
+  - {fileID: 11400000, guid: 36d8051073d211e488e8a65880e166c7, type: 2}
+  - {fileID: 11400000, guid: 8e88b11ab120491468976b10e41eac32, type: 2}
