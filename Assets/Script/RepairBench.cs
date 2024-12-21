@@ -41,7 +41,7 @@ public class RepairBench : Table
     void Update()
     {
         // Start repairing when the player holds the F key
-        if (isInteracting && itemToRepair != null && Input.GetKey(KeyCode.F) && isHighlighted)
+        if (isInteracting && itemToRepair != null && (Input.GetKey(KeyCode.F) || Input.GetKey(KeyCode.Comma)) && isHighlighted)
         {
             if (repairCoroutine == null) // Start repairing only if not already repairing
             {
@@ -50,7 +50,7 @@ public class RepairBench : Table
         }
 
         // Stop repairing when the F key is released
-        if (Input.GetKeyUp(KeyCode.F) && repairCoroutine != null)
+        if ((Input.GetKey(KeyCode.F) || Input.GetKey(KeyCode.Comma)) && repairCoroutine != null)
         {
             StopCoroutine(repairCoroutine);
             repairCoroutine = null;
