@@ -24,6 +24,9 @@ public class WeaponDurabilityScript : MonoBehaviour
         // StartCoroutine(CheckPlayerItemRoutine());]
 
         // canvasGroup = GetComponent<CanvasGroup>();
+        
+        // play bgm
+        
     }
     
 
@@ -31,29 +34,10 @@ public class WeaponDurabilityScript : MonoBehaviour
     void Update()
     {
         
-        // Debug.Log(player.holdItem.name);
-        // Check if the player is holding an item
-        if (!playerItemHolding)
-        {
-
-            canvasGroup.alpha = 0.0f; // Hide the UI if no item is held
-            
-            // Try to get the Item component from the player's held item
-            if (player.holdItem && player.holdItem.TryGetComponent<Item>(out playerItemHolding))
-            {
-                // Update the weapon name if the item is valid
-                if (weaponNameText)
-                {
-                    weaponNameText.SetText(playerItemHolding.itemName);
-                }
-            }
-            else
-            {
-                return; // Exit early if no valid item is found
-            }
-        }
 
         player.holdItem.TryGetComponent<Item>(out playerItemHolding);
+        
+        
 
         // Ensure the player is holding a valid item
         if (player.holdItem && playerItemHolding && playerItemHolding.enableDurabilitySystem && playerItemHolding.isTool)
@@ -61,7 +45,8 @@ public class WeaponDurabilityScript : MonoBehaviour
             
             // Enable or disable the UI based on the durability system flag
             canvasGroup.alpha = 1.0f;
-
+            weaponNameText.SetText(playerItemHolding.itemName);
+ 
             // Update the durability progress bar
             if (durabilityProgressBar && playerItemHolding.enableDurabilitySystem)
             {

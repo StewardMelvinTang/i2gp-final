@@ -6,6 +6,9 @@ public class AudioManager : MonoBehaviour
 {
     // Start is called before the first frame update
     private AudioSource audioSource; //GLOBAL AUDIO SOURCE
+
+    public AudioSource bgmAudioSource;
+    public AudioClip bgmMusic;
     [SerializeField] public AudioClip[] footstepClips;
     [SerializeField] public AudioClip dashSoundEffect;
 
@@ -16,6 +19,14 @@ public class AudioManager : MonoBehaviour
     public AudioClip boilingCookingSFX;
     void Start() {
         audioSource = GetComponent<AudioSource>();
+
+        if (bgmMusic && bgmAudioSource) {
+            bgmAudioSource.clip = bgmMusic;
+            bgmAudioSource.loop = true;
+            bgmAudioSource.playOnAwake = true;
+            bgmAudioSource.volume = 0.5f;
+            bgmAudioSource.Play();
+        }
     }
 
     // Update is called once per frame
