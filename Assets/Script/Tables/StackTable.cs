@@ -24,7 +24,7 @@ public class StackTable : Table
                 itemData.SaveTransform(foodObject.transform, itemPositionOffset); // save new transform
             }
             else {
-                foodObject.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+                foodObject.transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
             }
             
             return null;

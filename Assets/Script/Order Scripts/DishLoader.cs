@@ -28,7 +28,7 @@ public class DishLoader : MonoBehaviour
 
     void LoadDishes()
     {
-        Debug.Log("Loading Dishes");
+        // Debug.Log("Loading Dishes");
         string path = Path.Combine(Application.streamingAssetsPath, "Foods_JSON/foods.json");
         if (File.Exists(path))
         {

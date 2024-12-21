@@ -17,7 +17,7 @@ public class WorldProgressBar : MonoBehaviour
         // progressBar = GetComponentInChildren<Image>();
         // potTable = GetComponentInParent<PotTable>();
         gameManager = FindObjectOfType<GameManager>();
-        Debug.Log("is the timer here");
+        
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class WorldProgressBar : MonoBehaviour
             // canvasGroup.alpha = 1.0f;
             // Debug.Log("PanTable Time Counter: " + panTable.timeCounter + "Pan Table Cooking Time: "+ panTable.cookingTime);
             float progress = Mathf.Clamp01(gameManager.GetCurrentTime() / gameManager.GetTotalGameTime());
-            Debug.Log(progress);
+            // Debug.Log(progress);
 
             // Debug.Log("Progress : " + progress);
             progressBar.fillAmount = progress;
