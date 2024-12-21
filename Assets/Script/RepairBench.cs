@@ -65,7 +65,7 @@ public class RepairBench : Table
             itemToRepair.currentDurability = Mathf.Clamp(itemToRepair.currentDurability + 100 * Time.deltaTime, 0.0f, itemToRepair.maxDurability);
 
             // Log the current durability (optional for debugging)
-            Debug.Log($"Current Durability: {itemToRepair.currentDurability}");
+            // Debug.Log($"Current Durability: {itemToRepair.currentDurability}");
 
             // Wait for the next frame
             yield return null;

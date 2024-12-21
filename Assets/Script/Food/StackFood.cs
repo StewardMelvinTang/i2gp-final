@@ -107,7 +107,7 @@ public class StackFood : MonoBehaviour
         // Temporarily hold the other stack's items in a list
         while (otherStack.Count > 0) tempItems.Add(otherStack.Pop());
 
-        Debug.Log("Iterating through items to join stacks");
+        // Debug.Log("Iterating through items to join stacks");
 
         // Iterate over each item to add to the current stack
         for (int i = tempItems.Count-1; i >= 0; i--)

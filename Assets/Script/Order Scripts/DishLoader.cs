@@ -37,7 +37,7 @@ public class DishLoader : MonoBehaviour
 
             foreach (Dish dish in dishList.dishes)
             {
-                Debug.Log(dish.name);
+                // Debug.Log(dish.name);
                 dishes[dish.name] = new HashSet<string>(dish.ingredients);
             }
         }
