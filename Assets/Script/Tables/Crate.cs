@@ -14,8 +14,9 @@ public class Crate : Table
     }
     
     public override GameObject PutItem(GameObject gameObject){
-        Destroy(gameObject);
-        return null;
+        return gameObject;
+        // Destroy(gameObject);
+        // return null;
     }
     
     public override GameObject TakeItem(){
