@@ -3638,7 +3638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 1299893197}
   player2: {fileID: 294303275}
-  MaxTimer: 920.6
+  MaxTimer: 15
   timer: 0
   text: {fileID: 662873722}
 --- !u!4 &136664187
